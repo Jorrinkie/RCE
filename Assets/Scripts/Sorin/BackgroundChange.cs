@@ -1,11 +1,32 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
-public class BackgroundChange : MonoBehaviour
+using Unity.VisualScripting;
+using Alteruna;
+
+public class BackgroundChange : AttributesSync
 {
     [SerializeField] private LowerBlinds lowerBlindsTarget;
 
     [SerializeField] private List<GameObject> objectsToDeactivate = new List<GameObject>();
     [SerializeField] private GameObject objectToActivate;
+    [SynchronizableField] private bool switchscene;
+
+    public void Update()
+    {
+        if (switchscene)
+        {
+            
+            TriggerChange();
+        }
+    }
+
+    public void SceneSyncChange()
+    {
+        switchscene = true;
+        Commit();
+    }
+
+
 
     public void TriggerChange()
     {

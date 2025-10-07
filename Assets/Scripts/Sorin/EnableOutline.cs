@@ -10,6 +10,11 @@ public class EnableOutline : MonoBehaviour
     public GameObject CurrentTarget => currentTarget;
     public bool IsLookingAtHeritage { get; private set; } = false;
 
+
+    private void Start()
+    {
+        playerCamera = Camera.main;
+    }
     void Update()
     {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
