@@ -47,6 +47,5 @@ public class Username : AttributesSync
         {
             nameText.text = userName;
         }
-        Commit();
     }
 }
