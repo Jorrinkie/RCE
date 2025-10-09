@@ -9481,22 +9481,32 @@ PrefabInstance:
     - target: {fileID: 8763101913419821390, guid: 5a577542a281e0a448dc3b383023e1f2,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.2585
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8763101913419821390, guid: 5a577542a281e0a448dc3b383023e1f2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.2585
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8763101913419821390, guid: 5a577542a281e0a448dc3b383023e1f2,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.2585
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8763101913419821390, guid: 5a577542a281e0a448dc3b383023e1f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -284
+      value: -193
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763101913419821391, guid: 5a577542a281e0a448dc3b383023e1f2,
+        type: 3}
+      propertyPath: m_TagString
+      value: OnlineCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763101913705298800, guid: 5a577542a281e0a448dc3b383023e1f2,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8763101913705298800, guid: 5a577542a281e0a448dc3b383023e1f2,
         type: 3}
