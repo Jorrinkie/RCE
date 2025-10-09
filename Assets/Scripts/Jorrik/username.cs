@@ -8,6 +8,7 @@ public class Username : AttributesSync
 
     private Alteruna.Avatar _avatar;
 
+    [Header("UI References")]
     public TextMeshProUGUI nameText;
     public TMP_InputField inputField;
 
@@ -15,37 +16,55 @@ public class Username : AttributesSync
     {
         _avatar = GetComponent<Alteruna.Avatar>();
 
-      
-        if (nameText != null)
-            nameText.text = userName;
+        // Initialize UI
+        UpdateNameText();
 
-    
-        if (inputField != null)
+        // Only local player listens to input
+        if (_avatar != null && _avatar.IsMe && inputField != null)
+        {
             inputField.onValueChanged.AddListener(OnNameChanged);
+        }
     }
 
+    /// <summary>
+    /// Called when the local player edits the username input field
+    /// </summary>
     public void OnNameChanged(string newName)
     {
         if (_avatar == null || !_avatar.IsMe)
             return;
 
         if (string.IsNullOrEmpty(newName))
-            return; 
+            return;
 
-        userName = newName;
-
-        if (nameText != null)
-            nameText.text = newName;
-
-        Commit(); 
+        // Only commit if the value actually changed
+        if (userName != newName)
+        {
+            userName = newName;
+            Commit(); // Synchronize with all clients
+            UpdateNameText(); // Update local UI immediately
+        }
     }
 
     private void Update()
     {
-        
-        if (nameText != null && nameText.text != userName)
+        // Update UI for remote clients
+        if (_avatar != null && !_avatar.IsMe)
         {
-            nameText.text = userName;
+            UpdateNameText();
         }
+    }
+
+    /// <summary>
+    /// Updates the UI elements to match the current username
+    /// </summary>
+    private void UpdateNameText()
+    {
+        if (nameText != null)
+            nameText.text = userName;
+
+        // Update input field for local player
+        if (_avatar != null && _avatar.IsMe && inputField != null)
+            inputField.text = userName;
     }
 }
