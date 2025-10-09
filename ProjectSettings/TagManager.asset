@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - NetworkManager
+  - Heritage
+  - OnlineCanvas
+  - PausedMenu
   layers:
   - Default
   - TransparentFX

@@ -26,10 +26,13 @@ public class Username : AttributesSync
         }
     }
 
-    /// <summary>
-    /// Called when the local player edits the username input field
-    /// </summary>
-    public void OnNameChanged(string newName)
+    private void OnDestroy()
+    {
+        if (inputField != null)
+            inputField.onValueChanged.RemoveListener(OnNameChanged);
+    }
+
+    private void OnNameChanged(string newName)
     {
         if (_avatar == null || !_avatar.IsMe)
             return;
@@ -41,29 +44,26 @@ public class Username : AttributesSync
         if (userName != newName)
         {
             userName = newName;
-            Commit(); // Synchronize with all clients
-            UpdateNameText(); // Update local UI immediately
+            Commit(); // Sync to all clients
         }
     }
 
     private void Update()
     {
-        // Update UI for remote clients
-        if (_avatar != null && !_avatar.IsMe)
-        {
-            UpdateNameText();
-        }
+        // Update UI text for everyone
+        if (nameText != null)
+            nameText.text = userName;
+
+        // Keep input field consistent for local player
+        if (_avatar != null && _avatar.IsMe && inputField != null)
+            inputField.text = userName;
     }
 
-    /// <summary>
-    /// Updates the UI elements to match the current username
-    /// </summary>
     private void UpdateNameText()
     {
         if (nameText != null)
             nameText.text = userName;
 
-        // Update input field for local player
         if (_avatar != null && _avatar.IsMe && inputField != null)
             inputField.text = userName;
     }

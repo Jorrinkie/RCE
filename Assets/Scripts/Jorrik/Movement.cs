@@ -11,6 +11,9 @@ public class Movement : MonoBehaviour
     public float gravity = 20.0f;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 10.0f;
+    public GameObject onlinePanel;
+    public GameObject pauseMenu;
+    public CubeSpawner spawner;
  
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -32,6 +35,10 @@ public class Movement : MonoBehaviour
         if (!_avatar.IsMe)
             return;
         
+        onlinePanel = GameObject.FindWithTag("OnlineCanvas");
+        pauseMenu = GameObject.FindWithTag("PausedMenu");
+        pauseMenu.SetActive(false);
+        onlinePanel.SetActive(false);
         characterController = GetComponent<CharacterController>();
         playerCamera = Camera.main;
         playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
@@ -54,11 +61,17 @@ public class Movement : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
+                onlinePanel.SetActive(false);
+                pauseMenu.SetActive(false);
+                spawner.enabled = true;
             }
             else
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                onlinePanel.SetActive(true);
+                pauseMenu.SetActive(true);
+                spawner.enabled = false;
             }
         }
         if (Cursor.lockState == CursorLockMode.None)
