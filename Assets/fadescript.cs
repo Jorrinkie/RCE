@@ -3,32 +3,30 @@ using UnityEngine;
 public class fadescript : MonoBehaviour
 {
     [Header("Fade Settings")]
-    public float fadeDuration = 2f; // Time to fully fade out
+    [SerializeField] private float fadeDuration = 2f; // Time to fully fade out
 
+    [SerializeField] private float durationTillStartOfFade = 1.5f;
     private Renderer rend;
-    private Color initialColor;
+    private Material initialMaterial;
     private float timer = 0f;
-
+    private float initialTimer = 0f;
     void Start()
     {
         rend = GetComponent<Renderer>();
-
-        // Create an instance of the material so we don't affect the original prefab
-        rend.material = new Material(rend.material);
-
-        // Make sure the material supports transparency
-        // Use Standard Shader with Rendering Mode: Transparent
-        initialColor = rend.material.color;
+        initialMaterial = rend.material;
     }
 
     void Update()
     {
+        initialTimer += Time.deltaTime;
+        if (initialTimer <= durationTillStartOfFade)
+            return;
         timer += Time.deltaTime;
 
         // Lerp alpha from original to 0
-        float alpha = Mathf.Lerp(initialColor.a, 0f, timer / fadeDuration);
+        float alpha = Mathf.Lerp(initialMaterial.color.a, 0f, timer / fadeDuration);
 
-        Color newColor = initialColor;
+        Color newColor = initialMaterial.color;
         newColor.a = alpha;
         rend.material.color = newColor;
 
