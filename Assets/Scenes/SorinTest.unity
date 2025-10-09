@@ -11305,6 +11305,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887689915}
   m_Mesh: {fileID: 6750602107091316792, guid: 6996125d63d7d824e8c1a71f9053a130, type: 3}
+--- !u!1 &898214818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 898214819}
+  m_Layer: 0
+  m_Name: CoinLocation (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &898214819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898214818}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.6600944, z: -0, w: 0.7511827}
+  m_LocalPosition: {x: 21.498, y: 24.405, z: 4.305}
+  m_LocalScale: {x: 145, y: 145, z: 145}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -82.614, z: 0}
 --- !u!1 &963456008
 GameObject:
   m_ObjectHideFlags: 0
@@ -17049,6 +17080,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 486320463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2412664049045768981
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2651622313552856062, guid: 97ba09c2d45c08a46965c17ad3114ec5,
+        type: 3}
+      propertyPath: m_Name
+      value: hammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424887312467695940, guid: 97ba09c2d45c08a46965c17ad3114ec5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.717
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424887312467695940, guid: 97ba09c2d45c08a46965c17ad3114ec5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 24.519
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424887312467695940, guid: 97ba09c2d45c08a46965c17ad3114ec5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424887312467695940, guid: 97ba09c2d45c08a46965c17ad3114ec5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424887312467695940, guid: 97ba09c2d45c08a46965c17ad3114ec5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424887312467695940, guid: 97ba09c2d45c08a46965c17ad3114ec5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424887312467695940, guid: 97ba09c2d45c08a46965c17ad3114ec5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424887312467695940, guid: 97ba09c2d45c08a46965c17ad3114ec5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424887312467695940, guid: 97ba09c2d45c08a46965c17ad3114ec5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424887312467695940, guid: 97ba09c2d45c08a46965c17ad3114ec5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 97ba09c2d45c08a46965c17ad3114ec5, type: 3}
 --- !u!1 &3064523094431084435
 GameObject:
   m_ObjectHideFlags: 0
@@ -17614,3 +17713,5 @@ SceneRoots:
   - {fileID: 1211758886}
   - {fileID: 1280743219}
   - {fileID: 1915784278}
+  - {fileID: 898214819}
+  - {fileID: 2412664049045768981}
