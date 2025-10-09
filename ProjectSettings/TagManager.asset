@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 3
   tags:
   - NetworkManager
+  - Heritage
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Cube
+  - Player
   - Water
   - UI
-  - 
+  - Money
   - 
   - 
   - 

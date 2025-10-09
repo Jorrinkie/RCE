@@ -1,0 +1,71 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class ResaurceManager : MonoBehaviour
+{
+    [Header("Resources")]
+    [SerializeField] private int money = 10;
+    [SerializeField] private int manPower = 5;
+
+    [Header("References")]
+    [SerializeField] private MoneyViisualManager moneyVisualManager;
+
+    [Header("Debug / Settings")]
+    [SerializeField] private KeyCode loseMoneyKey = KeyCode.T;
+    [SerializeField] private KeyCode getMoneyKey = KeyCode.Y;
+    [SerializeField] private int moneyLossPerPress = 1;
+    [SerializeField] private int moneyGainPerPress = 1;
+
+    void Start()
+    {
+        if (moneyVisualManager != null)
+            moneyVisualManager.UpdateMoneyVisual(money);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(loseMoneyKey))
+        {
+            LoseMoney(moneyLossPerPress);
+        }
+        if (Input.GetKeyDown(getMoneyKey))
+        {
+            AddMoney(moneyGainPerPress);
+        }
+    }
+
+    public void AddMoney(int amount)
+    {
+        money += amount;
+        UpdateMoneyDisplay();
+    }
+
+    public void LoseMoney(int amount)
+    {
+        money = Mathf.Max(0, money - amount);
+        UpdateMoneyDisplay();
+    }
+
+
+
+    public void AddManPower(int amount)
+    {
+        manPower += amount;
+    }
+
+    public void LoseManPower(int amount)
+    {
+        manPower = Mathf.Max(0, manPower - amount);
+    }
+
+    private void UpdateMoneyDisplay()
+    {
+        if (moneyVisualManager != null)
+            moneyVisualManager.UpdateMoneyVisual(money);
+    }
+
+    // Optional: getters for other scripts
+    public int GetMoney() => money;
+    public int GetManPower() => manPower;
+}
