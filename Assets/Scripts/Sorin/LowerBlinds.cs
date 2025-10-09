@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public class LowerBlinds : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] private float duration = 2f;
     [SerializeField] private float distance = 4f;
-    [SerializeField] private GameObject objectToDeactivate;
-    [SerializeField] private GameObject objectToActivate;
 
     private bool isMoving = false;
 
@@ -25,7 +24,7 @@ public class LowerBlinds : MonoBehaviour
         Vector3 loweredPos = startPos - new Vector3(0, distance, 0);
         float elapsed = 0f;
 
-        // Lower
+        // Lower blinds
         while (elapsed < duration)
         {
             transform.position = Vector3.Lerp(startPos, loweredPos, elapsed / duration);
@@ -34,7 +33,7 @@ public class LowerBlinds : MonoBehaviour
         }
         transform.position = loweredPos;
 
-        // Swap objects
+        // Swap environment
         if (objectsToDeactivate != null)
         {
             foreach (var obj in objectsToDeactivate)
@@ -47,7 +46,7 @@ public class LowerBlinds : MonoBehaviour
         if (objectToActivate != null)
             objectToActivate.SetActive(true);
 
-        // Lift back
+        // Raise blinds
         elapsed = 0f;
         while (elapsed < duration)
         {
