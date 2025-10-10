@@ -84,7 +84,7 @@ public class ResaurceManager : MonoBehaviour
             manPowerVisualManager.UpdateManPowerVisual(money);
     }
 
-    // Optional: getters for other scripts
+ 
     public int GetMoney() => money;
     public int GetManPower() => manPower;
 }

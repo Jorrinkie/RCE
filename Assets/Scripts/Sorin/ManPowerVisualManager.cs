@@ -49,7 +49,7 @@ public class ManPowerVisualManager : MonoBehaviour
 
             if (next > 0 && next <= unitPool.Count)
             {
-                GameObject popped = unitPool[next - 1];
+                GameObject popped = unitPool[next - 1]; 
                 if (popped.activeSelf)
                     StartCoroutine(PopEffect(popped.transform));
             }
@@ -65,13 +65,15 @@ public class ManPowerVisualManager : MonoBehaviour
             if (i < count)
             {
                 if (!unitPool[i].activeSelf)
+                {
                     unitPool[i].SetActive(true);
 
-                int col = i % columns;
-                int row = i / columns;
+                    int col = i % columns;
+                    int row = i / columns;
 
-                Vector3 pos = new Vector3(col * gridSpacing.x, 0f, row * gridSpacing.z);
-                unitPool[i].transform.localPosition = pos;
+                    Vector3 pos = new Vector3(col * gridSpacing.x, 0f, row * gridSpacing.z);
+                    unitPool[i].transform.localPosition = pos;
+                }
             }
             else
             {
