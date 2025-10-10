@@ -10,6 +10,7 @@ public class ResaurceManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private MoneyViisualManager moneyVisualManager;
+    [SerializeField] private ManPowerVisualManager manPowerVisualManager;
 
     [Header("Debug / Settings")]
     [SerializeField] private KeyCode loseMoneyKey = KeyCode.T;
@@ -52,11 +53,15 @@ public class ResaurceManager : MonoBehaviour
     public void AddManPower(int amount)
     {
         manPower += amount;
+        if (manPowerVisualManager != null)
+            manPowerVisualManager.UpdateManPowerVisual(manPower);
     }
 
     public void LoseManPower(int amount)
     {
         manPower = Mathf.Max(0, manPower - amount);
+        if (manPowerVisualManager != null)
+            manPowerVisualManager.UpdateManPowerVisual(manPower);
     }
 
     private void UpdateMoneyDisplay()
