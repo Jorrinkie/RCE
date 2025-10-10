@@ -22,6 +22,9 @@ public class ResaurceManager : MonoBehaviour
     {
         if (moneyVisualManager != null)
             moneyVisualManager.UpdateMoneyVisual(money);
+
+        if (manPowerVisualManager != null)
+            manPowerVisualManager.UpdateManPowerVisual(manPower);
     }
 
     void Update()
@@ -29,11 +32,16 @@ public class ResaurceManager : MonoBehaviour
         if (Input.GetKeyDown(loseMoneyKey))
         {
             LoseMoney(moneyLossPerPress);
+            LoseManPower(moneyLossPerPress);
         }
         if (Input.GetKeyDown(getMoneyKey))
         {
             AddMoney(moneyGainPerPress);
+            AddManPower(moneyGainPerPress);
         }
+
+
+
     }
 
     public void AddMoney(int amount)
@@ -68,6 +76,12 @@ public class ResaurceManager : MonoBehaviour
     {
         if (moneyVisualManager != null)
             moneyVisualManager.UpdateMoneyVisual(money);
+    }
+
+    private void UpdateManPowerDisplay()
+    {
+        if (manPowerVisualManager != null)
+            manPowerVisualManager.UpdateManPowerVisual(money);
     }
 
     // Optional: getters for other scripts

@@ -14,8 +14,8 @@ public class ManPowerVisualManager : MonoBehaviour
     [SerializeField] private float animSpeed = 0.1f;
 
     [Header("Layout")]
-    [SerializeField] private int columns = 5;  // how many per row
-    [SerializeField] private Vector3 gridSpacing = new Vector3(0.6f, 0.6f, 0); // X = horizontal spacing, Y = vertical
+    [SerializeField] private int columns = 5;
+    [SerializeField] private Vector3 gridSpacing = new Vector3(1f, 0f, 1f);
 
     private List<GameObject> unitPool = new List<GameObject>();
     private int currentDisplayedManPower = 0;
@@ -65,15 +65,13 @@ public class ManPowerVisualManager : MonoBehaviour
             if (i < count)
             {
                 if (!unitPool[i].activeSelf)
-                {
                     unitPool[i].SetActive(true);
-                }
 
-                int row = i / columns;
                 int col = i % columns;
+                int row = i / columns;
 
-                unitPool[i].transform.localPosition =
-                    new Vector3(col * gridSpacing.x, -row * gridSpacing.y, 0);
+                Vector3 pos = new Vector3(col * gridSpacing.x, 0f, row * gridSpacing.z);
+                unitPool[i].transform.localPosition = pos;
             }
             else
             {

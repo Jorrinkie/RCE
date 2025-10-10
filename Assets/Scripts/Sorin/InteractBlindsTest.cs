@@ -12,6 +12,7 @@ public class InteractBlindsTest : MonoBehaviour
             {
                 var heritage = outlineChecker.CurrentTarget; 
                 heritage?.GetComponent<BackgroundChange>()?.TriggerChange();
+               
             }
         }
     }
