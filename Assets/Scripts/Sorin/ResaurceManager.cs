@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class ResaurceManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class ResaurceManager : MonoBehaviour
     [SerializeField] private MoneyViisualManager moneyVisualManager;
     [SerializeField] private ManPowerVisualManager manPowerVisualManager;
 
+    [Header("UI References")]
+    [SerializeField] private TMP_Text moneyText;
+    [SerializeField] private TMP_Text manPowerText;
+
     [Header("Debug / Settings")]
     [SerializeField] private KeyCode loseMoneyKey = KeyCode.T;
     [SerializeField] private KeyCode getMoneyKey = KeyCode.Y;
@@ -20,11 +25,8 @@ public class ResaurceManager : MonoBehaviour
 
     void Start()
     {
-        if (moneyVisualManager != null)
-            moneyVisualManager.UpdateMoneyVisual(money);
-
-        if (manPowerVisualManager != null)
-            manPowerVisualManager.UpdateManPowerVisual(manPower);
+        UpdateMoneyDisplay();
+        UpdateManPowerDisplay();
     }
 
     void Update()
@@ -34,14 +36,12 @@ public class ResaurceManager : MonoBehaviour
             LoseMoney(moneyLossPerPress);
             LoseManPower(moneyLossPerPress);
         }
+
         if (Input.GetKeyDown(getMoneyKey))
         {
             AddMoney(moneyGainPerPress);
             AddManPower(moneyGainPerPress);
         }
-
-
-
     }
 
     public void AddMoney(int amount)
@@ -56,35 +56,36 @@ public class ResaurceManager : MonoBehaviour
         UpdateMoneyDisplay();
     }
 
-
-
     public void AddManPower(int amount)
     {
         manPower += amount;
-        if (manPowerVisualManager != null)
-            manPowerVisualManager.UpdateManPowerVisual(manPower);
+        UpdateManPowerDisplay();
     }
 
     public void LoseManPower(int amount)
     {
         manPower = Mathf.Max(0, manPower - amount);
-        if (manPowerVisualManager != null)
-            manPowerVisualManager.UpdateManPowerVisual(manPower);
+        UpdateManPowerDisplay();
     }
 
     private void UpdateMoneyDisplay()
     {
         if (moneyVisualManager != null)
             moneyVisualManager.UpdateMoneyVisual(money);
+
+        if (moneyText != null)
+            moneyText.text = "Money: " + money;
     }
 
     private void UpdateManPowerDisplay()
     {
         if (manPowerVisualManager != null)
-            manPowerVisualManager.UpdateManPowerVisual(money);
+            manPowerVisualManager.UpdateManPowerVisual(manPower);
+
+        if (manPowerText != null)
+            manPowerText.text = "Manpower: " + manPower;
     }
 
- 
     public int GetMoney() => money;
     public int GetManPower() => manPower;
 }
