@@ -19,7 +19,7 @@ public class EnableOutline : MonoBehaviour
         {
             GameObject hitObj = hit.collider.gameObject;
 
-            if (hitObj.CompareTag("Heritage"))
+            if (hitObj.CompareTag("Heritage") || hitObj.CompareTag("Button"))
             {
                 if (currentTarget != hitObj)
                 {

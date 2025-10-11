@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NetworkManager
   - Heritage
+  - Button
   layers:
   - Default
   - TransparentFX
