@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1958989
 RectTransform:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 384.99976, y: -424.99988}
+  m_AnchoredPosition: {x: 384.99976, y: -523.00024}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1958990
@@ -267,7 +267,6 @@ GameObject:
   - component: {fileID: 16976579}
   - component: {fileID: 16976578}
   - component: {fileID: 16976577}
-  - component: {fileID: 16976583}
   - component: {fileID: 16976581}
   - component: {fileID: 16976582}
   m_Layer: 0
@@ -379,10 +378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f42724e686c57747b0cf674696c21f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationComponent: {fileID: 16976583}
-  clipName: ButtonPress
   interactKey: 101
   boardgameactionmanager: {fileID: 202688352}
+  resaurcemanager: {fileID: 202688349}
   actionToTrigger: 1
 --- !u!114 &16976582
 MonoBehaviour:
@@ -396,29 +394,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!111 &16976583
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 16976574}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: f299e7a2be4b4c146ab99f6651ff0f94, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: f299e7a2be4b4c146ab99f6651ff0f94, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!1 &43300694
 GameObject:
   m_ObjectHideFlags: 0
@@ -4972,8 +4953,9 @@ RectTransform:
   - {fileID: 1338386689}
   - {fileID: 1509556805}
   - {fileID: 281470396}
-  - {fileID: 1958989}
+  - {fileID: 198133245}
   - {fileID: 1513718386}
+  - {fileID: 1958989}
   m_Father: {fileID: 886177846}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5624,6 +5606,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197257000}
   m_Mesh: {fileID: 6736692750873803178, guid: 6996125d63d7d824e8c1a71f9053a130, type: 3}
+--- !u!1 &198133244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 198133245}
+  m_Layer: 5
+  m_Name: Maybe?
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &198133245
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198133244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 131750325}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &202688344
 GameObject:
   m_ObjectHideFlags: 0
@@ -5792,7 +5809,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615e966e65d166c47b621d77ee92fd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceManager: {fileID: 0}
+  resourceManager: {fileID: 202688349}
+  infodisplaymanager: {fileID: 202688351}
   leaveBehind_ManPowerCost: 0
   leaveBehind_MoneyCost: 0
   digitalize_ManPowerCost: 0
@@ -6887,7 +6905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 382, y: -248.99986}
+  m_AnchoredPosition: {x: 382, y: -347.00024}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &281470397
@@ -8247,10 +8265,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5477749408508380018, guid: dbd9512871955124090ef919883a8768,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 217.38998
+      objectReference: {fileID: 0}
+    - target: {fileID: -5477749408508380018, guid: dbd9512871955124090ef919883a8768,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.4783
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dbd9512871955124090ef919883a8768,
         type: 3}
       propertyPath: m_Name
       value: table (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409537067062913248, guid: dbd9512871955124090ef919883a8768,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: -922.05945
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409537067062913248, guid: dbd9512871955124090ef919883a8768,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0692
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083501151425157549, guid: dbd9512871955124090ef919883a8768,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 221.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083501151425157549, guid: dbd9512871955124090ef919883a8768,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 99.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083501151425157549, guid: dbd9512871955124090ef919883a8768,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.9778
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083501151425157549, guid: dbd9512871955124090ef919883a8768,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3036
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10899,8 +10957,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 163.55446, y: 156.96397, z: 49.235756}
-  m_Center: {x: 114.31834, y: 78.48199, z: -1.5114194}
+  m_Size: {x: 163.55446, y: 156.96397, z: 11.012248}
+  m_Center: {x: 114.31863, y: 78.48199, z: -1.7533947}
 --- !u!1 &578026188
 GameObject:
   m_ObjectHideFlags: 0
@@ -14357,7 +14415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 24.3, y: -103.8}
+  m_AnchoredPosition: {x: 24.300049, y: -103.79999}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1167736600
@@ -15400,7 +15458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 703, y: 84}
+  m_AnchoredPosition: {x: 703, y: -14}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338386690
@@ -16729,7 +16787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1398, y: -86}
+  m_AnchoredPosition: {x: 1398, y: -184.00037}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1509556806
@@ -16848,7 +16906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1513718386
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16865,7 +16923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 389, y: -601.9999}
+  m_AnchoredPosition: {x: 389, y: -700.00024}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513718387
@@ -18331,7 +18389,6 @@ GameObject:
   - component: {fileID: 1714214331}
   - component: {fileID: 1714214330}
   - component: {fileID: 1714214329}
-  - component: {fileID: 1714214334}
   - component: {fileID: 1714214332}
   - component: {fileID: 1714214333}
   m_Layer: 0
@@ -18443,10 +18500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f42724e686c57747b0cf674696c21f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationComponent: {fileID: 1714214334}
-  clipName: ButtonPress
   interactKey: 101
   boardgameactionmanager: {fileID: 202688352}
+  resaurcemanager: {fileID: 202688349}
   actionToTrigger: 4
 --- !u!114 &1714214333
 MonoBehaviour:
@@ -18460,29 +18516,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!111 &1714214334
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714214325}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: c9acbcdb795d9bf4b9d98d7121761095, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: c9acbcdb795d9bf4b9d98d7121761095, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!1 &1717078803
 GameObject:
   m_ObjectHideFlags: 0
@@ -18792,7 +18831,6 @@ GameObject:
   - component: {fileID: 1748934994}
   - component: {fileID: 1748934993}
   - component: {fileID: 1748934992}
-  - component: {fileID: 1748934997}
   - component: {fileID: 1748934995}
   - component: {fileID: 1748934996}
   m_Layer: 0
@@ -18904,10 +18942,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f42724e686c57747b0cf674696c21f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationComponent: {fileID: 1748934997}
-  clipName: ButtonPress
   interactKey: 101
   boardgameactionmanager: {fileID: 202688352}
+  resaurcemanager: {fileID: 202688349}
   actionToTrigger: 3
 --- !u!114 &1748934996
 MonoBehaviour:
@@ -18921,29 +18958,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!111 &1748934997
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748934988}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: 83944d2ab5c7f1145971916d3d69244e, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 83944d2ab5c7f1145971916d3d69244e, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!1 &1764900465
 GameObject:
   m_ObjectHideFlags: 0
@@ -19065,7 +19085,6 @@ GameObject:
   - component: {fileID: 1776476920}
   - component: {fileID: 1776476919}
   - component: {fileID: 1776476918}
-  - component: {fileID: 1776476923}
   - component: {fileID: 1776476921}
   - component: {fileID: 1776476922}
   m_Layer: 0
@@ -19177,10 +19196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f42724e686c57747b0cf674696c21f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationComponent: {fileID: 1776476923}
-  clipName: ButtonPress
   interactKey: 101
   boardgameactionmanager: {fileID: 202688352}
+  resaurcemanager: {fileID: 202688349}
   actionToTrigger: 2
 --- !u!114 &1776476922
 MonoBehaviour:
@@ -19194,29 +19212,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!111 &1776476923
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1776476914}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: 9ce39c4e0c54e3a47a6d276ce2170b8d, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 9ce39c4e0c54e3a47a6d276ce2170b8d, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!1 &1778344221
 GameObject:
   m_ObjectHideFlags: 0

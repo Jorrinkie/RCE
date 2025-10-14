@@ -1,12 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
 public class ButtonInteract : MonoBehaviour
 {
-    [SerializeField] private Animation animationComponent;
-    [SerializeField] private string clipName = "ButtonPress";
-    [SerializeField] private KeyCode interactKey = KeyCode.E;
 
+    [SerializeField] private KeyCode interactKey = KeyCode.E;
     [SerializeField] private BoardGameActionManager boardgameactionmanager;
+    [SerializeField] private ResaurceManager resaurcemanager;
 
     public enum ActionType
     {
@@ -38,15 +38,43 @@ public class ButtonInteract : MonoBehaviour
     public void Interact()
     {
         if (interacted) return;
-
-        if (animationComponent != null && !string.IsNullOrEmpty(clipName))
-            animationComponent.Play(clipName);
-
         interacted = true;
 
+        StartCoroutine(PlayButtonDownAnimation());
         Invoke(nameof(ExecuteAction), 0.2f);
+    }
 
-      
+    private IEnumerator PlayButtonDownAnimation()
+    {
+        Vector3 startPos = transform.localPosition;
+        Vector3 pressedPos = startPos + new Vector3(0f, -0.21f, 0f);
+        float duration = 0.2f;
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float progress = t / duration;
+            transform.localPosition = Vector3.Lerp(startPos, pressedPos, progress);
+            yield return null;
+        }
+
+
+
+        // ACTIVATE FOR REUTRN OF BUTTON
+
+        /*
+        t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float progress = t / duration;
+            transform.localPosition = Vector3.Lerp(pressedPos, startPos, progress);
+            yield return null;
+        }
+
+        transform.localPosition = startPos;
+        */
     }
 
     private void ExecuteAction()
@@ -67,6 +95,13 @@ public class ButtonInteract : MonoBehaviour
             case ActionType.MoveLocation:
                 boardgameactionmanager.MoveLocation();
                 break;
+        }
+
+
+        if (resaurcemanager != null)
+        {
+            resaurcemanager.UpdateMoneyDisplay();
+            resaurcemanager.UpdateManPowerDisplay();
         }
     }
 }

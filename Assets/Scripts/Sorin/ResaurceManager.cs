@@ -68,7 +68,7 @@ public class ResaurceManager : MonoBehaviour
         UpdateManPowerDisplay();
     }
 
-    private void UpdateMoneyDisplay()
+    public void UpdateMoneyDisplay()
     {
         if (moneyVisualManager != null)
             moneyVisualManager.UpdateMoneyVisual(money);
@@ -77,7 +77,7 @@ public class ResaurceManager : MonoBehaviour
             moneyText.text = "Money: " + money;
     }
 
-    private void UpdateManPowerDisplay()
+    public void UpdateManPowerDisplay()
     {
         if (manPowerVisualManager != null)
             manPowerVisualManager.UpdateManPowerVisual(manPower);

@@ -3,6 +3,7 @@ using UnityEngine;
 public class BoardGameActionManager : MonoBehaviour
 {
     [SerializeField] private ResaurceManager resourceManager;
+    [SerializeField] private InfoDisplayManager infodisplaymanager;
 
     [SerializeField] private int leaveBehind_ManPowerCost = 0;
     [SerializeField] private int leaveBehind_MoneyCost = 0;
