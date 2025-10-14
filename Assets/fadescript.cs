@@ -3,9 +3,9 @@ using UnityEngine;
 public class fadescript : MonoBehaviour
 {
     [Header("Fade Settings")]
-    [SerializeField] private float fadeDuration = 2f; // Time to fully fade out
+    [SerializeField] private float fadeDuration = 5f; // Time to fully fade out
 
-    [SerializeField] private float durationTillStartOfFade = 1.5f;
+    [SerializeField] private float durationTillStartOfFade = 5f;
     private Renderer rend;
     private Material initialMaterial;
     private float timer = 0f;

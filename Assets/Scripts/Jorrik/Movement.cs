@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
     public bool canMove = true;
  
     [SerializeField]
-    private float cameraYOffset = 0.4f;
+    private float cameraYOffset = 30f;
     private Camera playerCamera;
  
     private Alteruna.Avatar _avatar;
