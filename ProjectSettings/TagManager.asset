@@ -6,16 +6,15 @@ TagManager:
   tags:
   - NetworkManager
   - Heritage
-  - OnlineCanvas
-  - PausedMenu
+  - Button
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Cube
+  - Player
   - Water
   - UI
-  - 
+  - Money
   - 
   - 
   - 
