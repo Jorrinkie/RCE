@@ -8,7 +8,7 @@ public class LocalPauseScreen : MonoBehaviour
     void Start()
     {
         self = gameObject;
-        StartCoroutine(DisableAfterDelay(5f)); // wait 5 seconds
+        StartCoroutine(DisableAfterDelay(0.5f)); // wait 0.5 second
     }
 
     private IEnumerator DisableAfterDelay(float delay)
