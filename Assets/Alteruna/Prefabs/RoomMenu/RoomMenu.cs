@@ -91,7 +91,37 @@ namespace Alteruna
 			LeaveButton.interactable = false;
 		}
 
-		private void FixedUpdate()
+
+        public void OnStartButtonClicked()
+        {
+            Debug.Log("Start Button Clicked!");
+
+            // Make sure we have a Multiplayer reference
+            if (Multiplayer == null)
+            {
+                Multiplayer = FindObjectOfType<Multiplayer>();
+                if (Multiplayer == null)
+                {
+                    Debug.LogError("No Multiplayer component found in the scene!");
+                    return;
+                }
+            }
+
+            // If not connected yet, just tell the user
+            if (!Multiplayer.IsConnected)
+            {
+                Debug.Log("Multiplayer not connected yet — please wait or connect first.");
+                return;
+            }
+
+            // Join or create a room
+            Multiplayer.JoinOnDemandRoom();
+            _refreshTime = RefreshInterval;
+
+            Debug.Log("Attempted to join or create a room!");
+        }
+
+        private void FixedUpdate()
 		{
 			if (!Multiplayer.enabled)
 			{
@@ -334,4 +364,6 @@ namespace Alteruna
 			}
 		}
 	}
+
+  
 }

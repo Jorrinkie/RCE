@@ -14,7 +14,9 @@ public class ButtonInteract : MonoBehaviour
         LeaveBehind,
         Digitalize,
         InvestRepair,
-        MoveLocation
+        RelocateSmall,
+        RelocateBig
+            
     }
 
     [SerializeField] private ActionType actionToTrigger = ActionType.None;
@@ -92,9 +94,13 @@ public class ButtonInteract : MonoBehaviour
             case ActionType.InvestRepair:
                 boardgameactionmanager.InvestRepair();
                 break;
-            case ActionType.MoveLocation:
-                boardgameactionmanager.MoveLocation();
+            case ActionType.RelocateBig:
+                boardgameactionmanager.RelocateSmall();
                 break;
+            case ActionType.RelocateSmall:
+                boardgameactionmanager.RelocateBig();
+                break;
+
         }
 
 

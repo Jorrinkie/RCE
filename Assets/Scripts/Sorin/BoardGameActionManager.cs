@@ -14,8 +14,11 @@ public class BoardGameActionManager : MonoBehaviour
     [SerializeField] private int investRepair_ManPowerCost = 2;
     [SerializeField] private int investRepair_MoneyCost = 2;
 
-    [SerializeField] private int moveLocation_ManPowerCost = 3;
-    [SerializeField] private int moveLocation_MoneyCost = 3;
+    [SerializeField] private int relocateSmallLocation_ManPowerCost = 3;
+    [SerializeField] private int relocateSmallLocation_MoneyCost = 3;
+
+    [SerializeField] private int relcoateBigLocation_ManPowerCost = 3;
+    [SerializeField] private int relcoateBig_MoneyCost = 3;
 
     [SerializeField] private KeyCode leaveBehindKey = KeyCode.Alpha1;
     [SerializeField] private KeyCode digitalizeKey = KeyCode.Alpha2;
@@ -27,7 +30,8 @@ public class BoardGameActionManager : MonoBehaviour
         if (Input.GetKeyDown(leaveBehindKey)) LeaveBehind();
         if (Input.GetKeyDown(digitalizeKey)) Digitalize();
         if (Input.GetKeyDown(investRepairKey)) InvestRepair();
-        if (Input.GetKeyDown(moveLocationKey)) MoveLocation();
+        if (Input.GetKeyDown(moveLocationKey)) RelocateBig();
+        if (Input.GetKeyDown(moveLocationKey)) RelocateSmall();
     }
 
     public void LeaveBehind()
@@ -51,10 +55,17 @@ public class BoardGameActionManager : MonoBehaviour
         resourceManager.LoseMoney(investRepair_MoneyCost);
     }
 
-    public void MoveLocation()
+    public void RelocateBig()
     {
         if (resourceManager == null) return;
-        resourceManager.LoseManPower(moveLocation_ManPowerCost);
-        resourceManager.LoseMoney(moveLocation_MoneyCost);
+        resourceManager.LoseManPower(relocateSmallLocation_ManPowerCost);
+        resourceManager.LoseMoney(relocateSmallLocation_MoneyCost);
+    }
+
+    public void RelocateSmall()
+    {
+        if (resourceManager == null) return;
+        resourceManager.LoseManPower(relcoateBigLocation_ManPowerCost);
+        resourceManager.LoseMoney(relcoateBig_MoneyCost);
     }
 }
