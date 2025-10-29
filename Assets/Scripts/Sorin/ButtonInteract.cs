@@ -7,7 +7,6 @@ public class ButtonInteract : MonoBehaviour
     [SerializeField] private KeyCode interactKey = KeyCode.E;
     [SerializeField] private BoardGameActionManager boardgameactionmanager;
     [SerializeField] private ResaurceManager resaurcemanager;
-
     public enum ActionType
     {
         None,
