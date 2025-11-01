@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 public class LowerBlinds : MonoBehaviour
 {
@@ -9,54 +8,13 @@ public class LowerBlinds : MonoBehaviour
     [SerializeField] private float duration = 2f;
     [SerializeField] private float distance = 4f;
 
-    [Header("Blink Panel Settings")]
-    [SerializeField] private Image blinkPanel;
-    [SerializeField] private float fadeSpeed = 1f;
+    [Header("Cube Blink Settings")]
+    [SerializeField] private List<Renderer> cubeRenderers; // Assign the 6 cube Renderers in inspector
+    [SerializeField] private float fadeSpeed = 2f;
+    [SerializeField] GameObject starterblack;
 
     private Coroutine blinkRoutine;
     private bool isMoving = false;
-    private GameObject plyr;
-
-    private void Start()
-    {
-        // Start coroutine to wait for the player and assign Blink panel
-        StartCoroutine(WaitForPlayerAndAssignBlink());
-    }
-
-    private IEnumerator WaitForPlayerAndAssignBlink()
-    {
-        // Wait until a GameObject with tag "Player" exists
-        while (plyr == null)
-        {
-            plyr = GameObject.FindWithTag("Player");
-            yield return null; // wait one frame
-        }
-
-        // Wait an extra frame for children to initialize
-        yield return null;
-
-        // Search recursively for Image named "BlinkCanvas" in the player
-        Image[] images = plyr.GetComponentsInChildren<Image>(true); // true = include inactive
-        blinkPanel = null;
-
-        foreach (Image img in images)
-        {
-            if (img.name == "Blink")
-            {
-                blinkPanel = img;
-                break;
-            }
-        }
-
-        if (blinkPanel != null)
-        {
-            Debug.Log("Blink panel assigned successfully!");
-        }
-        else
-        {
-            Debug.LogWarning("BlinkCanvas not found under Player prefab!");
-        }
-    }
 
     public void ChangeHeritage(List<GameObject> toDeactivate, GameObject toActivate)
     {
@@ -71,11 +29,11 @@ public class LowerBlinds : MonoBehaviour
         Vector3 startPos = transform.position;
         Vector3 loweredPos = startPos - new Vector3(0, distance, 0);
         float elapsed = 0f;
-
-        // Trigger blink
+        // Trigger cube fade (blink)
         if (blinkRoutine != null)
             StopCoroutine(blinkRoutine);
-        blinkRoutine = StartCoroutine(BlinkEffect());
+        blinkRoutine = StartCoroutine(FadeCubes());
+
 
         // Lower blinds
         while (elapsed < duration)
@@ -112,26 +70,36 @@ public class LowerBlinds : MonoBehaviour
         transform.position = startPos;
 
         isMoving = false;
+        
     }
 
-    private IEnumerator BlinkEffect()
+    private IEnumerator FadeCubes()
     {
-        if (blinkPanel == null) yield break;
+        if (cubeRenderers == null || cubeRenderers.Count == 0)
+            yield break;
+
+        // Start alpha at 0 (fully transparent)
+        SetAlpha(0f);
 
         float alpha = 0f;
 
-        // Fade in
+        // Fade in (transparent -> opaque)
         while (alpha < 1f)
         {
             alpha += Time.deltaTime * fadeSpeed;
-            SetAlpha(alpha);
+            SetAlpha(alpha); // now alpha = 1 means fully opaque
             yield return null;
         }
 
-        // Optional hold full black
-        yield return new WaitForSeconds(1.5f);
+        // Optional: hold fully opaque for a moment
+        if (starterblack != null && starterblack.activeSelf == true )
+        {
+            starterblack.gameObject.SetActive(false);
+        }
+        yield return new WaitForSeconds(2f);
+        
 
-        // Fade out
+        // Fade out (opaque -> transparent)
         while (alpha > 0f)
         {
             alpha -= Time.deltaTime * fadeSpeed;
@@ -139,17 +107,34 @@ public class LowerBlinds : MonoBehaviour
             yield return null;
         }
 
-        // Ensure final alpha = 0
-        SetAlpha(0f);
+        SetAlpha(0f); // Ensure fully transparent at the end
     }
 
     private void SetAlpha(float alpha)
     {
-        if (blinkPanel != null)
+        foreach (var rend in cubeRenderers)
         {
-            Color c = blinkPanel.color;
-            c.a = Mathf.Clamp01(alpha);
-            blinkPanel.color = c;
+            if (rend != null)
+            {
+                foreach (var mat in rend.materials)
+                {
+                    if (mat.HasProperty("_Color"))
+                    {
+                        Color c = mat.color;
+                        c.a = Mathf.Clamp01(alpha); // alpha = 0 -> transparent, 1 -> opaque
+                        mat.color = c;
+
+                        // Ensure the material is set to allow transparency
+                        mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                        mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                        mat.SetInt("_ZWrite", 0);
+                        mat.DisableKeyword("_ALPHATEST_ON");
+                        mat.EnableKeyword("_ALPHABLEND_ON");
+                        mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                        mat.renderQueue = 3000;
+                    }
+                }
+            }
         }
     }
 }
