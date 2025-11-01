@@ -7,6 +7,9 @@ TagManager:
   - NetworkManager
   - Heritage
   - Button
+  - PausedMenu
+  - OnlineCanvas
+  - Blink
   layers:
   - Default
   - TransparentFX
