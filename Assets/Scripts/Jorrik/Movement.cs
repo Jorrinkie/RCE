@@ -11,7 +11,7 @@ public class Movement : AttributesSync
     public float jumpSpeed = 0f;
     public float gravity = 20.0f;
     public float lookSpeed = 2.0f;
-    public float lookXLimit = 10.0f;
+    public float lookXLimit = 20.0f;
     public GameObject onlinePanel;
     public GameObject pauseMenu;
     public CubeSpawner spawner;
@@ -76,7 +76,7 @@ public class Movement : AttributesSync
         if (!_avatar.IsMe)
         {
             if (headTransform != null)
-                headTransform.localRotation = Quaternion.Euler(syncedPitch, 0, 0);
+                headTransform.localRotation = Quaternion.Euler(syncedPitch - 90, -90, 90);
             return;
         }
 
@@ -148,7 +148,7 @@ public class Movement : AttributesSync
 
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             if (headTransform != null)
-                headTransform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+                headTransform.localRotation = Quaternion.Euler(rotationX - 90, -90, 90);
 
             // Update synced pitch so other players see the head move
             syncedPitch = rotationX;
