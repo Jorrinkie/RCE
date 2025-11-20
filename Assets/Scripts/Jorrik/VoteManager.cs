@@ -15,8 +15,6 @@ public class VoteManager : AttributesSync
     public TextMeshProUGUI RelocateText;
     public TextMeshProUGUI DigitizeText;
 
-    [SerializeField] private GameObject[] votebuttons;
-
     public void addsafe()
     {
         safeVotes++;
@@ -51,33 +49,7 @@ public class VoteManager : AttributesSync
         DigitizeText.text = digitizevotes.ToString();
     }
 
-    public void ResetVotes()
-    {
-        digitizevotes = 0;
-        relocatevotes = 0;
-        relocatedbigvotes = 0;
-        sacrificeVotes = 0;
-        safeVotes = 0;
-
-            foreach (GameObject button in votebuttons)
-            {
-                if (button != null)
-                {
-                    Interactme other = button.GetComponent<Interactme>();
-                    if (other != null)
-                    {
-                        other.SetInteracted(false);
-                        Debug.Log($"Enabled interaction on: {button.name}");
-                    }
-                }
-            }
-        Commit();
-    }
-
-
-
-
-    private void Update()
+        private void Update()
     {
         // Update UI every frame, disable this if you want secret votes that only show when you voted (maybe cool lol)
         safeText.text = safeVotes.ToString();
