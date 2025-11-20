@@ -16,7 +16,7 @@ public class InteractBlindsTest : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (outlineChecker != null && outlineChecker.IsLookingAtHeritage)
             {
