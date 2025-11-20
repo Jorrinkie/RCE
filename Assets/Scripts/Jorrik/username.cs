@@ -9,57 +9,80 @@ public class Username : AttributesSync
     private Alteruna.Avatar _avatar;
 
     [Header("UI References")]
-    public TextMeshProUGUI nameText;
-    public TMP_InputField inputField;
+    public TextMeshProUGUI nameText;      // Floating name above avatar
+    public TMP_InputField inputField;      // Local input field
+
+    private string lastUserName = "";
 
     private void Start()
     {
         _avatar = GetComponent<Alteruna.Avatar>();
 
-        // Initialize UI
-        UpdateNameText();
-
-        // Only local player listens to input
+        // Only local player listens to their input
         if (_avatar != null && _avatar.IsMe && inputField != null)
         {
-            inputField.onValueChanged.AddListener(OnNameChanged);
+            // Update final name when editing ends (Enter pressed or focus lost)
+            inputField.onEndEdit.AddListener(OnNameEndEdit);
+
+            // Keep local UI consistent
+            inputField.text = userName;
         }
+
+        UpdateUI();
+        lastUserName = userName;
     }
 
     private void OnDestroy()
     {
         if (inputField != null)
-            inputField.onValueChanged.RemoveListener(OnNameChanged);
+            inputField.onEndEdit.RemoveListener(OnNameEndEdit);
     }
 
-    private void OnNameChanged(string newName)
+    /// <summary>
+    /// Called when the local player finishes typing their name
+    /// </summary>
+    private void OnNameEndEdit(string newName)
     {
         if (_avatar == null || !_avatar.IsMe)
             return;
 
-        if (string.IsNullOrEmpty(newName))
+        if (string.IsNullOrEmpty(newName) || newName == userName)
             return;
 
-        // Only commit if the value actually changed
-        if (userName != newName)
-        {
-            userName = newName;
-            Commit(); // Sync to all clients
-        }
+        // Immediately update local UI
+        nameText.text = newName;
+
+        //  Send final name to host/owner to commit it
+        BroadcastRemoteMethod("RPC_SetUsername", newName);
+    }
+
+    /// <summary>
+    /// Host executes this method and commits the final username
+    /// </summary>
+    [SynchronizableMethod]
+    private void RPC_SetUsername(string newName)
+    {
+        if (string.IsNullOrEmpty(newName) || newName == userName)
+            return;
+
+        userName = newName;
+        Commit(); // Syncs to all clients
     }
 
     private void Update()
     {
-        // Update UI text for everyone
-        if (nameText != null)
-            nameText.text = userName;
-
-        // Keep input field consistent for local player
-        if (_avatar != null && _avatar.IsMe && inputField != null)
-            inputField.text = userName;
+        // Update UI if the synced value changes (from host commit)
+        if (userName != lastUserName)
+        {
+            lastUserName = userName;
+            UpdateUI();
+        }
     }
 
-    private void UpdateNameText()
+    /// <summary>
+    /// Updates name text and input field for local player
+    /// </summary>
+    private void UpdateUI()
     {
         if (nameText != null)
             nameText.text = userName;
