@@ -125,7 +125,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deep_Color: {r: 0.08276958, g: 0.12841827, b: 0.5849056, a: 0}
+    - _Deep_Color: {r: 0.19379672, g: 0.23488535, b: 0.6320754, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Shallow_Color: {r: 0.15485224, g: 0.7040337, b: 0.90188676, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
