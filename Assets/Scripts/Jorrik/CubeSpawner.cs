@@ -40,30 +40,26 @@ public class CubeSpawner : MonoBehaviour
 
     void SpawnCube()
     {
-        if (_spawner == null)
-            return;
+        if (_spawner == null) return;
 
-        // Spawn position slightly in front of camera
         Vector3 spawnPos = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
-
-        // Random rotation for dynamic look
         Quaternion spawnRot = Random.rotation;
 
-        // Spawn the cube
         GameObject cube = _spawner.Spawn(indexToSpawn, spawnPos, spawnRot, spawnScale);
 
-        // Apply Rigidbody force if it exists
-        Rigidbody rb = cube.GetComponent<Rigidbody>();
-        if (rb != null)
+        RigidbodySynchronizable rbSync = cube.GetComponent<RigidbodySynchronizable>();
+        if (rbSync != null)
         {
-            // Forward force
+            // Replicated force!
             Vector3 force = Camera.main.transform.forward * forwardForce;
-
-            // Random side and up forces
             force += Camera.main.transform.right * Random.Range(-maxSideForce, maxSideForce);
             force += Camera.main.transform.up * Random.Range(0f, maxUpForce);
-
-            rb.AddForce(force, ForceMode.Impulse);
+            rbSync.AddForce(force, ForceMode.Impulse);  // <-- This replicates to everyone
+        }
+        else
+        {
+            Debug.LogError("RigidbodySynchronizable missing on spawned cube!");
         }
     }
 }
+
