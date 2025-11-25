@@ -4969,13 +4969,8 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 486320464}
-  objectsToDeactivate:
-  - {fileID: 1247115495}
-  - {fileID: 919132148082383189}
-  - {fileID: 1488091613}
-  - {fileID: 303517294}
-  - {fileID: 1833112228}
-  objectToActivate: {fileID: 769408626}
+  myBackgroundRoot: {fileID: 1833112228}
+  backgroundID: church
 --- !u!114 &243968241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8695,7 +8690,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 072e87c0706e4bf49b0229f304661472,
         type: 3}
       propertyPath: m_Name
-      value: WaterScene
+      value: Background_Lighthouse
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 072e87c0706e4bf49b0229f304661472,
         type: 3}
@@ -12078,7 +12073,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 856ee10fa3205c84c93c77fa636837ef,
         type: 3}
       propertyPath: m_Name
-      value: Church/Forest
+      value: Background_Windmill
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 856ee10fa3205c84c93c77fa636837ef,
         type: 3}
@@ -15250,7 +15245,7 @@ GameObject:
   - component: {fileID: 769408627}
   - component: {fileID: 769408628}
   m_Layer: 0
-  m_Name: Church
+  m_Name: Background_Church
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15999,6 +15994,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 3172841425408737287, guid: 3435bdfd3f993a4409202edcdf3d4927,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8554862865384902660, guid: 3435bdfd3f993a4409202edcdf3d4927,
         type: 3}
@@ -19584,13 +19584,8 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 486320464}
-  objectsToDeactivate:
-  - {fileID: 1247115495}
-  - {fileID: 919132148082383189}
-  - {fileID: 1488091613}
-  - {fileID: 769408626}
-  - {fileID: 303517294}
-  objectToActivate: {fileID: 1833112228}
+  myBackgroundRoot: {fileID: 1833112228}
+  backgroundID: tower
 --- !u!114 &1022991076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22260,13 +22255,8 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 486320464}
-  objectsToDeactivate:
-  - {fileID: 1247115495}
-  - {fileID: 919132148082383189}
-  - {fileID: 1488091613}
-  - {fileID: 1833112228}
-  - {fileID: 769408626}
-  objectToActivate: {fileID: 303517294}
+  myBackgroundRoot: {fileID: 303517294}
+  backgroundID: windmill
 --- !u!114 &1196601447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27122,7 +27112,7 @@ GameObject:
   - component: {fileID: 1488091614}
   - component: {fileID: 1488091615}
   m_Layer: 0
-  m_Name: BridgeScene
+  m_Name: Background_Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28842,7 +28832,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoObjects:
   - {fileID: 1247115495}
-  - {fileID: 919132148082383189}
   - {fileID: 303517294}
   - {fileID: 1488091613}
   - {fileID: 1833112228}
@@ -30902,7 +30891,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 457816692}
-  - {fileID: 543450652624798703}
   - {fileID: 600076081}
   - {fileID: 886755054}
   - {fileID: 1488091614}
@@ -33347,7 +33335,7 @@ GameObject:
   - component: {fileID: 1833112229}
   - component: {fileID: 1833112230}
   m_Layer: 0
-  m_Name: Plomptower
+  m_Name: Background_Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35648,13 +35636,8 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 486320464}
-  objectsToDeactivate:
-  - {fileID: 919132148082383189}
-  - {fileID: 303517294}
-  - {fileID: 1488091613}
-  - {fileID: 1833112228}
-  - {fileID: 769408626}
-  objectToActivate: {fileID: 1247115495}
+  myBackgroundRoot: {fileID: 1247115495}
+  backgroundID: lighthouse
 --- !u!114 &1963729334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36935,13 +36918,8 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 486320464}
-  objectsToDeactivate:
-  - {fileID: 303517294}
-  - {fileID: 919132148082383189}
-  - {fileID: 1247115495}
-  - {fileID: 1833112228}
-  - {fileID: 769408626}
-  objectToActivate: {fileID: 1488091613}
+  myBackgroundRoot: {fileID: 1488091613}
+  backgroundID: bridge
 --- !u!114 &2083518425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38438,21 +38416,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5728787760799160042}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &543450652624798703
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148082383189}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 60.54559, y: -0.13000011, z: 39.980003}
-  m_LocalScale: {x: 0.66769326, y: 0.6676933, z: 0.66769326}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1701699246}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &543450653514016517
 Transform:
   m_ObjectHideFlags: 0
@@ -38612,42 +38575,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &919132148082383189
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 543450652624798703}
-  - component: {fileID: 919132148082383190}
-  m_Layer: 0
-  m_Name: City
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &919132148082383190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148082383189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e4224df4f01d4d4f93571847935fe0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: City
-  information: Amazing city!
-  peopleScore: 5
-  importance: 5
-  moneyCost: 1
-  manPowerCost: 2
-  infoImage: {fileID: 21300000, guid: c124088477813114e80224d19725852b, type: 3}
 --- !u!1 &919132149196758161
 GameObject:
   m_ObjectHideFlags: 0
