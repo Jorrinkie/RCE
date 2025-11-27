@@ -231,7 +231,9 @@ namespace Alteruna
 			{
 				TitleText.text = "In Room " + room.Name;
 			}
-		}
+
+           
+        }
 
 		private void LeftRoom(Multiplayer multiplayer)
 		{
