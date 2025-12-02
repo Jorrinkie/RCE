@@ -15610,7 +15610,7 @@ PrefabInstance:
     - target: {fileID: 1170255813974837886, guid: 27f289f24fa80bf4e937c49a08f09633,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4049749553307728129, guid: 27f289f24fa80bf4e937c49a08f09633,
         type: 3}
@@ -15686,6 +15686,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7326554437326539061, guid: 27f289f24fa80bf4e937c49a08f09633,
+        type: 3}
+      propertyPath: m_PlaybackSpeed
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33562,7 +33567,7 @@ PrefabInstance:
     - target: {fileID: 8300301534991262949, guid: 0713b2307da4eb544bc28019c52c137f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -40771,6 +40776,7 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 809304604}
   - {fileID: 423966907}
   - {fileID: 680991791}
   - {fileID: 1585108767}
@@ -40784,5 +40790,4 @@ SceneRoots:
   - {fileID: 2110809026}
   - {fileID: 1045713014}
   - {fileID: 1906498280}
-  - {fileID: 809304604}
   - {fileID: 798931976}
