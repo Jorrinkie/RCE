@@ -13,7 +13,28 @@ public class EnableOutline : MonoBehaviour
 
     private void Start()
     {
-        playerCamera = Camera.main;
+        // Auto-grab the player camera
+        if (playerCamera == null)
+            playerCamera = GetComponentInChildren<Camera>(true);
+
+        // Find the "Full" UI image even if it's inactive
+        if (uiImageFull == null)
+        {
+            Image[] allImages = Resources.FindObjectsOfTypeAll<Image>();
+
+            foreach (Image img in allImages)
+            {
+                if (img.name == "Full")  // Your object's name
+                {
+                    uiImageFull = img;
+                    break;
+                }
+            }
+        }
+
+        // Turn it off instantly so the UI stays hidden at the start
+        if (uiImageFull != null)
+            uiImageFull.gameObject.SetActive(false);
     }
     void Update()
     {

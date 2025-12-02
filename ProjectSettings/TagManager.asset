@@ -10,6 +10,7 @@ TagManager:
   - PausedMenu
   - OnlineCanvas
   - Blink
+  - FullUI
   layers:
   - Default
   - TransparentFX
