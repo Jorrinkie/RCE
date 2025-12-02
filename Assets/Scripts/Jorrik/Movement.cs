@@ -49,7 +49,7 @@ public class Movement : AttributesSync
         onlinePanel = GameObject.FindWithTag("OnlineCanvas");
         pauseMenu = GameObject.FindWithTag("PausedMenu");
 
-        if (pauseMenu != null) pauseMenu.SetActive(false);
+        //if (pauseMenu != null) pauseMenu.SetActive(false);
         if (onlinePanel != null) onlinePanel.SetActive(false);
 
         characterController = GetComponent<CharacterController>();
