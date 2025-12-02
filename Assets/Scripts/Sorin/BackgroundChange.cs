@@ -9,19 +9,18 @@ public class BackgroundChange : AttributesSync
     [SerializeField] private List<GameObject> objectsToDeactivate = new List<GameObject>();
     [SerializeField] private GameObject objectToActivate;
 
-    // Called locally by player input (E key)
     public void SceneSyncChange()
     {
         Debug.Log("[BackgroundChange] Local player triggered scene change");
 
-        // ✅ Execute locally first
+    
         TriggerChange();
 
-        // ✅ Call this method on all remote peers
+   
         InvokeRemoteMethod(nameof(TriggerChange));
     }
 
-    // Runs on all players' machines
+
     [SynchronizableMethod]
     private void TriggerChange()
     {
@@ -33,7 +32,6 @@ public class BackgroundChange : AttributesSync
             return;
         }
 
-        // Find currently active objects to deactivate
         List<GameObject> activeObjects = new List<GameObject>();
         foreach (var obj in objectsToDeactivate)
         {

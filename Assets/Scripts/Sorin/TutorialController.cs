@@ -16,7 +16,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject objectToActivate;
 
-    [SerializeField] private Button playButton;
+   
 
     private bool tutorialRunning;
     private Coroutine tutorialCoroutine;
@@ -24,7 +24,7 @@ public class TutorialController : MonoBehaviour
     private void Awake()
     {
         objectToActivate.SetActive(false);
-        if (playButton != null) playButton.gameObject.SetActive(false);
+       
     }
 
     public void PlayTutorial()
@@ -51,7 +51,7 @@ public class TutorialController : MonoBehaviour
         yield return new WaitForSeconds(clip2.length);
 
         objectToActivate.SetActive(true);
-        if (playButton != null) playButton.gameObject.SetActive(true);
+       
     }
 
     public void SkipTutorial()
@@ -63,7 +63,7 @@ public class TutorialController : MonoBehaviour
         tutorialRunning = false;
 
         objectToActivate.SetActive(true);
-        if (playButton != null) playButton.gameObject.SetActive(true);
+      
     }
 
     public void PlayButtonPressed()
