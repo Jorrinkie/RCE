@@ -7,15 +7,14 @@ public class CubeSpawner : MonoBehaviour
 {
     private Alteruna.Avatar _avatar;
     private Spawner _spawner;
-    [SerializeField] private int indexToSpawn = 0;
 
     [Header("Spawn Force Settings")]
     public float forwardForce = 10f;
     public float maxSideForce = 1f;
     public float maxUpForce = 2f;
 
-    [Header("Cube Scale")]
-    public Vector3 spawnScale = new Vector3(0.4f, 0.4f, 0.4f);
+    [Header("Cube Scale (Only used if you actually want to override scale)")]
+    public Vector3 spawnScale = new Vector3(100f, 100f, 100f);
 
     private void Awake()
     {
@@ -30,7 +29,7 @@ public class CubeSpawner : MonoBehaviour
     private void Update()
     {
         if (!_avatar.IsMe)
-            return; // Only local player can spawn
+            return;
 
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -42,19 +41,35 @@ public class CubeSpawner : MonoBehaviour
     {
         if (_spawner == null) return;
 
-        Vector3 spawnPos = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
-        Quaternion spawnRot = Random.rotation;
+        // Random index from 0 to 10 inclusive
+        int randomIndex = Random.Range(0, 10);
 
-        GameObject cube = _spawner.Spawn(indexToSpawn, spawnPos, spawnRot, spawnScale);
+        Vector3 spawnPos = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
+
+        Quaternion spawnRot;
+
+        if (randomIndex == 5)
+        {
+            // Get player's Y rotation (not the camera)
+            float cameraParentY = Camera.main.transform.parent.eulerAngles.y;
+
+            // Apply -90 X rotation, player's Y rotation, 0 Z rotation
+            spawnRot = Quaternion.Euler(-90f, cameraParentY, 0f);
+        }
+        else
+        {
+            spawnRot = Random.rotation;
+        }
+        GameObject cube = _spawner.Spawn(randomIndex, spawnPos, spawnRot, spawnScale);
 
         RigidbodySynchronizable rbSync = cube.GetComponent<RigidbodySynchronizable>();
         if (rbSync != null)
         {
-            // Replicated force!
             Vector3 force = Camera.main.transform.forward * forwardForce;
             force += Camera.main.transform.right * Random.Range(-maxSideForce, maxSideForce);
             force += Camera.main.transform.up * Random.Range(0f, maxUpForce);
-            rbSync.AddForce(force, ForceMode.Impulse);  // <-- This replicates to everyone
+
+            rbSync.AddForce(force, ForceMode.Impulse);
         }
         else
         {
@@ -62,4 +77,3 @@ public class CubeSpawner : MonoBehaviour
         }
     }
 }
-

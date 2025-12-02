@@ -3011,11 +3011,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9065f1b3fba6e24d85b5b5ef47647c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexToSpawn: 0
   forwardForce: 10
   maxSideForce: 1
   maxUpForce: 2
-  spawnScale: {x: 0.4, y: 0.4, z: 0.4}
+  spawnScale: {x: 6, y: 6, z: 6}
 --- !u!114 &7186638639186298401
 MonoBehaviour:
   m_ObjectHideFlags: 0

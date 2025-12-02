@@ -418,7 +418,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 16233362}
   SpawnableObjects:
-  - {fileID: 300356377114786790, guid: bef4b15c2c2771a49b8981efe4e25961, type: 3}
+  - {fileID: 8243877839763885083, guid: a28241ba13e984649a88514c78b21022, type: 3}
+  - {fileID: 799323563206615355, guid: 24767cd82e820a34a8b19f9a65006c8c, type: 3}
+  - {fileID: 7968232730593791895, guid: c1ecaae6e957c2d43beae2b46fd0f786, type: 3}
+  - {fileID: 2243586610190550911, guid: 41dc46171822a6149a417af56b5aab42, type: 3}
+  - {fileID: 916792565211646128, guid: 3f5bf35a5256c654ab4e8c967ce98444, type: 3}
+  - {fileID: 6601204156006285968, guid: ec09431b53b55584a8b2f24d24fd3e0d, type: 3}
+  - {fileID: 1098045306754431094, guid: 0b850a1cf5a20c845b7b7e823465943a, type: 3}
+  - {fileID: 2908301866908029761, guid: 3070f57ce700fd144b0c267ed64fd269, type: 3}
+  - {fileID: 4102753281699979820, guid: fd2c520a75206fa468cd1c9564c37e40, type: 3}
+  - {fileID: 5089743869468309937, guid: 27edaed7876912d4794d93e0adcd51fa, type: 3}
   OnObjectSpawn:
     m_PersistentCalls:
       m_Calls: []
