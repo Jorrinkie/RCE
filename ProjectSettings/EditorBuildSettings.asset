@@ -8,14 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 7b8f4fd185a726245b09499cfb6099b0
-  - enabled: 0
-    path: Assets/Scenes/MainSceneGame.unity
-    guid: 2d4d2b1b468da154cac2a6b1b0d1bd40
-  - enabled: 0
-    path: Assets/Scenes/SorinTest.unity
-    guid: 1fc8e2417e0fafd4b81824c9e77a74f7
-  - enabled: 0
-    path: Assets/Scenes/MultiplayerTest.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/WorkingScene.unity
+    guid: 013b2f079cb60534ca7478e3c7ed4705
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

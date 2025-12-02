@@ -10231,13 +10231,8 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 486320464}
-  objectsToDeactivate:
-  - {fileID: 2034528667}
-  - {fileID: 919132148082383189}
-  - {fileID: 623504191}
-  - {fileID: 1488091613}
-  - {fileID: 1833112228}
-  objectToActivate: {fileID: 303517294}
+  myBackgroundRoot: {fileID: 0}
+  backgroundID: tower
 --- !u!114 &243968241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40969,13 +40964,8 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 486320464}
-  objectsToDeactivate:
-  - {fileID: 2034528667}
-  - {fileID: 919132148082383189}
-  - {fileID: 303517294}
-  - {fileID: 623504191}
-  - {fileID: 1488091613}
-  objectToActivate: {fileID: 1833112228}
+  myBackgroundRoot: {fileID: 0}
+  backgroundID: tower
 --- !u!114 &1022991076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46957,13 +46947,8 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 486320464}
-  objectsToDeactivate:
-  - {fileID: 2034528667}
-  - {fileID: 919132148082383189}
-  - {fileID: 303517294}
-  - {fileID: 1488091613}
-  - {fileID: 1833112228}
-  objectToActivate: {fileID: 623504191}
+  myBackgroundRoot: {fileID: 0}
+  backgroundID: tower
 --- !u!114 &1196601447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76145,13 +76130,8 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 486320464}
-  objectsToDeactivate:
-  - {fileID: 303517294}
-  - {fileID: 623504191}
-  - {fileID: 1488091613}
-  - {fileID: 1833112228}
-  - {fileID: 919132148082383189}
-  objectToActivate: {fileID: 2034528667}
+  myBackgroundRoot: {fileID: 0}
+  backgroundID: tower
 --- !u!114 &1963729334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80362,13 +80342,8 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 486320464}
-  objectsToDeactivate:
-  - {fileID: 2034528667}
-  - {fileID: 303517294}
-  - {fileID: 623504191}
-  - {fileID: 1833112228}
-  - {fileID: 919132148082383189}
-  objectToActivate: {fileID: 1488091613}
+  myBackgroundRoot: {fileID: 0}
+  backgroundID: tower
 --- !u!114 &2083518425
 MonoBehaviour:
   m_ObjectHideFlags: 0

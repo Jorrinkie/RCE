@@ -7,55 +7,25 @@ public class BackgroundChange : AttributesSync
 {
     [SerializeField] private LowerBlinds lowerBlindsTarget;
     [SerializeField] private GameObject myBackgroundRoot;
-    [SerializeField] private string backgroundID = "tower"; // ← "lighthouse", "tower", "church", etc.
+    [SerializeField] private string backgroundID = "tower"; // "lighthouse", "tower", "church", etc.
 
-<<<<<<< HEAD
+    // Call this from your button / input
     public void SceneSyncChange()
     {
         Debug.Log("[BackgroundChange] Local player triggered scene change");
 
-    
-        TriggerChange();
-
-   
-        InvokeRemoteMethod(nameof(TriggerChange));
-    }
-
-
-=======
-    // Call this from your button / input
-    public void SceneSyncChange()
-    {
         // Tell EVERYONE (including self via RPC) to start the 1-second countdown
         BroadcastRemoteMethod(nameof(StartDelayedSwitch), backgroundID);
-        StartDelayedSwitch(backgroundID); // also run locally immediately
+
+        // also run locally immediately
+        StartDelayedSwitch(backgroundID);
     }
 
->>>>>>> origin/BranchToCombineWithSorin
     [SynchronizableMethod]
     private void StartDelayedSwitch(string targetID)
     {
-<<<<<<< HEAD
-        Debug.Log("[BackgroundChange] TriggerChange() executed on: " + Multiplayer.Instance.Me);
-
-        if (lowerBlindsTarget == null)
-        {
-            Debug.LogWarning("[BackgroundChange] No LowerBlinds target assigned!");
-            return;
-        }
-
-        List<GameObject> activeObjects = new List<GameObject>();
-        foreach (var obj in objectsToDeactivate)
-        {
-            if (obj != null && obj.activeSelf)
-                activeObjects.Add(obj);
-        }
-
-        lowerBlindsTarget.ChangeHeritage(activeObjects, objectToActivate);
-=======
         StopAllCoroutines();                    // cancel any previous countdown
         StartCoroutine(DoSwitchAfterDelay(targetID));
->>>>>>> origin/BranchToCombineWithSorin
     }
 
     private IEnumerator DoSwitchAfterDelay(string targetID)

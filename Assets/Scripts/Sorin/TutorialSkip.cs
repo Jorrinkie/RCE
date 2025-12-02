@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TutorialSkip : MonoBehaviour, IInteractable
 {
@@ -16,10 +17,9 @@ public class TutorialSkip : MonoBehaviour, IInteractable
     [SerializeField] private ButtonAction action = ButtonAction.SkipTutorial;
 
     [Header("Press Settings")]
-    [SerializeField] private float pressDepth = 0.2f;   
-    [SerializeField] private float pressSpeed = 5f;     
+    [SerializeField] private float pressDepth = 0.2f;
+    [SerializeField] private float pressSpeed = 5f;
 
-    // Separate vote counters for each action
     private static int skipVotes;
     private static int playVotes;
 
@@ -75,7 +75,10 @@ public class TutorialSkip : MonoBehaviour, IInteractable
                 playVotes++;
                 UpdateVoteText(playVotes);
                 if (playVotes >= PlayerCount)
-                    tutorialController.PlayButtonPressed();
+                {
+                    // Load the "WorkingScene" when all players have voted
+                    SceneManager.LoadScene("WorkingScene");
+                }
                 break;
         }
     }
