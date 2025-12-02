@@ -4,28 +4,35 @@ public class enableUI : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
 
-    private void Start()
+private void Start()
     {
         canvas.enabled = false;
     }
+
     void Update()
     {
+        // Check if a GameObject with the "Player" tag exists
+        if (GameObject.FindWithTag("Player") == null)
+        {
+            return; // Don't allow toggling if no player exists
+        }
+
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if (!canvas.enabled)
+            canvas.enabled = !canvas.enabled;
+
+            if (canvas.enabled)
             {
-                canvas.enabled = true;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                
             }
             else
             {
-                canvas.enabled = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-               
             }
         }
     }
+
+
 }

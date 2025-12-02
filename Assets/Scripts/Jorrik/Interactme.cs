@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Alteruna;
 public class Interactme : MonoBehaviour, IInteractable
 {
 
