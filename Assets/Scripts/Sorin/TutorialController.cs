@@ -16,19 +16,22 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject objectToActivate;
 
+    [SerializeField] private Button playButton;
+
     private bool tutorialRunning;
+    private Coroutine tutorialCoroutine;
 
     private void Awake()
     {
         objectToActivate.SetActive(false);
+        if (playButton != null) playButton.gameObject.SetActive(false);
     }
 
-    
     public void PlayTutorial()
     {
         if (tutorialRunning) return;
         tutorialRunning = true;
-        StartCoroutine(TutorialSequence());
+        tutorialCoroutine = StartCoroutine(TutorialSequence());
     }
 
     private IEnumerator TutorialSequence()
@@ -48,5 +51,23 @@ public class TutorialController : MonoBehaviour
         yield return new WaitForSeconds(clip2.length);
 
         objectToActivate.SetActive(true);
+        if (playButton != null) playButton.gameObject.SetActive(true);
+    }
+
+    public void SkipTutorial()
+    {
+        if (tutorialCoroutine != null)
+            StopCoroutine(tutorialCoroutine);
+
+        audioSource.Stop();
+        tutorialRunning = false;
+
+        objectToActivate.SetActive(true);
+        if (playButton != null) playButton.gameObject.SetActive(true);
+    }
+
+    public void PlayButtonPressed()
+    {
+
     }
 }
