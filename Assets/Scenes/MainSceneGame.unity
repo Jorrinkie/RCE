@@ -1859,17 +1859,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
-  _uidString: 44f7e5cc-797b-40a9-8364-83c0f3417ddc
+  _uidString: 713ebbff-858e-471a-8f83-a293253ccca1
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 0}
-  objectsToDeactivate:
-  - {fileID: 1247115495}
-  - {fileID: 1460439000241641918}
-  - {fileID: 1833112228}
-  - {fileID: 0}
-  - {fileID: 1488091613}
-  objectToActivate: {fileID: 769408626}
+  myBackgroundRoot: {fileID: 769408626}
+  backgroundID: Church
+  isTutorial: 0
+  tutorialDelay: 3
 --- !u!114 &140141560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5568,57 +5565,57 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1307867233}
+    m_TransformParent: {fileID: 1895413718}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b3bb40d4e477a4d42b1d7d591c55bf2e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 569.7139
+      value: 0.009949336
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3bb40d4e477a4d42b1d7d591c55bf2e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 569.714
+      value: 0.009949335
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3bb40d4e477a4d42b1d7d591c55bf2e,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 569.7139
+      value: 0.009949335
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3bb40d4e477a4d42b1d7d591c55bf2e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2054
+      value: 0.005724519
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3bb40d4e477a4d42b1d7d591c55bf2e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7041.2
+      value: -0.0060963593
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3bb40d4e477a4d42b1d7d591c55bf2e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -27281
+      value: -0.00092907366
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3bb40d4e477a4d42b1d7d591c55bf2e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7093443
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3bb40d4e477a4d42b1d7d591c55bf2e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3bb40d4e477a4d42b1d7d591c55bf2e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7048622
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3bb40d4e477a4d42b1d7d591c55bf2e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3bb40d4e477a4d42b1d7d591c55bf2e,
         type: 3}
@@ -6234,12 +6231,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: dbd9512871955124090ef919883a8768,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 5.3929453
+      value: 5.607585
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dbd9512871955124090ef919883a8768,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.07
+      value: 29.93
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dbd9512871955124090ef919883a8768,
         type: 3}
@@ -9487,13 +9484,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808045416}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.48947316, z: -0, w: 0.8720184}
-  m_LocalPosition: {x: 23.933, y: -7.196, z: 0.079}
+  m_LocalRotation: {x: -0, y: -0.40634927, z: -0, w: 0.9137178}
+  m_LocalPosition: {x: 23.886, y: -6.5480022, z: -0.112}
   m_LocalScale: {x: 145, y: 145, z: 145}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1795563595}
-  m_LocalEulerAnglesHint: {x: 0, y: -58.612, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -47.951, z: 0}
 --- !u!1001 &809304604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9862,8 +9859,8 @@ Transform:
   m_GameObject: {fileID: 841224407}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.36, y: -5.219, z: 8.99}
-  m_LocalScale: {x: 10.908633, y: 0.3223571, z: 11.0697975}
+  m_LocalPosition: {x: 1.36, y: -5.219, z: 8.9392}
+  m_LocalScale: {x: 10.908633, y: 0.3223571, z: 10.967956}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1045713014}
@@ -11653,7 +11650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1045713014}
   m_Layer: 0
-  m_Name: BlinkWalls
+  m_Name: BackgroundBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11667,8 +11664,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045713013}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.58249, y: 21.58289, z: -3.3351378}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 31.39143, y: 8.905192, z: -5.964985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11678,7 +11675,7 @@ Transform:
   - {fileID: 664673928}
   - {fileID: 60719051}
   - {fileID: 1551150491}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1701699246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1056533057
 GameObject:
@@ -15256,7 +15253,6 @@ Transform:
   m_LocalScale: {x: 0.0010299999, y: 0.0010299999, z: 0.0010299999}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 452003986}
   - {fileID: 1895413718}
   - {fileID: 1315200984}
   - {fileID: 1899231715}
@@ -15280,7 +15276,7 @@ GameObject:
   - component: {fileID: 1315200986}
   - component: {fileID: 1315200985}
   m_Layer: 0
-  m_Name: Clif
+  m_Name: LightHouse
   m_TagString: Heritage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15315,17 +15311,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
-  _uidString: 44f7e5cc-797b-40a9-8364-83c0f3417ddc
+  _uidString: a6487ea1-2c93-41f1-8b1f-b4ddfa1a8e5d
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 0}
-  objectsToDeactivate:
-  - {fileID: 0}
-  - {fileID: 1460439000241641918}
-  - {fileID: 1833112228}
-  - {fileID: 769408626}
-  - {fileID: 1488091613}
-  objectToActivate: {fileID: 1247115495}
+  myBackgroundRoot: {fileID: 1247115495}
+  backgroundID: LightHouse
+  isTutorial: 0
+  tutorialDelay: 3
 --- !u!114 &1315200986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16690,17 +16683,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
-  _uidString: 44f7e5cc-797b-40a9-8364-83c0f3417ddc
+  _uidString: 42845d56-b858-439d-a7d9-1977ed811be0
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 0}
-  objectsToDeactivate:
-  - {fileID: 1247115495}
-  - {fileID: 1460439000241641918}
-  - {fileID: 0}
-  - {fileID: 769408626}
-  - {fileID: 1488091613}
-  objectToActivate: {fileID: 1833112228}
+  myBackgroundRoot: {fileID: 1833112228}
+  backgroundID: Tower
+  isTutorial: 0
+  tutorialDelay: 3
 --- !u!114 &1440091861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19069,7 +19059,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 897a4e7350ff94b49addd7539fd56535,
         type: 3}
       propertyPath: m_Name
-      value: BridgeShort
+      value: Bridge
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 897a4e7350ff94b49addd7539fd56535,
         type: 3}
@@ -19157,17 +19147,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
-  _uidString: 44f7e5cc-797b-40a9-8364-83c0f3417ddc
+  _uidString: b9fafc41-b052-4a67-a979-e05ef4e9fd3d
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 0}
-  objectsToDeactivate:
-  - {fileID: 1247115495}
-  - {fileID: 1460439000241641918}
-  - {fileID: 1833112228}
-  - {fileID: 769408626}
-  - {fileID: 0}
-  objectToActivate: {fileID: 1488091613}
+  myBackgroundRoot: {fileID: 1488091613}
+  backgroundID: Bridge
+  isTutorial: 0
+  tutorialDelay: 3
 --- !u!1 &1655304248
 GameObject:
   m_ObjectHideFlags: 0
@@ -19468,6 +19455,7 @@ Transform:
   - {fileID: 1833112229}
   - {fileID: 769408627}
   - {fileID: 1488091614}
+  - {fileID: 1045713014}
   m_Father: {fileID: 2110809026}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1717078803
@@ -20396,7 +20384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1764900466
 Transform:
   m_ObjectHideFlags: 0
@@ -21961,7 +21949,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 61f56962c5b5e5e488e4c3fdaaa8b799,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 452003986}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61f56962c5b5e5e488e4c3fdaaa8b799, type: 3}
 --- !u!4 &1895413718 stripped
@@ -22116,13 +22108,10 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 0}
-  objectsToDeactivate:
-  - {fileID: 1247115495}
-  - {fileID: 0}
-  - {fileID: 1833112228}
-  - {fileID: 769408626}
-  - {fileID: 1488091613}
-  objectToActivate: {fileID: 1460439000241641918}
+  myBackgroundRoot: {fileID: 1460439000241641918}
+  backgroundID: WindMill
+  isTutorial: 0
+  tutorialDelay: 3
 --- !u!1 &1902208680
 GameObject:
   m_ObjectHideFlags: 0
@@ -23309,13 +23298,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048648273}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.40281653, z: -0, w: 0.9152808}
-  m_LocalPosition: {x: 23.898, y: -7.185, z: 3.007}
+  m_LocalRotation: {x: -0, y: -0.9288921, z: -0, w: 0.37035072}
+  m_LocalPosition: {x: 24.2, y: -6.5370007, z: 3.16}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1795563595}
-  m_LocalEulerAnglesHint: {x: 0, y: -47.509, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -136.526, z: 0}
 --- !u!1 &2062158198
 GameObject:
   m_ObjectHideFlags: 0
@@ -24595,7 +24584,7 @@ PrefabInstance:
     - target: {fileID: 5538830520595383020, guid: 0b595ae52aef1894491199647012ac34,
         type: 3}
       propertyPath: m_Name
-      value: Church
+      value: Background_Church
       objectReference: {fileID: 0}
     - target: {fileID: 5538830520595383020, guid: 0b595ae52aef1894491199647012ac34,
         type: 3}
@@ -24618,7 +24607,7 @@ PrefabInstance:
     - target: {fileID: 7174963919973568288, guid: 2a879348efac4f545b0998ff8a0f67b5,
         type: 3}
       propertyPath: m_Name
-      value: WindMill
+      value: Background_WindMill
       objectReference: {fileID: 0}
     - target: {fileID: 7174963919973568288, guid: 2a879348efac4f545b0998ff8a0f67b5,
         type: 3}
@@ -25118,7 +25107,7 @@ PrefabInstance:
     - target: {fileID: 8645593107345287758, guid: 2de13aeba72262943981041d278111a5,
         type: 3}
       propertyPath: m_Name
-      value: WaterScene
+      value: Background_LightHouse
       objectReference: {fileID: 0}
     - target: {fileID: 8645593107345287758, guid: 2de13aeba72262943981041d278111a5,
         type: 3}
@@ -25368,7 +25357,7 @@ PrefabInstance:
     - target: {fileID: 1791224755508143444, guid: f3fb4e926a9a7454290b96f675a4193e,
         type: 3}
       propertyPath: m_Name
-      value: Plomptower
+      value: Background_Tower
       objectReference: {fileID: 0}
     - target: {fileID: 1791224755508143444, guid: f3fb4e926a9a7454290b96f675a4193e,
         type: 3}
@@ -25610,7 +25599,7 @@ PrefabInstance:
     - target: {fileID: 6477484532205982616, guid: 4a18322201c2fea41988d1056103f40b,
         type: 3}
       propertyPath: m_Name
-      value: BridgeScene
+      value: Background_Bridge
       objectReference: {fileID: 0}
     - target: {fileID: 6477484532205982616, guid: 4a18322201c2fea41988d1056103f40b,
         type: 3}
@@ -26410,4 +26399,3 @@ SceneRoots:
   - {fileID: 806884628}
   - {fileID: 1764900466}
   - {fileID: 2110809026}
-  - {fileID: 1045713014}

@@ -1,44 +1,89 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using Alteruna;
 
 public class BackgroundChange : AttributesSync
 {
-    [Header("References")]
+    [Header("Background Settings")]
     [SerializeField] private LowerBlinds lowerBlindsTarget;
-    [SerializeField] private List<GameObject> objectsToDeactivate = new List<GameObject>();
-    [SerializeField] private GameObject objectToActivate;
+    [SerializeField] private GameObject myBackgroundRoot;
+    [SerializeField] private string backgroundID = "tower";
 
+    [Header("Tutorial Settings")]
+    [SerializeField] private bool isTutorial = false;     // Only active in tutorial scene
+    [SerializeField] private float tutorialDelay = 3f;    // Extra wait BEFORE background swaps
+
+    // Normal online sync call
     public void SceneSyncChange()
     {
-        Debug.Log("[BackgroundChange] Local player triggered scene change");
-
-    
-        TriggerChange();
-
-   
-        InvokeRemoteMethod(nameof(TriggerChange));
+        BroadcastRemoteMethod(nameof(StartDelayedSwitch), backgroundID);
+        StartDelayedSwitch(backgroundID);
     }
 
-
     [SynchronizableMethod]
-    private void TriggerChange()
+    private void StartDelayedSwitch(string targetID)
     {
-        Debug.Log("[BackgroundChange] TriggerChange() executed on: " + Multiplayer.Instance.Me);
+        StopAllCoroutines();
+        StartCoroutine(DoSwitchAfterDelay(targetID));
+    }
 
-        if (lowerBlindsTarget == null)
+    private IEnumerator DoSwitchAfterDelay(string targetID)
+    {
+        Debug.Log($"[Background] Switching to {targetID}...");
+
+        // If tutorial mode is enabled, use the custom delay
+        if (isTutorial)
         {
-            Debug.LogWarning("[BackgroundChange] No LowerBlinds target assigned!");
-            return;
+            Debug.Log($"[Background] Tutorial mode ON — waiting {tutorialDelay} seconds...");
+            yield return new WaitForSeconds(tutorialDelay);
+        }
+        else
+        {
+            // Normal small sync delay
+            yield return new WaitForSeconds(0.1f);
         }
 
-        List<GameObject> activeObjects = new List<GameObject>();
-        foreach (var obj in objectsToDeactivate)
+        PerformBackgroundSwitch(targetID);
+    }
+
+    private void PerformBackgroundSwitch(string targetID)
+    {
+        var all = FindObjectsOfType<BackgroundChange>(true);
+        var deactivated = new List<GameObject>();
+        GameObject activated = null;
+
+        foreach (var bc in all)
         {
-            if (obj != null && obj.activeSelf)
-                activeObjects.Add(obj);
+            if (bc.myBackgroundRoot == null) continue;
+
+            bool shouldBeActive = string.Equals(
+                bc.backgroundID,
+                targetID,
+                System.StringComparison.OrdinalIgnoreCase
+            );
+
+            if (bc.myBackgroundRoot.activeSelf && !shouldBeActive)
+                deactivated.Add(bc.myBackgroundRoot);
+
+            if (shouldBeActive)
+                activated = bc.myBackgroundRoot;
         }
 
-        lowerBlindsTarget.ChangeHeritage(activeObjects, objectToActivate);
+        // ⬇ NEW — Add delay (only in tutorial) BEFORE blinds do swap
+        StartCoroutine(DelayedBlindsSwap(deactivated, activated));
+    }
+
+    private IEnumerator DelayedBlindsSwap(List<GameObject> deactivated, GameObject activated)
+    {
+        // Extra tutorial delay BEFORE blinds lower + swap + raise
+        if (isTutorial)
+        {
+            Debug.Log($"[Tutorial] Waiting {tutorialDelay} seconds before blinds swap...");
+            yield return new WaitForSeconds(tutorialDelay);
+        }
+
+        // Blinds perform lower → swap → raise internally
+        lowerBlindsTarget?.ChangeHeritage(deactivated, activated);
     }
 }
