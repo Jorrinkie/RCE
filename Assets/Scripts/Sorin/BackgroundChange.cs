@@ -41,7 +41,7 @@ public class BackgroundChange : AttributesSync
         else
         {
             // Normal small sync delay
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(2f);
         }
 
         PerformBackgroundSwitch(targetID);
@@ -70,20 +70,20 @@ public class BackgroundChange : AttributesSync
                 activated = bc.myBackgroundRoot;
         }
 
-        // ⬇ NEW — Add delay (only in tutorial) BEFORE blinds do swap
+        
         StartCoroutine(DelayedBlindsSwap(deactivated, activated));
     }
 
     private IEnumerator DelayedBlindsSwap(List<GameObject> deactivated, GameObject activated)
     {
-        // Extra tutorial delay BEFORE blinds lower + swap + raise
+       
         if (isTutorial)
         {
             Debug.Log($"[Tutorial] Waiting {tutorialDelay} seconds before blinds swap...");
             yield return new WaitForSeconds(tutorialDelay);
         }
 
-        // Blinds perform lower → swap → raise internally
+        // Blinds perform lower swap raise internally
         lowerBlindsTarget?.ChangeHeritage(deactivated, activated);
     }
 }
