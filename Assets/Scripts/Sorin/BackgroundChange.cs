@@ -11,10 +11,9 @@ public class BackgroundChange : AttributesSync
     [SerializeField] private string backgroundID = "tower";
 
     [Header("Tutorial Settings")]
-    [SerializeField] private bool isTutorial = false;     // Only active in tutorial scene
-    [SerializeField] private float tutorialDelay = 3f;    // Extra wait BEFORE background swaps
+    [SerializeField] private bool isTutorial = false;
+    [SerializeField] private float tutorialDelay = 3f;
 
-    // Normal online sync call
     public void SceneSyncChange()
     {
         BroadcastRemoteMethod(nameof(StartDelayedSwitch), backgroundID);
@@ -32,16 +31,15 @@ public class BackgroundChange : AttributesSync
     {
         Debug.Log($"[Background] Switching to {targetID}...");
 
-        // If tutorial mode is enabled, use the custom delay
+        // Tutorial uses extra delay before blinds animation
         if (isTutorial)
         {
-            Debug.Log($"[Background] Tutorial mode ON — waiting {tutorialDelay} seconds...");
             yield return new WaitForSeconds(tutorialDelay);
         }
         else
         {
-            // Normal small sync delay
-            yield return new WaitForSeconds(2f);
+            // Normal fade mode: small delay
+            yield return new WaitForSeconds(0.2f);
         }
 
         PerformBackgroundSwitch(targetID);
@@ -58,10 +56,7 @@ public class BackgroundChange : AttributesSync
             if (bc.myBackgroundRoot == null) continue;
 
             bool shouldBeActive = string.Equals(
-                bc.backgroundID,
-                targetID,
-                System.StringComparison.OrdinalIgnoreCase
-            );
+                bc.backgroundID, targetID, System.StringComparison.OrdinalIgnoreCase);
 
             if (bc.myBackgroundRoot.activeSelf && !shouldBeActive)
                 deactivated.Add(bc.myBackgroundRoot);
@@ -70,20 +65,21 @@ public class BackgroundChange : AttributesSync
                 activated = bc.myBackgroundRoot;
         }
 
-        
         StartCoroutine(DelayedBlindsSwap(deactivated, activated));
     }
 
     private IEnumerator DelayedBlindsSwap(List<GameObject> deactivated, GameObject activated)
     {
-       
         if (isTutorial)
         {
-            Debug.Log($"[Tutorial] Waiting {tutorialDelay} seconds before blinds swap...");
-            yield return new WaitForSeconds(tutorialDelay);
+            // TUTORIAL MODE: blinds only (NO fade)
+            lowerBlindsTarget?.ChangeHeritage(deactivated, activated);
         }
-
-        // Blinds perform lower swap raise internally
-        lowerBlindsTarget?.ChangeHeritage(deactivated, activated);
+        else
+        {
+            // NORMAL MODE: fade-only swap
+            yield return lowerBlindsTarget.StartCoroutine(
+                lowerBlindsTarget.FadeSwap(deactivated, activated));
+        }
     }
 }

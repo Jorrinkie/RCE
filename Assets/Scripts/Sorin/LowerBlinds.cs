@@ -9,13 +9,14 @@ public class LowerBlinds : MonoBehaviour
     [SerializeField] private float distance = 4f;
 
     [Header("Cube Blink Settings")]
-    [SerializeField] private List<Renderer> cubeRenderers; // Assign the 6 cube Renderers in inspector
-    [SerializeField] private float fadeSpeed = 2f;
+    [SerializeField] private List<Renderer> cubeRenderers;
+    [SerializeField] private float fadeSpeed = 0.01f;
     [SerializeField] GameObject starterblack;
 
     private Coroutine blinkRoutine;
     private bool isMoving = false;
 
+    // Used for tutorial mode ONLY (no fading)
     public void ChangeHeritage(List<GameObject> toDeactivate, GameObject toActivate)
     {
         if (!isMoving)
@@ -28,14 +29,10 @@ public class LowerBlinds : MonoBehaviour
 
         Vector3 startPos = transform.position;
         Vector3 loweredPos = startPos - new Vector3(0, distance, 0);
+
         float elapsed = 0f;
-        // Trigger cube fade (blink)
-        if (blinkRoutine != null)
-            StopCoroutine(blinkRoutine);
-        blinkRoutine = StartCoroutine(FadeCubes());
 
-
-        // Lower blinds
+        // Lower blinds (NO fade here for tutorial mode)
         while (elapsed < duration)
         {
             transform.position = Vector3.Lerp(startPos, loweredPos, elapsed / duration);
@@ -44,17 +41,11 @@ public class LowerBlinds : MonoBehaviour
         }
         transform.position = loweredPos;
 
-
-
         // Swap environment
         if (objectsToDeactivate != null)
-        {
             foreach (var obj in objectsToDeactivate)
-            {
                 if (obj != null)
                     obj.SetActive(false);
-            }
-        }
 
         if (objectToActivate != null)
             objectToActivate.SetActive(true);
@@ -70,70 +61,65 @@ public class LowerBlinds : MonoBehaviour
         transform.position = startPos;
 
         isMoving = false;
-        
     }
 
-    private IEnumerator FadeCubes()
+    // Used for NON-Tutorial mode — fade only, no blinds
+    public IEnumerator FadeSwap(List<GameObject> objectsToDeactivate, GameObject objectToActivate)
+    {
+        // Fade In (cover the view)
+        yield return StartCoroutine(FadeCubes(true));
+
+        // Swap objects while view is fully covered
+        if (objectsToDeactivate != null)
+            foreach (var obj in objectsToDeactivate)
+                if (obj != null)
+                    obj.SetActive(false);
+
+        if (objectToActivate != null)
+            objectToActivate.SetActive(true);
+
+        // Fade Out (reveal the new background)
+        yield return StartCoroutine(FadeCubes(false));
+    }
+
+    private IEnumerator FadeCubes(bool fadeIn)
     {
         if (cubeRenderers == null || cubeRenderers.Count == 0)
             yield break;
 
-        // Start alpha at 0 (fully transparent)
-        SetAlpha(0f);
+        float alpha = fadeIn ? 0f : 1f;
+        SetAlpha(alpha);
 
-        float alpha = 0f;
-
-        // Fade in (transparent -> opaque)
-        while (alpha < 1f)
+        while ((fadeIn && alpha < 1f) || (!fadeIn && alpha > 0f))
         {
-            alpha += Time.deltaTime * fadeSpeed;
-            SetAlpha(alpha); // now alpha = 1 means fully opaque
-            yield return null;
-        }
-
-        // Optional: hold fully opaque for a moment
-        if (starterblack != null && starterblack.activeSelf == true )
-        {
-            starterblack.gameObject.SetActive(false);
-        }
-        yield return new WaitForSeconds(2f);
-        
-
-        // Fade out (opaque -> transparent)
-        while (alpha > 0f)
-        {
-            alpha -= Time.deltaTime * fadeSpeed;
+            alpha += (fadeIn ? 1 : -1) * Time.deltaTime * fadeSpeed;
+            alpha = Mathf.Clamp01(alpha);
             SetAlpha(alpha);
             yield return null;
         }
 
-        SetAlpha(0f); // Ensure fully transparent at the end
+        SetAlpha(fadeIn ? 1f : 0f);
     }
 
     private void SetAlpha(float alpha)
     {
         foreach (var rend in cubeRenderers)
         {
-            if (rend != null)
-            {
-                foreach (var mat in rend.materials)
-                {
-                    if (mat.HasProperty("_Color"))
-                    {
-                        Color c = mat.color;
-                        c.a = Mathf.Clamp01(alpha); // alpha = 0 -> transparent, 1 -> opaque
-                        mat.color = c;
+            if (rend == null) continue;
 
-                        // Ensure the material is set to allow transparency
-                        mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                        mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                        mat.SetInt("_ZWrite", 0);
-                        mat.DisableKeyword("_ALPHATEST_ON");
-                        mat.EnableKeyword("_ALPHABLEND_ON");
-                        mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                        mat.renderQueue = 3000;
-                    }
-                }
+            foreach (var mat in rend.materials)
+            {
+                if (!mat.HasProperty("_Color")) continue;
+
+                Color c = mat.color;
+                c.a = Mathf.Clamp01(alpha);
+                mat.color = c;
+
+                mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                mat.SetInt("_ZWrite", 0);
+                mat.EnableKeyword("_ALPHABLEND_ON");
+                mat.renderQueue = 3000;
             }
         }
     }
