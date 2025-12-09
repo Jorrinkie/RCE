@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialController : MonoBehaviour
 {
@@ -68,6 +69,6 @@ public class TutorialController : MonoBehaviour
 
     public void PlayButtonPressed()
     {
-
+        SceneManager.LoadScene("MainSceneGame");
     }
 }
