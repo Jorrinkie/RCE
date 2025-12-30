@@ -12,8 +12,21 @@ public class TalkingPlayer : MonoBehaviour
     [SerializeField] private AudioSource voiceSource;
     [SerializeField] private VideoPlayer talkIndicator;
 
+    [Header("Mouth / Jaw Animation")]
+    [SerializeField] private Transform jawBone;
+    [SerializeField] private float jawClosedAngle = 0f;
+    [SerializeField] private float jawOpenAngle = -44f;
+    [SerializeField] private float jawMoveSpeed = 10f;
+
+    [Tooltip("Minimum mic loudness before mouth starts opening")]
+    [SerializeField] private float noiseGate = 0.02f;
+
+    [Tooltip("Loudness value that equals fully open mouth")]
+    [SerializeField] private float maxLoudness = 0.15f;
+
     private AudioClip micClip;
     private bool isTransmitting = false;
+    private float currentJawAngle = 0f;
 
     void Start()
     {
@@ -22,7 +35,7 @@ public class TalkingPlayer : MonoBehaviour
         if (Microphone.devices.Length > 0)
         {
             micClip = Microphone.Start(null, true, 1, 44100);
-            Debug.Log("<color=green>[TalkingPlayer]</color> Microphone started successfully: " + Microphone.devices[0]);
+            Debug.Log("<color=green>[TalkingPlayer]</color> Microphone started: " + Microphone.devices[0]);
         }
         else
         {
@@ -31,66 +44,54 @@ public class TalkingPlayer : MonoBehaviour
 
         if (talkIndicator != null)
         {
-            Debug.Log("[TalkingPlayer] Talk indicator found. Hiding it on start.");
             talkIndicator.Stop();
             talkIndicator.gameObject.SetActive(false);
-        }
-        else
-        {
-            Debug.LogWarning("[TalkingPlayer] No talk indicator assigned!");
         }
     }
 
     void Update()
     {
         if (micClip == null)
-        {
-            Debug.LogWarning("[TalkingPlayer] No micClip. Mic failed to start?");
             return;
-        }
 
         bool shouldTalk =
             (pushToTalk && Input.GetKey(talkKey)) ||
             (!pushToTalk && IsSpeaking());
 
-        // Debug push-to-talk
-        if (pushToTalk && Input.GetKeyDown(talkKey))
-            Debug.Log("[TalkingPlayer] Push-to-talk key pressed.");
-
         if (shouldTalk && !isTransmitting)
             StartTalking();
-
         else if (!shouldTalk && isTransmitting)
             StopTalking();
 
-        // If transmitting, collect samples
         if (isTransmitting)
         {
             float[] samples = new float[1024];
             int pos = Microphone.GetPosition(null) - samples.Length;
 
-            if (pos < 0)
+            if (pos >= 0)
             {
-                Debug.LogWarning("[TalkingPlayer] Mic sample position < 0, skipping.");
-                return;
+                micClip.GetData(samples, pos);
+
+                // TODO: Send samples over network
+                // VoiceNetwork.SendVoiceData(samples);
             }
-
-            micClip.GetData(samples, pos);
-
-            Debug.Log("[TalkingPlayer] Sending " + samples.Length + " mic samples to network...");
-
-            // TODO: send samples here
-            // VoiceNetwork.SendVoiceData(samples);
         }
+
+        UpdateJawMovement();
     }
 
     private bool IsSpeaking()
+    {
+        return GetMicLoudness() > micSensitivity;
+    }
+
+    private float GetMicLoudness()
     {
         float[] data = new float[256];
         int pos = Microphone.GetPosition(null) - data.Length;
 
         if (pos < 0)
-            return false;
+            return 0f;
 
         micClip.GetData(data, pos);
 
@@ -98,13 +99,7 @@ public class TalkingPlayer : MonoBehaviour
         for (int i = 0; i < data.Length; i++)
             level += Mathf.Abs(data[i]);
 
-        bool speaking = level > micSensitivity;
-
-        Debug.Log("[TalkingPlayer] Mic level: " + level.ToString("F4") +
-                  " | Threshold: " + micSensitivity +
-                  " | Speaking: " + speaking);
-
-        return speaking;
+        return level;
     }
 
     private void StartTalking()
@@ -114,7 +109,6 @@ public class TalkingPlayer : MonoBehaviour
 
         if (talkIndicator != null)
         {
-            Debug.Log("[TalkingPlayer] Activating talk indicator.");
             talkIndicator.gameObject.SetActive(true);
             talkIndicator.Play();
         }
@@ -127,21 +121,47 @@ public class TalkingPlayer : MonoBehaviour
 
         if (talkIndicator != null)
         {
-            Debug.Log("[TalkingPlayer] Hiding talk indicator.");
             talkIndicator.Stop();
             talkIndicator.gameObject.SetActive(false);
         }
     }
 
+    private void UpdateJawMovement()
+    {
+        if (jawBone == null)
+            return;
+
+        float targetAngle = jawClosedAngle;
+
+        if (isTransmitting)
+        {
+            float rawLoudness = GetMicLoudness();
+
+            if (rawLoudness > noiseGate)
+            {
+                float cleanLoudness = rawLoudness - noiseGate;
+                float t = Mathf.InverseLerp(0f, maxLoudness - noiseGate, cleanLoudness);
+                t = Mathf.Clamp01(t);
+
+                targetAngle = Mathf.Lerp(jawClosedAngle, jawOpenAngle, t);
+            }
+        }
+
+        currentJawAngle = Mathf.Lerp(
+            currentJawAngle,
+            targetAngle,
+            Time.deltaTime * jawMoveSpeed
+        );
+
+        Vector3 rot = jawBone.localEulerAngles;
+        rot.y = currentJawAngle;
+        jawBone.localEulerAngles = rot;
+    }
+
     public void PlayIncomingVoice(float[] samples)
     {
         if (voiceSource == null)
-        {
-            Debug.LogError("[TalkingPlayer] VoiceSource missing! Can't play incoming audio.");
             return;
-        }
-
-        Debug.Log("[TalkingPlayer] Received incoming voice: " + samples.Length + " samples");
 
         AudioClip clip = AudioClip.Create("RemoteVoice", samples.Length, 1, 44100, false);
         clip.SetData(samples, 0);
