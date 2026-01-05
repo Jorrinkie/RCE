@@ -17,6 +17,15 @@ public class InfoDisplayManager : MonoBehaviour
     [SerializeField] private TMP_Text manPowerCostText;
     [SerializeField] private Image infoImageDisplay;
 
+
+    [SerializeField] private TMP_Text titleText2;
+    [SerializeField] private TMP_Text infoText2;
+    [SerializeField] private TMP_Text peopleScoreText2;
+    [SerializeField] private TMP_Text importanceText2;
+    [SerializeField] private TMP_Text moneyCostText2;
+    [SerializeField] private TMP_Text manPowerCostText2;
+    [SerializeField] private Image infoImageDisplay2;
+
     private InfoObject activeInfo;
 
     void Awake()
@@ -46,6 +55,7 @@ public class InfoDisplayManager : MonoBehaviour
     {
         if (activeInfo == null) return;
 
+        // --- Canvas 1 ---
         titleText.text = activeInfo.Title;
         infoText.text = activeInfo.Information;
         peopleScoreText.text = $"People Score: {activeInfo.PeopleScore}";
@@ -62,9 +72,29 @@ public class InfoDisplayManager : MonoBehaviour
             }
             else
             {
-                infoImageDisplay.gameObject.SetActive(false); 
+                infoImageDisplay.gameObject.SetActive(false);
+            }
+        }
+
+        // --- Canvas 2 ---
+        if (titleText2 != null) titleText2.text = activeInfo.Title;
+        if (infoText2 != null) infoText2.text = activeInfo.Information;
+        if (peopleScoreText2 != null) peopleScoreText2.text = $"People Score: {activeInfo.PeopleScore}";
+        if (importanceText2 != null) importanceText2.text = $"Importance: {activeInfo.Importance}";
+        if (moneyCostText2 != null) moneyCostText2.text = $"Money Cost: {activeInfo.MoneyCost}";
+        if (manPowerCostText2 != null) manPowerCostText2.text = $"ManPower Cost: {activeInfo.ManPowerCost}";
+
+        if (infoImageDisplay2 != null)
+        {
+            if (activeInfo.InfoImage != null)
+            {
+                infoImageDisplay2.sprite = activeInfo.InfoImage;
+                infoImageDisplay2.gameObject.SetActive(true);
+            }
+            else
+            {
+                infoImageDisplay2.gameObject.SetActive(false);
             }
         }
     }
 }
-

@@ -5,33 +5,43 @@ using Alteruna;
 
 public class BackgroundChange : AttributesSync
 {
+    [Header("Background Settings")]
     [SerializeField] private LowerBlinds lowerBlindsTarget;
     [SerializeField] private GameObject myBackgroundRoot;
-    [SerializeField] private string backgroundID = "tower"; // ← "lighthouse", "tower", "church", etc.
+    [SerializeField] private string backgroundID = "tower";
 
-    // Call this from your button / input
+    [Header("Tutorial Settings")]
+    [SerializeField] private bool isTutorial = false;
+    [SerializeField] private float tutorialDelay = 3f;
+
     public void SceneSyncChange()
     {
-        // Tell EVERYONE (including self via RPC) to start the 1-second countdown
         BroadcastRemoteMethod(nameof(StartDelayedSwitch), backgroundID);
-        StartDelayedSwitch(backgroundID); // also run locally immediately
+        StartDelayedSwitch(backgroundID);
     }
 
     [SynchronizableMethod]
     private void StartDelayedSwitch(string targetID)
     {
-        StopAllCoroutines();                    // cancel any previous countdown
+        StopAllCoroutines();
         StartCoroutine(DoSwitchAfterDelay(targetID));
     }
 
     private IEnumerator DoSwitchAfterDelay(string targetID)
     {
-        // Optional: play sound, animation, fade, etc. here
-        Debug.Log($"[Background] Switching to {targetID} in 1 second...");
+        Debug.Log($"[Background] Switching to {targetID}...");
 
-        yield return new WaitForSeconds(0.1f);
+        // Tutorial uses extra delay before blinds animation
+        if (isTutorial)
+        {
+            yield return new WaitForSeconds(tutorialDelay);
+        }
+        else
+        {
+            // Normal fade mode: small delay
+            yield return new WaitForSeconds(0.2f);
+        }
 
-        // NOW actually switch
         PerformBackgroundSwitch(targetID);
     }
 
@@ -45,18 +55,31 @@ public class BackgroundChange : AttributesSync
         {
             if (bc.myBackgroundRoot == null) continue;
 
-            bool shouldBeActive = string.Equals(bc.backgroundID, targetID,
-                System.StringComparison.OrdinalIgnoreCase);
+            bool shouldBeActive = string.Equals(
+                bc.backgroundID, targetID, System.StringComparison.OrdinalIgnoreCase);
 
             if (bc.myBackgroundRoot.activeSelf && !shouldBeActive)
                 deactivated.Add(bc.myBackgroundRoot);
-
-            bc.myBackgroundRoot.SetActive(shouldBeActive);
 
             if (shouldBeActive)
                 activated = bc.myBackgroundRoot;
         }
 
-        lowerBlindsTarget?.ChangeHeritage(deactivated, activated);
+        StartCoroutine(DelayedBlindsSwap(deactivated, activated));
+    }
+
+    private IEnumerator DelayedBlindsSwap(List<GameObject> deactivated, GameObject activated)
+    {
+        if (isTutorial)
+        {
+            // TUTORIAL MODE: blinds only (NO fade)
+            lowerBlindsTarget?.ChangeHeritage(deactivated, activated);
+        }
+        else
+        {
+            // NORMAL MODE: fade-only swap
+            yield return lowerBlindsTarget.StartCoroutine(
+                lowerBlindsTarget.FadeSwap(deactivated, activated));
+        }
     }
 }

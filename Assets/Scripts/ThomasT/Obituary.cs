@@ -33,7 +33,6 @@ public class ShowAbandonChurchVideo : MonoBehaviour
     {
         if (!isShowing && Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Showing Video!");
             StartCoroutine(ShowAndFadeSequence());
         }
     }
@@ -46,9 +45,9 @@ public class ShowAbandonChurchVideo : MonoBehaviour
         SetActiveAll(true);
         SetAlphaAll(0f);
 
-        if (line1Text != null) line1Text.text = "THE CHURCH";
-        if (line2Text != null) line2Text.text = "YOU HAVE DECIDED TO";
-        if (line3Text != null) line3Text.text = "ABANDON";
+        if (line1Text != null) line1Text.text = "YOU HAVE DECIDED TO";
+        if (line2Text != null) line2Text.text = "ABANDON";
+        if (line3Text != null) line3Text.text = "THE CHURCH";
 
         // Start video
         if (videoPlayer != null)

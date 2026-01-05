@@ -13,7 +13,28 @@ public class EnableOutline : MonoBehaviour
 
     private void Start()
     {
-        playerCamera = Camera.main;
+        
+        if (playerCamera == null)
+            playerCamera = GetComponentInChildren<Camera>(true);
+
+        
+        if (uiImageFull == null) //fix since player is prefab and not in scene from beginning
+        {
+            Image[] allImages = Resources.FindObjectsOfTypeAll<Image>();
+
+            foreach (Image img in allImages)
+            {
+                if (img.name == "Full")  
+                {
+                    uiImageFull = img;
+                    break;
+                }
+            }
+        }
+
+       
+        if (uiImageFull != null)
+            uiImageFull.gameObject.SetActive(false);
     }
     void Update()
     {
