@@ -69,6 +69,8 @@ public class TutorialController : MonoBehaviour
 
     public void PlayButtonPressed()
     {
-        SceneManager.LoadScene("MainSceneGame");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene("WorkingScene");
     }
 }
