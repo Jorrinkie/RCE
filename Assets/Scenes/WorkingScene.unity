@@ -945,6 +945,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece708103b73fa245b7e3f3179e67b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  boolParameter: press
   buttonNumber: 3
   OtherButtons:
   - {fileID: 1160922305}
@@ -1887,6 +1889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece708103b73fa245b7e3f3179e67b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  boolParameter: press
   buttonNumber: 1
   OtherButtons:
   - {fileID: 974668350}
@@ -4058,6 +4062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece708103b73fa245b7e3f3179e67b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  boolParameter: press
   buttonNumber: 2
   OtherButtons:
   - {fileID: 0}
@@ -4729,6 +4735,8 @@ MonoBehaviour:
   lowerBlindsTarget: {fileID: 486320464}
   myBackgroundRoot: {fileID: 769408626}
   backgroundID: church
+  isTutorial: 0
+  tutorialDelay: 3
 --- !u!114 &243968241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10216,6 +10224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece708103b73fa245b7e3f3179e67b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  boolParameter: press
   buttonNumber: 0
   OtherButtons:
   - {fileID: 795438808}
@@ -15464,6 +15474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece708103b73fa245b7e3f3179e67b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  boolParameter: press
   buttonNumber: 1
   OtherButtons:
   - {fileID: 1281955528}
@@ -18226,6 +18238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece708103b73fa245b7e3f3179e67b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  boolParameter: press
   buttonNumber: 0
   OtherButtons:
   - {fileID: 91074111}
@@ -18998,6 +19012,8 @@ MonoBehaviour:
   lowerBlindsTarget: {fileID: 486320464}
   myBackgroundRoot: {fileID: 1833112228}
   backgroundID: tower
+  isTutorial: 0
+  tutorialDelay: 3
 --- !u!114 &1022991076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19624,6 +19640,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece708103b73fa245b7e3f3179e67b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  boolParameter: press
   buttonNumber: 3
   OtherButtons:
   - {fileID: 974668350}
@@ -20907,6 +20925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece708103b73fa245b7e3f3179e67b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  boolParameter: press
   buttonNumber: 4
   OtherButtons:
   - {fileID: 43108715}
@@ -21799,6 +21819,8 @@ MonoBehaviour:
   lowerBlindsTarget: {fileID: 486320464}
   myBackgroundRoot: {fileID: 303517294}
   backgroundID: windmill
+  isTutorial: 0
+  tutorialDelay: 3
 --- !u!114 &1196601447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22946,6 +22968,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece708103b73fa245b7e3f3179e67b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  boolParameter: press
   buttonNumber: 2
   OtherButtons:
   - {fileID: 795438808}
@@ -25077,7 +25101,7 @@ MonoBehaviour:
   RelocateText: {fileID: 1888540016}
   DigitizeText: {fileID: 1404151106}
   votebuttons:
-  - {fileID: 91074111}
+  - {fileID: 417632533}
   - {fileID: 974668350}
   - {fileID: 0}
   - {fileID: 1063537269}
@@ -28216,6 +28240,13 @@ MonoBehaviour:
   moneyCostText: {fileID: 1910822436}
   manPowerCostText: {fileID: 1622297612}
   infoImageDisplay: {fileID: 1821547986}
+  titleText2: {fileID: 0}
+  infoText2: {fileID: 0}
+  peopleScoreText2: {fileID: 0}
+  importanceText2: {fileID: 0}
+  moneyCostText2: {fileID: 0}
+  manPowerCostText2: {fileID: 0}
+  infoImageDisplay2: {fileID: 0}
 --- !u!114 &1585108762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28310,7 +28341,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 1800
+  warningTime: 10
   timerText: {fileID: 75650420}
+  OnStart: 1
+  audioSource: {fileID: 0}
+  startSound: {fileID: 0}
+  warningSound: {fileID: 0}
 --- !u!4 &1585108767
 Transform:
   m_ObjectHideFlags: 0
@@ -34972,6 +35008,8 @@ MonoBehaviour:
   lowerBlindsTarget: {fileID: 486320464}
   myBackgroundRoot: {fileID: 1247115495}
   backgroundID: lighthouse
+  isTutorial: 0
+  tutorialDelay: 3
 --- !u!114 &1963729334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36254,6 +36292,8 @@ MonoBehaviour:
   lowerBlindsTarget: {fileID: 486320464}
   myBackgroundRoot: {fileID: 1488091613}
   backgroundID: bridge
+  isTutorial: 0
+  tutorialDelay: 3
 --- !u!114 &2083518425
 MonoBehaviour:
   m_ObjectHideFlags: 0
