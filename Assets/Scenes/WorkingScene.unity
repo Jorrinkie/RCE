@@ -4727,7 +4727,7 @@ MonoBehaviour:
   Reliability: 1
   LocalMethodBehavior: 1
   lowerBlindsTarget: {fileID: 486320464}
-  myBackgroundRoot: {fileID: 1833112228}
+  myBackgroundRoot: {fileID: 769408626}
   backgroundID: church
 --- !u!114 &243968241
 MonoBehaviour:
