@@ -47,6 +47,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3315168915
+    locked: 0
+  - name: nobackorfore
+    uniqueID: 940277453
+    locked: 0
+  - name: Foreground
+    uniqueID: 3983174475
+    locked: 0
+  - name: Middleground
+    uniqueID: 3521917691
+    locked: 0
+  - name: forefore-ground
+    uniqueID: 2826198363
+    locked: 0
+  - name: buttons
+    uniqueID: 1052404125
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
