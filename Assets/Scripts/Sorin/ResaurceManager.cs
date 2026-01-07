@@ -1,13 +1,12 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+using Alteruna;
 using TMPro;
 
-public class ResaurceManager : MonoBehaviour
+public class ResaurceManager : AttributesSync
 {
-    [Header("Resources")]
-    [SerializeField] private int money = 10;
-    [SerializeField] private int manPower = 5;
+    [Header("Resources (Synced)")]
+    [SynchronizableField] public int money = 10;
+    [SynchronizableField] public int manPower = 5;
 
     [Header("References")]
     [SerializeField] private MoneyViisualManager moneyVisualManager;
@@ -17,56 +16,41 @@ public class ResaurceManager : MonoBehaviour
     [SerializeField] private TMP_Text moneyText;
     [SerializeField] private TMP_Text manPowerText;
 
-    [Header("Debug / Settings")]
-    [SerializeField] private KeyCode loseMoneyKey = KeyCode.T;
-    [SerializeField] private KeyCode getMoneyKey = KeyCode.Y;
-    [SerializeField] private int moneyLossPerPress = 1;
-    [SerializeField] private int moneyGainPerPress = 1;
-
-    void Start()
+    private void Update()
     {
+        // We updaten de display elke frame voor alle spelers zodat ze 
+        // de gesynchroniseerde waarden direct zien.
         UpdateMoneyDisplay();
         UpdateManPowerDisplay();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(loseMoneyKey))
-        {
-            LoseMoney(moneyLossPerPress);
-            LoseManPower(moneyLossPerPress);
-        }
-
-        if (Input.GetKeyDown(getMoneyKey))
-        {
-            AddMoney(moneyGainPerPress);
-            AddManPower(moneyGainPerPress);
-        }
-    }
+    // --- Logica die alleen door de Host wordt aangeroepen ---
 
     public void AddMoney(int amount)
     {
         money += amount;
-        UpdateMoneyDisplay();
+        Commit(); // Stuurt nieuwe waarde naar iedereen
     }
 
     public void LoseMoney(int amount)
     {
         money = Mathf.Max(0, money - amount);
-        UpdateMoneyDisplay();
+        Commit();
     }
 
     public void AddManPower(int amount)
     {
         manPower += amount;
-        UpdateManPowerDisplay();
+        Commit();
     }
 
     public void LoseManPower(int amount)
     {
         manPower = Mathf.Max(0, manPower - amount);
-        UpdateManPowerDisplay();
+        Commit();
     }
+
+    // --- Display logica voor iedereen ---
 
     public void UpdateMoneyDisplay()
     {

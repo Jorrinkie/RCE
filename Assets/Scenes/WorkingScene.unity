@@ -7000,7 +7000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRoleName: Burgemeester
   playerTag: Player
-  invertSelection: 1
+  invertSelection: 0
 --- !u!114 &1013288316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7047,7 +7047,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1397464903}
         m_TargetAssemblyTypeName: VoteManager, Assembly-CSharp
-        m_MethodName: ResetVotes
+        m_MethodName: FindHighest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7059,7 +7059,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1397464903}
         m_TargetAssemblyTypeName: VoteManager, Assembly-CSharp
-        m_MethodName: FindHighest
+        m_MethodName: ResetVotes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10583,7 +10583,7 @@ MonoBehaviour:
   relocateBigWon: 0
   relocateWon: 0
   digitizeWon: 0
-  MoneyManager: {fileID: 0}
+  MoneyManager: {fileID: 1585108760}
 --- !u!1 &1404151104
 GameObject:
   m_ObjectHideFlags: 0
@@ -11362,21 +11362,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceManager: {fileID: 1585108764}
-  infodisplaymanager: {fileID: 1585108761}
   leaveBehind_ManPowerCost: 0
   leaveBehind_MoneyCost: 0
   digitalize_ManPowerCost: 0
   digitalize_MoneyCost: 3
   investRepair_ManPowerCost: 1
   investRepair_MoneyCost: 2
-  relocateSmallLocation_ManPowerCost: 2
-  relocateSmallLocation_MoneyCost: 2
-  relcoateBigLocation_ManPowerCost: 3
-  relcoateBig_MoneyCost: 3
-  leaveBehindKey: 49
-  digitalizeKey: 50
-  investRepairKey: 51
-  moveLocationKey: 52
+  relocateSmall_ManPowerCost: 3
+  relocateSmall_MoneyCost: 3
+  relocateBig_ManPowerCost: 3
+  relocateBig_MoneyCost: 3
 --- !u!114 &1585108761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11467,16 +11462,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49dc1767687ed0840add1d387fffd438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: 
+  Reliability: 1
+  LocalMethodBehavior: 1
   money: 20
   manPower: 10
   moneyVisualManager: {fileID: 1585108763}
   manPowerVisualManager: {fileID: 1585108762}
   moneyText: {fileID: 1222201845}
   manPowerText: {fileID: 1762165345}
-  loseMoneyKey: 116
-  getMoneyKey: 121
-  moneyLossPerPress: 1
-  moneyGainPerPress: 1
 --- !u!114 &1585108765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12277,7 +12272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRoleName: Burgemeester
   playerTag: Player
-  invertSelection: 1
+  invertSelection: 0
 --- !u!1 &1626454157
 GameObject:
   m_ObjectHideFlags: 0

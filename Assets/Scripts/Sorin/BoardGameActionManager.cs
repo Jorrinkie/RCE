@@ -1,10 +1,12 @@
 using UnityEngine;
+using Alteruna;
 
 public class BoardGameActionManager : MonoBehaviour
 {
     [SerializeField] private ResaurceManager resourceManager;
-    [SerializeField] private InfoDisplayManager infodisplaymanager;
+    private Multiplayer _multiplayer;
 
+    [Header("Action Costs")]
     [SerializeField] private int leaveBehind_ManPowerCost = 0;
     [SerializeField] private int leaveBehind_MoneyCost = 0;
 
@@ -14,58 +16,59 @@ public class BoardGameActionManager : MonoBehaviour
     [SerializeField] private int investRepair_ManPowerCost = 2;
     [SerializeField] private int investRepair_MoneyCost = 2;
 
-    [SerializeField] private int relocateSmallLocation_ManPowerCost = 3;
-    [SerializeField] private int relocateSmallLocation_MoneyCost = 3;
+    [SerializeField] private int relocateSmall_ManPowerCost = 3;
+    [SerializeField] private int relocateSmall_MoneyCost = 3;
 
-    [SerializeField] private int relcoateBigLocation_ManPowerCost = 3;
-    [SerializeField] private int relcoateBig_MoneyCost = 3;
+    [SerializeField] private int relocateBig_ManPowerCost = 3;
+    [SerializeField] private int relocateBig_MoneyCost = 3;
 
-    [SerializeField] private KeyCode leaveBehindKey = KeyCode.Alpha1;
-    [SerializeField] private KeyCode digitalizeKey = KeyCode.Alpha2;
-    [SerializeField] private KeyCode investRepairKey = KeyCode.Alpha3;
-    [SerializeField] private KeyCode moveLocationKey = KeyCode.Alpha4;
-
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(leaveBehindKey)) LeaveBehind();
-        if (Input.GetKeyDown(digitalizeKey)) Digitalize();
-        if (Input.GetKeyDown(investRepairKey)) InvestRepair();
-        if (Input.GetKeyDown(moveLocationKey)) RelocateBig();
-        if (Input.GetKeyDown(moveLocationKey)) RelocateSmall();
+        _multiplayer = FindObjectOfType<Multiplayer>();
+    }
+
+    // Hulpmethode om te checken of we de actie mogen uitvoeren
+    private bool IsHost()
+    {
+        if (_multiplayer != null && _multiplayer.IsConnected)
+        {
+            return _multiplayer.Me.Index == 0; // In de meeste versies is 0 de host
+        }
+        return true; // Voor testen in offline mode
     }
 
     public void LeaveBehind()
     {
-        if (resourceManager == null) return;
+        if (!IsHost()) return;
         resourceManager.LoseManPower(leaveBehind_ManPowerCost);
         resourceManager.LoseMoney(leaveBehind_MoneyCost);
     }
 
     public void Digitalize()
     {
-        if (resourceManager == null) return;
+        if (!IsHost()) return;
         resourceManager.LoseManPower(digitalize_ManPowerCost);
         resourceManager.LoseMoney(digitalize_MoneyCost);
     }
 
     public void InvestRepair()
     {
-        if (resourceManager == null) return;
+        if (!IsHost()) return;
         resourceManager.LoseManPower(investRepair_ManPowerCost);
         resourceManager.LoseMoney(investRepair_MoneyCost);
     }
 
     public void RelocateBig()
     {
-        if (resourceManager == null) return;
-        resourceManager.LoseManPower(relocateSmallLocation_ManPowerCost);
-        resourceManager.LoseMoney(relocateSmallLocation_MoneyCost);
+        if (!IsHost()) return;
+        resourceManager.LoseManPower(relocateBig_ManPowerCost);
+        resourceManager.LoseMoney(relocateBig_MoneyCost);
     }
 
     public void RelocateSmall()
     {
-        if (resourceManager == null) return;
-        resourceManager.LoseManPower(relcoateBigLocation_ManPowerCost);
-        resourceManager.LoseMoney(relcoateBig_MoneyCost);
+        if (!IsHost()) return;
+        resourceManager.LoseManPower(relocateSmall_ManPowerCost);
+        resourceManager.LoseMoney(relocateSmall_MoneyCost);
     }
 }
