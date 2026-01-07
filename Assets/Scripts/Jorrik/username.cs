@@ -5,66 +5,63 @@ using TMPro;
 public class Username : AttributesSync
 {
     [SynchronizableField] public string userName = "Player";
+    private string _lastUserName; // Tracks changes locally
 
     private Alteruna.Avatar _avatar;
 
     [Header("UI References")]
     public TextMeshProUGUI nameText;
-    public TMP_InputField inputField;
+
+    private void Awake()
+    {
+        _avatar = GetComponent<Alteruna.Avatar>();
+    }
 
     private void Start()
     {
-        _avatar = GetComponent<Alteruna.Avatar>();
-
-        // Initialize UI
-        UpdateNameText();
-
-        // Only local player listens to input
-        if (_avatar != null && _avatar.IsMe && inputField != null)
+        // Only the local player defines their name and pushes it to the network
+        if (_avatar.IsMe)
         {
-            inputField.onValueChanged.AddListener(OnNameChanged);
+            string extractedName = ExtractNameFromGameObject(gameObject.name);
+            if (!string.IsNullOrWhiteSpace(extractedName))
+            {
+                userName = extractedName;
+                Commit(); // Pushes the name to all other players
+            }
         }
-    }
 
-    private void OnDestroy()
-    {
-        if (inputField != null)
-            inputField.onValueChanged.RemoveListener(OnNameChanged);
-    }
-
-    private void OnNameChanged(string newName)
-    {
-        if (_avatar == null || !_avatar.IsMe)
-            return;
-
-        if (string.IsNullOrEmpty(newName))
-            return;
-
-        // Only commit if the value actually changed
-        if (userName != newName)
-        {
-            userName = newName;
-            Commit(); // Sync to all clients
-        }
+        UpdateUI();
+        _lastUserName = userName;
     }
 
     private void Update()
     {
-        // Update UI text for everyone
-        if (nameText != null)
-            nameText.text = userName;
-
-        // Keep input field consistent for local player
-        if (_avatar != null && _avatar.IsMe && inputField != null)
-            inputField.text = userName;
+        // Check if the userName has been changed by the network
+        if (userName != _lastUserName)
+        {
+            _lastUserName = userName;
+            UpdateUI();
+        }
     }
 
-    private void UpdateNameText()
+    private void UpdateUI()
     {
         if (nameText != null)
+        {
             nameText.text = userName;
+            // Debug.Log($"UI Updated for {gameObject.name} to: {userName}");
+        }
+    }
 
-        if (_avatar != null && _avatar.IsMe && inputField != null)
-            inputField.text = userName;
+    private string ExtractNameFromGameObject(string objectName)
+    {
+        // Removes clones/IDs if Unity adds them, e.g., "Player(Bob)" -> "Bob"
+        int start = objectName.IndexOf('(');
+        int end = objectName.LastIndexOf(')'); // Use LastIndexOf for better safety
+        if (start >= 0 && end > start)
+        {
+            return objectName.Substring(start + 1, end - start - 1);
+        }
+        return objectName;
     }
 }
