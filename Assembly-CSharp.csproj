@@ -88,6 +88,7 @@
     <Compile Include="Assets\Jorrik\voteMenuScript.cs" />
     <Compile Include="Assets\Scripts\Sorin\InteractBlindsTest.cs" />
     <Compile Include="Assets\Scripts\Sorin\ResaurceManager.cs" />
+    <Compile Include="Assets\Jorrik\RoleUIElementCu.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\TextChat\TextChatCommands\CommandMe.cs" />
     <Compile Include="Assets\Scripts\Sorin\PlayerTeleport.cs" />
     <Compile Include="Assets\Scripts\Jorrik\Interactme.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Assets\Scripts\Jorrik\Interactor.cs" />
     <Compile Include="Assets\Scripts\Sorin\BoardGameActionManager.cs" />
     <Compile Include="Assets\Alteruna\Scripts\SingleClientEvent.cs" />
+    <Compile Include="Assets\Scripts\Jorrik\PlayerRoleManager.cs" />
     <Compile Include="Assets\Scripts\Sorin\PlayerController.cs" />
     <Compile Include="Assets\Jorrik\pulsescript.cs" />
     <Compile Include="Assets\Scripts\Sorin\LowerBlinds.cs" />

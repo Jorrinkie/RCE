@@ -190,7 +190,6 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2024,7 +2023,6 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3500,6 +3498,7 @@ GameObject:
   - component: {fileID: 1216847728537363937}
   - component: {fileID: 371878303934903158}
   - component: {fileID: 583814835560642461}
+  - component: {fileID: 6195664125591794249}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3671,7 +3670,6 @@ MonoBehaviour:
   LocalMethodBehavior: 1
   userName: Player
   nameText: {fileID: 298317182091656641}
-  inputField: {fileID: 0}
 --- !u!114 &3884796893249692853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3840,6 +3838,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6195664125591794249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8818474960689850846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcee686bdf51da645ada20d244358d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: af937028-c440-4b62-b3ba-cd04b1357d31
+  Reliability: 1
+  LocalMethodBehavior: 1
+  currentRole: Collega
 --- !u!1 &8996772526962952142
 GameObject:
   m_ObjectHideFlags: 0
