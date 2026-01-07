@@ -42,7 +42,7 @@ public class CubeSpawner : MonoBehaviour
     {
         if (_spawner == null)
             return;
-
+        int indexToSpawn = Random.Range(0, 10);
         // Spawn position slightly in front of camera
         Vector3 spawnPos = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
 
