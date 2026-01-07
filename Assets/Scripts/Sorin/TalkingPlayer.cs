@@ -12,6 +12,7 @@ public class TalkingPlayer : AttributesSync
     [Header("Components")]
     [SerializeField] private AudioSource voiceSource;
     [SerializeField] private VideoPlayer talkIndicator;
+    [SerializeField] private AudioSource localMonitorSource; // NEW: Assign this for local mic test (volume 0.5)
 
     [Header("Mouth / Jaw Animation")]
     [SerializeField] private Transform jawBone;
@@ -19,16 +20,21 @@ public class TalkingPlayer : AttributesSync
     [SerializeField] private float jawOpenAngle = -44f;
     [SerializeField] private float jawMoveSpeed = 10f;
     [Tooltip("Minimum mic loudness before mouth starts opening")]
-    [SerializeField] private float noiseGate = 0.02f;
+    [SerializeField] private float noiseGate = 0.005f; // Lowered for testing
     [Tooltip("Loudness value that equals fully open mouth")]
     [SerializeField] private float maxLoudness = 0.15f;
 
     [SynchronizableField] private bool isTalking = false;
     [SynchronizableField] private float loudness = 0f;
 
-    private AudioClip micClip;
+    // For optimized syncing
+    private float lastLoudness = -1f;
+    private bool lastIsTalking = false;
+
     private Alteruna.Avatar avatar;
+    private VoiceSynchronizable voiceSync;
     private float currentJawAngle = 0f;
+    private AudioClip micClip; // For local monitor
 
     private void Awake()
     {
@@ -39,65 +45,141 @@ public class TalkingPlayer : AttributesSync
             enabled = false;
             return;
         }
+
+        voiceSync = GetComponent<VoiceSynchronizable>();
+        if (voiceSync == null)
+        {
+            Debug.LogError("[TalkingPlayer] No VoiceSynchronizable component found! Add it to the prefab.");
+            enabled = false;
+            return;
+        }
+
+        if (voiceSource != null)
+        {
+            voiceSync.PlaybackSource = voiceSource;
+        }
     }
 
     private void Start()
     {
-        if (avatar.IsMe)
-        {
-            if (Microphone.devices.Length > 0)
-            {
-                micClip = Microphone.Start(null, true, 1, 44100);
-                Debug.Log("<color=green>[TalkingPlayer] Microphone started.</color>");
-            }
-            else
-            {
-                Debug.LogError("<color=red>[TalkingPlayer] No microphone!</color>");
-            }
-        }
-
         if (talkIndicator != null)
         {
             talkIndicator.Stop();
             talkIndicator.gameObject.SetActive(false);
         }
+
+        if (avatar.IsMe)
+        {
+            Debug.Log("[TalkingPlayer] Available mics: " + string.Join(", ", Microphone.devices));
+
+            if (Microphone.devices.Length == 0)
+            {
+                Debug.LogError("[TalkingPlayer] NO MICROPHONE DETECTED! Check system settings.");
+            }
+
+            if (!pushToTalk)
+            {
+                VoiceSynchronizable.SetDevice("Microphone Array (Realtek(R) Audio)");
+                Debug.Log("[TalkingPlayer] Microphone started (always-on mode with real mic).");
+            }
+        }
     }
 
     private void Update()
     {
-        // Always update visuals (local and remote use the same synced fields)
         UpdateJawAnimation();
         UpdateTalkIndicator();
 
-        if (!avatar.IsMe) return; // Only owner handles input, mic, and loudness sync
+        if (!avatar.IsMe) return;
 
-        if (micClip == null) return;
+        // Debug: Core voice status every frame
+        Debug.Log("[Voice Debug] IsActive: " + voiceSync.IsActive +
+                  " | PeakVolume: " + voiceSync.PeakVolume.ToString("F4") +
+                  " | IsTalking: " + isTalking +
+                  " | OldLoudness: " + GetMicLoudness().ToString("F4")); // NEW: Compare to old calculation
 
-        bool shouldTalk = pushToTalk ? Input.GetKey(talkKey) : IsSpeaking();
+        bool shouldTalk = false;
+        if (pushToTalk)
+        {
+            bool keyHeld = Input.GetKey(talkKey);
+            shouldTalk = keyHeld;
+
+            if (keyHeld && !voiceSync.IsActive)
+            {
+                VoiceSynchronizable.SetDevice("Microphone Array (Realtek(R) Audio)");
+                Debug.Log("[TalkingPlayer] PTT Key pressed -> Microphone STARTED (real mic)");
+
+                // NEW: Start local monitor
+                if (localMonitorSource != null)
+                {
+                    micClip = Microphone.Start("Microphone Array (Realtek(R) Audio)", true, 1, 44100);
+                    localMonitorSource.clip = micClip;
+                    localMonitorSource.loop = true;
+                    while (Microphone.GetPosition("Microphone Array (Realtek(R) Audio)") <= 0) { }
+                    localMonitorSource.Play();
+                    Debug.Log("[TalkingPlayer] Local mic monitor started - you should hear yourself!");
+                }
+            }
+            else if (!keyHeld && voiceSync.IsActive)
+            {
+                VoiceSynchronizable.ClearDevice();
+                Debug.Log("[TalkingPlayer] PTT Key released -> Microphone STOPPED");
+
+                // NEW: Stop local monitor
+                if (localMonitorSource != null)
+                {
+                    localMonitorSource.Stop();
+                    Microphone.End("Microphone Array (Realtek(R) Audio)");
+                    Debug.Log("[TalkingPlayer] Local mic monitor stopped");
+                }
+            }
+        }
+        else
+        {
+            shouldTalk = voiceSync.PeakVolume > micSensitivity;
+        }
+
+        bool needsCommit = false;
 
         if (shouldTalk != isTalking)
         {
             isTalking = shouldTalk;
-            Commit();
+            Debug.Log("[TalkingPlayer] isTalking changed to: " + isTalking);
+            needsCommit = true;
         }
 
-        loudness = GetMicLoudness();
-        Commit(); // Sync loudness frequently while talking
+        float currentPeak = voiceSync.PeakVolume;
+        loudness = currentPeak;
+
+        if (Mathf.Abs(loudness - lastLoudness) > 0.001f)
+        {
+            lastLoudness = loudness;
+            needsCommit = true;
+        }
+
+        if (voiceSync.IsActive && currentPeak < 0.001f)
+        {
+            Debug.LogWarning("[Voice Debug] Mic ACTIVE but PeakVolume near zero - speak louder or check mic!");
+        }
+        else if (voiceSync.IsActive && currentPeak > 0.05f)
+        {
+            Debug.Log("[Voice Debug] Good volume detected - audio should be transmitting!");
+        }
+
+        if (needsCommit)
+        {
+            Commit();
+        }
     }
 
-    private bool IsSpeaking()
-    {
-        return GetMicLoudness() > micSensitivity;
-    }
-
+    // NEW: Your old loudness function for comparison debug
     private float GetMicLoudness()
     {
+        if (micClip == null) return 0f;
         float[] data = new float[256];
-        int pos = Microphone.GetPosition(null) - data.Length;
+        int pos = Microphone.GetPosition("Microphone Array (Realtek(R) Audio)") - data.Length;
         if (pos < 0) return 0f;
-
         micClip.GetData(data, pos);
-
         float level = 0f;
         for (int i = 0; i < data.Length; i++)
         {
@@ -111,6 +193,7 @@ public class TalkingPlayer : AttributesSync
         if (jawBone == null) return;
 
         float targetAngle = jawClosedAngle;
+
         if (isTalking && loudness > noiseGate)
         {
             float cleanLoudness = loudness - noiseGate;

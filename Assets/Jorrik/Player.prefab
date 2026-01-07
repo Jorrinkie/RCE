@@ -3741,6 +3741,7 @@ MonoBehaviour:
   micSensitivity: 0.1
   voiceSource: {fileID: 583814835560642461}
   talkIndicator: {fileID: 4598310401875278659}
+  localMonitorSource: {fileID: 0}
   jawBone: {fileID: 267123223181099013}
   jawClosedAngle: 30
   jawOpenAngle: -7
