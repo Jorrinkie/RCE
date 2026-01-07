@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class buttontest : MonoBehaviour
 {
     public GameObject UI;
+    public Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -41,5 +42,10 @@ public class buttontest : MonoBehaviour
     public void UIVisible()
     {
         UI.SetActive(false);
+    }
+
+    public void PlayAnim()
+    {
+        animator.SetBool("playanim", true); ; ; ; ; ;
     }
 }
