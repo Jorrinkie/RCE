@@ -84100,10 +84100,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.13717833
       objectReference: {fileID: 0}
+    - target: {fileID: 4849593637034162487, guid: daecf1444dc14214bb45ed0040270919,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 4959014309043589158, guid: daecf1444dc14214bb45ed0040270919,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6470819938737608995, guid: daecf1444dc14214bb45ed0040270919,
         type: 3}
