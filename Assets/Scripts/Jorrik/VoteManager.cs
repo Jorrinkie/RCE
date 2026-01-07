@@ -22,6 +22,16 @@ public class VoteManager : AttributesSync
     [Header("Settings")]
     [SerializeField] private GameObject[] votebuttons;
 
+    [Header("Results")]
+    [SynchronizableField] public bool safeWon = false;
+    [SynchronizableField] public bool sacrificeWon = false;
+    [SynchronizableField] public bool relocateBigWon = false;
+    [SynchronizableField] public bool relocateWon = false;
+    [SynchronizableField] public bool digitizeWon = false;
+
+    [SerializeField] private BoardGameActionManager MoneyManager;
+
+
     // Referentie naar de centrale Multiplayer component
     private Multiplayer _multiplayer;
     private bool _wasReset = false;
@@ -129,6 +139,99 @@ public class VoteManager : AttributesSync
                 Interactme other = button.GetComponent<Interactme>();
                 if (other != null) other.SetInteracted(false);
             }
+        }
+    }
+
+    public void FindHighest()
+    {
+        // 1. Reset eerst alle uitslagen naar false
+        safeWon = false;
+        sacrificeWon = false;
+        relocateBigWon = false;
+        relocateWon = false;
+        digitizeWon = false;
+
+        // 2. Vind het hoogste getal van alle stemmen
+        int highest = Mathf.Max(safeVotes, sacrificeVotes, relocatedbigvotes, relocatevotes, digitizevotes);
+
+        // 3. Check of er wel gestemd is
+        if (highest <= 0)
+        {
+            Debug.Log("[Vote Result] Geen stemmen uitgebracht.");
+            Commit();
+            return;
+        }
+
+        // --- NIEUW: TIE-BREAKER LOGICA ---
+        int tieCount = 0;
+        if (safeVotes == highest) tieCount++;
+        if (sacrificeVotes == highest) tieCount++;
+        if (relocatedbigvotes == highest) tieCount++;
+        if (relocatevotes == highest) tieCount++;
+        if (digitizevotes == highest) tieCount++;
+
+        // Als er meer dan 1 categorie de hoogste score heeft, is het gelijkspel
+        if (tieCount > 1)
+        {
+            Debug.Log($"[Vote Result] Gelijkspel gedetecteerd! ({tieCount} opties met {highest} stemmen). Stemmen worden gereset.");
+            ResetVotes(); // Gebruik je bestaande reset functie
+            return;
+        }
+        // --------------------------------
+
+        string winnaarNaam = "";
+
+        // 4. Bepaal wie de winnaar is (hier komen we alleen als er geen gelijkspel is)
+        if (safeVotes == highest)
+        {
+            safeWon = true;
+            winnaarNaam = "Safe";
+        }
+        else if (sacrificeVotes == highest)
+        {
+            sacrificeWon = true;
+            winnaarNaam = "Sacrifice";
+        }
+        else if (relocatedbigvotes == highest)
+        {
+            relocateBigWon = true;
+            winnaarNaam = "Relocate Big";
+        }
+        else if (relocatevotes == highest)
+        {
+            relocateWon = true;
+            winnaarNaam = "Relocate";
+        }
+        else if (digitizevotes == highest)
+        {
+            digitizeWon = true;
+            winnaarNaam = "Digitize";
+        }
+
+        Commit();
+        Debug.Log($"[Vote Result] Stemming Gesloten! Winnaar: {winnaarNaam} met {highest} stemmen.");
+
+
+
+        if (safeWon)
+        {
+            MoneyManager.InvestRepair();
+        }
+        if (sacrificeWon)
+        {
+            MoneyManager.LeaveBehind();
+        }
+        if (relocateBigWon)
+        {
+            MoneyManager.RelocateSmall();
+        }
+        if (relocateWon)
+        {
+            MoneyManager.RelocateSmall();
+        }
+        if (digitizeWon)
+        {
+            MoneyManager.Digitalize();
         }
     }
 }

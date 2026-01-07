@@ -7057,6 +7057,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1397464903}
+        m_TargetAssemblyTypeName: VoteManager, Assembly-CSharp
+        m_MethodName: FindHighest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1013288317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10566,6 +10578,12 @@ MonoBehaviour:
   - {fileID: 1063537269}
   - {fileID: 226474717}
   - {fileID: 974668350}
+  safeWon: 0
+  sacrificeWon: 0
+  relocateBigWon: 0
+  relocateWon: 0
+  digitizeWon: 0
+  MoneyManager: {fileID: 0}
 --- !u!1 &1404151104
 GameObject:
   m_ObjectHideFlags: 0
