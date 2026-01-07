@@ -47071,6 +47071,70 @@ MonoBehaviour:
   action: 0
   pressDepth: 0.2
   pressSpeed: 5
+--- !u!1 &1202711925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1202711927}
+  - component: {fileID: 1202711926}
+  m_Layer: 0
+  m_Name: VoteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1202711926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202711925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4102f4703fdbe2941befbc2d0de6e0dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: a01f72cc-15c6-48c7-bfa6-035349b84693
+  Reliability: 1
+  LocalMethodBehavior: 1
+  safeVotes: 0
+  sacrificeVotes: 0
+  relocatedbigvotes: 0
+  relocatevotes: 0
+  digitizevotes: 0
+  safeText: {fileID: 869442584}
+  sacrificeText: {fileID: 417632535}
+  RelocateBigText: {fileID: 734006198}
+  RelocateText: {fileID: 1888540016}
+  DigitizeText: {fileID: 1404151106}
+  votebuttons:
+  - {fileID: 91074111}
+  - {fileID: 974668350}
+  - {fileID: 1063537269}
+  - {fileID: 881041592}
+  - {fileID: 226474717}
+--- !u!4 &1202711927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202711925}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3133974, y: 3.3602219, z: -0.42057037}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1207209997
 GameObject:
   m_ObjectHideFlags: 0
@@ -54536,6 +54600,7 @@ MonoBehaviour:
   RelocateBigText: {fileID: 734006198}
   RelocateText: {fileID: 1888540016}
   DigitizeText: {fileID: 1404151106}
+  votebuttons: []
 --- !u!1 &1399360543
 GameObject:
   m_ObjectHideFlags: 0
@@ -61534,7 +61599,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1585108767}
-  - component: {fileID: 1585108766}
   - component: {fileID: 1585108765}
   - component: {fileID: 1585108764}
   - component: {fileID: 1585108763}
@@ -61691,25 +61755,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineChecker: {fileID: 330585548}
---- !u!114 &1585108766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585108759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5132fedd86b5074fae540d86f2e5271, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startTime: 1800
-  warningTime: 10
-  timerText: {fileID: 75650420}
-  OnStart: 0
-  audioSource: {fileID: 0}
-  startSound: {fileID: 0}
-  warningSound: {fileID: 0}
 --- !u!4 &1585108767
 Transform:
   m_ObjectHideFlags: 0
@@ -86004,6 +86049,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 423966907}
   - {fileID: 654938432}
+  - {fileID: 1202711927}
   - {fileID: 1585108767}
   - {fileID: 1795563595}
   - {fileID: 4589831915412847886}

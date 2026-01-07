@@ -6645,7 +6645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1168401726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7263,7 +7263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1270761472
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8553,11 +8553,16 @@ MonoBehaviour:
   relocatedbigvotes: 0
   relocatevotes: 0
   digitizevotes: 0
-  safeText: {fileID: 0}
+  safeText: {fileID: 869442584}
   sacrificeText: {fileID: 417632535}
   RelocateBigText: {fileID: 734006198}
-  RelocateText: {fileID: 0}
+  RelocateText: {fileID: 1888540016}
   DigitizeText: {fileID: 1404151106}
+  votebuttons:
+  - {fileID: 91074111}
+  - {fileID: 974668350}
+  - {fileID: 1063537269}
+  - {fileID: 226474717}
 --- !u!1 &1404151104
 GameObject:
   m_ObjectHideFlags: 0
@@ -9143,7 +9148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 24.300049, y: -103.79999}
+  m_AnchoredPosition: {x: 24.300049, y: -35}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1585108759
@@ -10035,9 +10040,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1397464901}
+      - m_Target: {fileID: 1397464903}
         m_TargetAssemblyTypeName: VoteManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: ResetVotes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
