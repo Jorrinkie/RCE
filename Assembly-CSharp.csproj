@@ -101,6 +101,7 @@
     <Compile Include="Assets\scripttestfeedback\Feedback.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\TextChat\TextChatCommands\CommandRoom.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\TextChat\TextChatCommands\CommandUid.cs" />
+    <Compile Include="Assets\buttonvotecheck.cs" />
     <Compile Include="Assets\Scripts\Sorin\MoneyViisualManager.cs" />
     <Compile Include="Assets\Alteruna\Scripts\Examples\ExampleOnlyRunForLowestIndex.cs" />
     <Compile Include="Assets\Scripts\Sorin\SceneAudio.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Assets\Scripts\Sorin\TutorialController.cs" />
     <Compile Include="Assets\Alteruna\Scripts\Examples\ExampleOnlyForLocalAvatar.cs" />
     <Compile Include="Assets\Jorrik\velocity.cs" />
+    <Compile Include="Assets\checkforplayer.cs" />
     <Compile Include="Assets\Scripts\Sorin\ButtonInteract.cs" />
     <Compile Include="Assets\Scripts\Sorin\PlayAnimation.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\RoomBrowser\Scripts\CreateRoomMenu.cs" />

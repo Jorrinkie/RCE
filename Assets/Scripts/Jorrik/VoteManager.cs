@@ -9,6 +9,10 @@ public class VoteManager : AttributesSync
     [SynchronizableField] public int relocatedbigvotes = 0;
     [SynchronizableField] public int relocatevotes = 0;
     [SynchronizableField] public int digitizevotes = 0;
+
+    // Nieuwe gesynchroniseerde variabele
+    [SynchronizableField] public bool allVotesIn = false;
+
     public TextMeshProUGUI safeText;
     public TextMeshProUGUI sacrificeText;
     public TextMeshProUGUI RelocateBigText;
@@ -17,39 +21,70 @@ public class VoteManager : AttributesSync
 
     [SerializeField] private GameObject[] votebuttons;
 
-    public void addsafe()
+    // Helper om het totaal aantal stemmen te berekenen
+    public int GetTotalVotes()
     {
-        safeVotes++;
-        Commit();
+        return safeVotes + sacrificeVotes + relocatedbigvotes + relocatevotes + digitizevotes;
+    }
+
+    private void Update()
+    {
+        // UI bijwerken
+        UpdateUIStrings();
+
+
+        CheckVoteCount();
+
+        // Reset logica (jouw bestaande code)
+        if (GetTotalVotes() == 0 && allVotesIn)
+        {
+            allVotesIn = false;
+            EnableButtonsLocally();
+            Commit();
+        }
+    }
+
+    private void UpdateUIStrings()
+    {
         safeText.text = safeVotes.ToString();
-    }
-    public void addsacrifice()
-    {
-        sacrificeVotes++;
-        Commit();
         sacrificeText.text = sacrificeVotes.ToString();
-    }
-
-    public void addRelocateBigVote()
-    {
-        relocatedbigvotes++;
-        Commit();
-        RelocateBigText.text = relocatevotes.ToString();
-    }
-
-    public void addRelocate()
-    {
-        relocatevotes++;
-        Commit();
-        RelocateText.text = relocatevotes.ToString();
-    }
-
-    public void adddigitize()
-    {
-        digitizevotes++;
-        Commit();
         DigitizeText.text = digitizevotes.ToString();
+        RelocateText.text = relocatevotes.ToString();
+        RelocateBigText.text = relocatedbigvotes.ToString();
     }
+
+    private void CheckVoteCount()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        int playerCount = players.Length;
+        int currentTotalVotes = GetTotalVotes();
+
+        // Als het aantal stemmen gelijk is aan spelers (en er zijn spelers)
+        if (playerCount > 0 && currentTotalVotes >= playerCount)
+        {
+            if (!allVotesIn)
+            {
+                allVotesIn = true;
+                Commit();
+                Debug.Log("Alle stemmen zijn binnen!");
+            }
+        }
+        else
+        {
+            if (allVotesIn)
+            {
+                allVotesIn = false;
+                Commit();
+            }
+        }
+    }
+
+    // --- Jouw bestaande Add methodes ---
+    public void addsafe() { safeVotes++; Commit(); }
+    public void addsacrifice() { sacrificeVotes++; Commit(); }
+    public void addRelocateBigVote() { relocatedbigvotes++; Commit(); }
+    public void addRelocate() { relocatevotes++; Commit(); }
+    public void adddigitize() { digitizevotes++; Commit(); }
 
     public void ResetVotes()
     {
@@ -58,33 +93,21 @@ public class VoteManager : AttributesSync
         relocatedbigvotes = 0;
         sacrificeVotes = 0;
         safeVotes = 0;
+        allVotesIn = false;
 
+        EnableButtonsLocally();
+        Commit();
+    }
+
+    private void EnableButtonsLocally()
+    {
         foreach (GameObject button in votebuttons)
         {
             if (button != null)
             {
                 Interactme other = button.GetComponent<Interactme>();
-                if (other != null)
-                {
-                    other.SetInteracted(false);
-                    Debug.Log($"Enabled interaction on: {button.name}");
-                }
+                if (other != null) other.SetInteracted(false);
             }
         }
-        Commit();
-    }
-
-
-
-
-    private void Update()
-    {
-        // Update UI every frame, disable this if you want secret votes that only show when you voted (maybe cool lol)
-        safeText.text = safeVotes.ToString();
-        sacrificeText.text = sacrificeVotes.ToString();
-        DigitizeText.text = digitizevotes.ToString();
-        RelocateText.text = relocatevotes.ToString();
-        RelocateBigText.text = relocatedbigvotes.ToString();
-
     }
 }
