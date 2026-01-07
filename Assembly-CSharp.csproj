@@ -97,6 +97,7 @@
     <Compile Include="Assets\Alteruna\Prefabs\TextChat\TextChatCommands\CommandJoinRoom.cs" />
     <Compile Include="Assets\Scripts\Jorrik\randomcolor.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\RoomMenu\RoomMenu.cs" />
+    <Compile Include="Assets\scripttestfeedback\Feedback.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\TextChat\TextChatCommands\CommandRoom.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\TextChat\TextChatCommands\CommandUid.cs" />
     <Compile Include="Assets\Scripts\Sorin\MoneyViisualManager.cs" />
