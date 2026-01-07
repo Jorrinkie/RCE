@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Video;
+using Alteruna;
 
-public class TalkingPlayer : MonoBehaviour
+public class TalkingPlayer : AttributesSync
 {
     [Header("Voice Settings")]
     [SerializeField] private bool pushToTalk = true;
@@ -17,29 +18,42 @@ public class TalkingPlayer : MonoBehaviour
     [SerializeField] private float jawClosedAngle = 0f;
     [SerializeField] private float jawOpenAngle = -44f;
     [SerializeField] private float jawMoveSpeed = 10f;
-
     [Tooltip("Minimum mic loudness before mouth starts opening")]
     [SerializeField] private float noiseGate = 0.02f;
-
     [Tooltip("Loudness value that equals fully open mouth")]
     [SerializeField] private float maxLoudness = 0.15f;
 
+    [SynchronizableField] private bool isTalking = false;
+    [SynchronizableField] private float loudness = 0f;
+
     private AudioClip micClip;
-    private bool isTransmitting = false;
+    private Alteruna.Avatar avatar;
     private float currentJawAngle = 0f;
 
-    void Start()
+    private void Awake()
     {
-        Debug.Log("<color=yellow>[TalkingPlayer]</color> Initializing microphone...");
-
-        if (Microphone.devices.Length > 0)
+        avatar = GetComponent<Alteruna.Avatar>();
+        if (avatar == null)
         {
-            micClip = Microphone.Start(null, true, 1, 44100);
-            Debug.Log("<color=green>[TalkingPlayer]</color> Microphone started: " + Microphone.devices[0]);
+            Debug.LogError("[TalkingPlayer] No Alteruna.Avatar found!");
+            enabled = false;
+            return;
         }
-        else
+    }
+
+    private void Start()
+    {
+        if (avatar.IsMe)
         {
-            Debug.LogError("<color=red>[TalkingPlayer]</color> No microphone detected!");
+            if (Microphone.devices.Length > 0)
+            {
+                micClip = Microphone.Start(null, true, 1, 44100);
+                Debug.Log("<color=green>[TalkingPlayer] Microphone started.</color>");
+            }
+            else
+            {
+                Debug.LogError("<color=red>[TalkingPlayer] No microphone!</color>");
+            }
         }
 
         if (talkIndicator != null)
@@ -49,35 +63,26 @@ public class TalkingPlayer : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-        if (micClip == null)
-            return;
+        // Always update visuals (local and remote use the same synced fields)
+        UpdateJawAnimation();
+        UpdateTalkIndicator();
 
-        bool shouldTalk =
-            (pushToTalk && Input.GetKey(talkKey)) ||
-            (!pushToTalk && IsSpeaking());
+        if (!avatar.IsMe) return; // Only owner handles input, mic, and loudness sync
 
-        if (shouldTalk && !isTransmitting)
-            StartTalking();
-        else if (!shouldTalk && isTransmitting)
-            StopTalking();
+        if (micClip == null) return;
 
-        if (isTransmitting)
+        bool shouldTalk = pushToTalk ? Input.GetKey(talkKey) : IsSpeaking();
+
+        if (shouldTalk != isTalking)
         {
-            float[] samples = new float[1024];
-            int pos = Microphone.GetPosition(null) - samples.Length;
-
-            if (pos >= 0)
-            {
-                micClip.GetData(samples, pos);
-
-                // TODO: Send samples over network
-                // VoiceNetwork.SendVoiceData(samples);
-            }
+            isTalking = shouldTalk;
+            Commit();
         }
 
-        UpdateJawMovement();
+        loudness = GetMicLoudness();
+        Commit(); // Sync loudness frequently while talking
     }
 
     private bool IsSpeaking()
@@ -89,84 +94,57 @@ public class TalkingPlayer : MonoBehaviour
     {
         float[] data = new float[256];
         int pos = Microphone.GetPosition(null) - data.Length;
-
-        if (pos < 0)
-            return 0f;
+        if (pos < 0) return 0f;
 
         micClip.GetData(data, pos);
 
         float level = 0f;
         for (int i = 0; i < data.Length; i++)
+        {
             level += Mathf.Abs(data[i]);
-
-        return level;
-    }
-
-    private void StartTalking()
-    {
-        isTransmitting = true;
-        Debug.Log("<color=cyan>[TalkingPlayer] START TALKING</color>");
-
-        if (talkIndicator != null)
-        {
-            talkIndicator.gameObject.SetActive(true);
-            talkIndicator.Play();
         }
+        return level / data.Length;
     }
 
-    private void StopTalking()
+    private void UpdateJawAnimation()
     {
-        isTransmitting = false;
-        Debug.Log("<color=cyan>[TalkingPlayer] STOP TALKING</color>");
-
-        if (talkIndicator != null)
-        {
-            talkIndicator.Stop();
-            talkIndicator.gameObject.SetActive(false);
-        }
-    }
-
-    private void UpdateJawMovement()
-    {
-        if (jawBone == null)
-            return;
+        if (jawBone == null) return;
 
         float targetAngle = jawClosedAngle;
-
-        if (isTransmitting)
+        if (isTalking && loudness > noiseGate)
         {
-            float rawLoudness = GetMicLoudness();
-
-            if (rawLoudness > noiseGate)
-            {
-                float cleanLoudness = rawLoudness - noiseGate;
-                float t = Mathf.InverseLerp(0f, maxLoudness - noiseGate, cleanLoudness);
-                t = Mathf.Clamp01(t);
-
-                targetAngle = Mathf.Lerp(jawClosedAngle, jawOpenAngle, t);
-            }
+            float cleanLoudness = loudness - noiseGate;
+            float t = Mathf.InverseLerp(0f, maxLoudness - noiseGate, cleanLoudness);
+            t = Mathf.Clamp01(t);
+            targetAngle = Mathf.Lerp(jawClosedAngle, jawOpenAngle, t);
         }
 
-        currentJawAngle = Mathf.Lerp(
-            currentJawAngle,
-            targetAngle,
-            Time.deltaTime * jawMoveSpeed
-        );
+        currentJawAngle = Mathf.Lerp(currentJawAngle, targetAngle, Time.deltaTime * jawMoveSpeed);
 
         Vector3 rot = jawBone.localEulerAngles;
         rot.y = currentJawAngle;
         jawBone.localEulerAngles = rot;
     }
 
-    public void PlayIncomingVoice(float[] samples)
+    private void UpdateTalkIndicator()
     {
-        if (voiceSource == null)
-            return;
+        if (talkIndicator == null) return;
 
-        AudioClip clip = AudioClip.Create("RemoteVoice", samples.Length, 1, 44100, false);
-        clip.SetData(samples, 0);
-
-        voiceSource.clip = clip;
-        voiceSource.Play();
+        if (isTalking)
+        {
+            if (!talkIndicator.gameObject.activeSelf)
+            {
+                talkIndicator.gameObject.SetActive(true);
+                talkIndicator.Play();
+            }
+        }
+        else
+        {
+            if (talkIndicator.gameObject.activeSelf)
+            {
+                talkIndicator.Stop();
+                talkIndicator.gameObject.SetActive(false);
+            }
+        }
     }
 }

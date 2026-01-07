@@ -3500,6 +3500,7 @@ GameObject:
   - component: {fileID: 1216847728537363937}
   - component: {fileID: 371878303934903158}
   - component: {fileID: 583814835560642461}
+  - component: {fileID: 8657558858100989929}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3671,7 +3672,6 @@ MonoBehaviour:
   LocalMethodBehavior: 1
   userName: Player
   nameText: {fileID: 298317182091656641}
-  inputField: {fileID: 0}
 --- !u!114 &3884796893249692853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3732,6 +3732,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c9cbb84600e4c479d413f79db39772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: 72c35683-e8aa-4a1f-b3f9-1decbe51897d
+  Reliability: 1
+  LocalMethodBehavior: 1
   pushToTalk: 1
   talkKey: 118
   micSensitivity: 0.1
@@ -3742,7 +3746,7 @@ MonoBehaviour:
   jawOpenAngle: -7
   jawMoveSpeed: 10
   noiseGate: 0.02
-  maxLoudness: 0.5
+  maxLoudness: 0.05
 --- !u!82 &583814835560642461
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3755,22 +3759,22 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.745
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
+  Priority: 160
+  DopplerLevel: 0
   MinDistance: 0.6382624
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassEffects: 1
+  BypassListenerEffects: 1
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -3840,6 +3844,46 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8657558858100989929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8818474960689850846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1319920666, guid: 0ae8d181602a00248a82f64a684a1c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: c4cdc171-99c4-48cb-a66e-a102b8717c56
+  BucketBehaviors:
+  - Name: Min
+    NetLOD: 0
+    Frequency: -1
+  - Name: Low
+    NetLOD: 1
+    Frequency: 0
+  - Name: Mid
+    NetLOD: 2
+    Frequency: 0
+  - Name: High
+    NetLOD: 3
+    Frequency: 0
+  - Name: Max
+    NetLOD: 4
+    Frequency: 120
+  Reliability: 2
+  PlaybackSource: {fileID: 583814835560642461}
+  compression: 0
+  encryption: 1
+  AudioFrequency: 22050
+  SendFrequency: 0.1
+  SilenceCutoff: 0.001
+  SilenceTimeout: 2
+  Volume: 2
+  PackageLossBuffer: 0
 --- !u!1 &8996772526962952142
 GameObject:
   m_ObjectHideFlags: 0
