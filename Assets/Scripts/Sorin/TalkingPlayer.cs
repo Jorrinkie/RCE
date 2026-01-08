@@ -17,7 +17,7 @@ public class TalkingPlayer : AttributesSync
     [SerializeField] private Transform jawBone;
     [SerializeField] private float jawClosedAngle = 0f;
     [SerializeField] private float jawOpenAngle = 30f;
-    [SerializeField] private float jawMoveSpeed = -7f;
+    [SerializeField] private float jawMoveSpeed = -7f; 
 
     [Tooltip("Minimum mic loudness before mouth starts opening")]
     [SerializeField] private float noiseGate = 0.02f;

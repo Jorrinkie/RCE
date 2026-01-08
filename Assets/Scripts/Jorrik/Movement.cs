@@ -1,24 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Alteruna;  
+using Alteruna;
 
 public class Movement : AttributesSync
 {
     [Header("Base setup")]
-    public float walkingSpeed = 0f;
-    public float runningSpeed = 0f;
-    public float jumpSpeed = 0f;
-    public float gravity = 20.0f;
-    public float lookSpeed = 2.0f;
-    public float lookXLimit = 20.0f;
-    public GameObject onlinePanel;
-    public GameObject pauseMenu;
-    public CubeSpawner spawner;
+    [SerializeField] public float walkingSpeed = 0f;
+    [SerializeField] public float runningSpeed = 0f;
+    [SerializeField] public float jumpSpeed = 0f;
+    [SerializeField] public float gravity = 20.0f;
+    [SerializeField] public float lookSpeed = 2.0f;
+    [SerializeField] public float lookXLimit = 20.0f;
+    [SerializeField] public GameObject onlinePanel;
+    [SerializeField] public GameObject pauseMenu;
+    [SerializeField] public CubeSpawner spawner;
 
     [Header("Camera and Head")]
-    [SerializeField] private float cameraYOffset = 32f;
-    [SerializeField] private Transform headTransform; // Assign this in the Inspector
+    [SerializeField] private float cameraXOffset = -0.007f;
+    [SerializeField] private float cameraYOffset = 1.2f;
+    [SerializeField] private float cameraZOffset = 0.209f;
+    [SerializeField] private Transform headTransform;
 
     private Camera playerCamera;
     private CharacterController characterController;
@@ -29,7 +31,6 @@ public class Movement : AttributesSync
 
     [HideInInspector] public bool canMove = true;
 
-    //This variable will be synced across the network by Alteruna
     [SynchronizableField]
     private float syncedPitch = 0f;
 
@@ -45,7 +46,6 @@ public class Movement : AttributesSync
         if (!_avatar.IsMe)
             return;
 
-        // Setup UI panels
         onlinePanel = GameObject.FindWithTag("OnlineCanvas");
         pauseMenu = GameObject.FindWithTag("PausedMenu");
 
@@ -55,21 +55,18 @@ public class Movement : AttributesSync
         characterController = GetComponent<CharacterController>();
         playerCamera = Camera.main;
 
-        // Attach and position the camera
         if (playerCamera != null)
         {
-            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z + 0.5f);
             playerCamera.transform.SetParent(transform);
+            playerCamera.transform.localPosition = new Vector3(cameraXOffset, cameraYOffset, cameraZOffset);
         }
 
-        // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     void Update()
     {
-        // If this avatar is not mine, just apply synced pitch to the head and skip input
         if (_avatar == null)
             return;
 
@@ -85,7 +82,6 @@ public class Movement : AttributesSync
 
     void HandleInput()
     {
-        // Toggle cursor and menus
         if (Input.GetKeyDown(KeyCode.L))
         {
             if (Cursor.lockState == CursorLockMode.None)
@@ -111,7 +107,6 @@ public class Movement : AttributesSync
 
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
 
-        // Movement direction
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -120,7 +115,6 @@ public class Movement : AttributesSync
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        // Jump
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = jumpSpeed;
@@ -130,19 +124,15 @@ public class Movement : AttributesSync
             moveDirection.y = movementDirectionY;
         }
 
-        // Apply gravity
         if (!characterController.isGrounded)
         {
             moveDirection.y -= gravity * Time.deltaTime;
         }
 
-        // Move the character
         characterController.Move(moveDirection * Time.deltaTime);
 
-        // Look rotation
         if (canMove && playerCamera != null)
         {
-            // Vertical (pitch)
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
 
@@ -150,10 +140,7 @@ public class Movement : AttributesSync
             if (headTransform != null)
                 headTransform.localRotation = Quaternion.Euler(rotationX - 90, -90, 90);
 
-            // Update synced pitch so other players see the head move
             syncedPitch = rotationX;
-
-            // Horizontal (yaw)
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
     }

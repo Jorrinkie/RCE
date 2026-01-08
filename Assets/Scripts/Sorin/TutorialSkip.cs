@@ -19,7 +19,6 @@ public class TutorialSkip : MonoBehaviour, IInteractable
     [SerializeField] private float pressDepth = 0.2f;   
     [SerializeField] private float pressSpeed = 5f;     
 
-    // Separate vote counters for each action
     private static int skipVotes;
     private static int playVotes;
 

@@ -8,6 +8,7 @@ public class PlayerColor : AttributesSync
     private Alteruna.Avatar _avatar;
     public Renderer avatarRenderer; // Assign your mesh/character Renderer in Inspector
     public Renderer avatarRenderer2; //for da arms;
+    public Renderer avatarRenderer3; //for da arms newspaper;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class PlayerColor : AttributesSync
         {
             avatarRenderer.material.color = playerColor;
             avatarRenderer2.material.color = playerColor;
+            avatarRenderer3.material.color = playerColor;
         }
     }
 }

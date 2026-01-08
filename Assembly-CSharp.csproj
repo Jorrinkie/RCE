@@ -92,6 +92,7 @@
     <Compile Include="Assets\Alteruna\Prefabs\TextChat\TextChatCommands\CommandMe.cs" />
     <Compile Include="Assets\Scripts\Sorin\PlayerTeleport.cs" />
     <Compile Include="Assets\Scripts\Jorrik\Interactme.cs" />
+    <Compile Include="Assets\Scripts\Sorin\NewspaperAppear.cs" />
     <Compile Include="Assets\Scripts\Jorrik\username.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\RoomBrowser\Scripts\RoomBrowserSortButton.cs" />
     <Compile Include="Assets\Jorrik\nametaglookat.cs" />
@@ -150,7 +151,6 @@
     <Compile Include="Assets\Alteruna\Prefabs\RoomBrowser\Scripts\StatusPopup.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\TextChat\TextChatCommands\CommandRotate.cs" />
     <Compile Include="Assets\Jorrik\setnametag.cs" />
-    <Compile Include="Assets\Scripts\Sorin\TutorialControllerNew.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\RoomBrowser\Scripts\BaseRoomBrowser.cs" />
   </ItemGroup>
   <ItemGroup>
