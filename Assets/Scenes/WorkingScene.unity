@@ -12406,7 +12406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1168401726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16419,6 +16419,9 @@ MonoBehaviour:
   relocateWon: 0
   digitizeWon: 0
   MoneyManager: {fileID: 1585108760}
+  audioSource: {fileID: 2014744415}
+  resetVotesSound: {fileID: 8300000, guid: 97410ffe18b00ba408b134bdbd8e01ef, type: 3}
+  highestVoteSound: {fileID: 8300000, guid: 2de9431111b526642a6ea4603c2ba456, type: 3}
 --- !u!1 &1404151104
 GameObject:
   m_ObjectHideFlags: 0
@@ -18078,7 +18081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
-  _uidString: 
+  _uidString: 867f191f-85de-47da-8be3-135f749e65d9
   Reliability: 1
   LocalMethodBehavior: 1
   money: 20
@@ -22844,7 +22847,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -311, y: -535}
+  m_AnchoredPosition: {x: -316, y: -535}
   m_SizeDelta: {x: 130.4213, y: 170.9179}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1932050718
