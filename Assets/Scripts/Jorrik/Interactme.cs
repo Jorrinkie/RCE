@@ -3,7 +3,12 @@ using UnityEngine;
 public class Interactme : MonoBehaviour, IInteractable
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private string boolParameter = "press"; // Animator bool parameter name
+    [SerializeField] private string boolParameter = "press"; 
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip interactSound;
+
 
     public int buttonNumber = 0;
     private bool interacted = false;
@@ -19,22 +24,23 @@ public class Interactme : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        
+        if (audioSource != null && interactSound != null)
+        {
+            audioSource.PlayOneShot(interactSound);
+        }
+
+       
         if (interacted) return;
 
         interacted = true;
         Debug.Log($"{gameObject.name} was interacted with!");
 
-
+       
         if (animator != null)
-        {
             animator.SetBool(boolParameter, true);
-        }
-        else
-        {
-            Debug.LogWarning($"{gameObject.name} has no Animator assigned!");
-        }
 
-   
+       
         if (buttonNumber == 0)
             voteManager.addsafe();
         else if (buttonNumber == 1)
@@ -46,30 +52,22 @@ public class Interactme : MonoBehaviour, IInteractable
         else if (buttonNumber == 4)
             voteManager.addRelocateBigVote();
 
-
-        if (OtherButtons != null && OtherButtons.Length > 0)
+       
+        if (OtherButtons != null)
         {
             foreach (GameObject button in OtherButtons)
             {
-                if (button != null)
-                {
-                    Interactme other = button.GetComponent<Interactme>();
-                    if (other != null)
-                    {
-                        other.SetInteracted(true);
-                        Debug.Log($"Disabled interaction on: {button.name}");
-                    }
-                }
+                Interactme other = button.GetComponent<Interactme>();
+                if (other != null)
+                    other.SetInteracted(true);
             }
         }
 
-        // Optional: reset the animation bool after a short delay
         StartCoroutine(ResetAnimationBool());
     }
 
     private System.Collections.IEnumerator ResetAnimationBool()
     {
-        // Wait for animation to finish (you can adjust duration)
         yield return new WaitForSeconds(0.5f);
 
         if (animator != null)
