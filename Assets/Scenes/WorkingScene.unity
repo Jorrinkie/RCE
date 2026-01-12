@@ -603,83 +603,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 166379773}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &69120440
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 69120441}
-  - component: {fileID: 69120443}
-  - component: {fileID: 69120442}
-  m_Layer: 0
-  m_Name: Hedder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &69120441
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69120440}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9, y: 0.45605, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 694330917}
-  - {fileID: 1467753251}
-  m_Father: {fileID: 1900913152}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 28.2391, y: 297.248}
-  m_SizeDelta: {x: 22.7198, y: -2.8939}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &69120442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69120440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.65911615, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &69120443
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69120440}
-  m_CullTransparentMesh: 1
 --- !u!1 &74742906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,45 +1469,13 @@ PrefabInstance:
     - target: {fileID: 3818058437922831377, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
       propertyPath: information
-      value: 'De toren is het laatste overblijfsel van een verdronken dorp;
-
-        bewoners
-        voelen een sterke band met dit symbool van
-
-        verlies. Het uitzicht
-        en de geschiedenis maken het een
-
-        geliefde plek die nationaal geldt
-        als een icoon
-
-        van de waterhistorie.
-
-
-        GEGEVENS:
-
-        Huidig
-        gebruik: Informatiepunt en uitzichtpunt.
-
-        NAP-Hoogte: 0
-
-        Monumentale
-        Status: Rijksmonument
-
-        Erfgoed Waarde: 5/5
-
-        Lokale Waardering:
-        5/5
-
-        Type: Object
-
-        Bouwjaar: 15e eeuw
-
-        Breedte: 8m
-
-        Hoogte:
-        23m
-
-        Materiaal: Baksteen'
+      value: "Waardering (lokaal): 5/5\r\nCulturele waarde : 5/5\r\nQuote \u2013
+        Hendrik van Brugghe: \u201COnbegrijpelijk dat men vroeger dorpen liet verdrinken.\u201D\r\nBouwjaar:
+        15e eeuw\r\nBreedte: 8 m \u2022 Hoogte: 23 m\r\nType: Toren\r\nMateriaal:
+        Baksteen\n\nDe toren is het laatste overblijfsel van een verdronken dorp.
+        Bewoners voelen een sterke band met dit symbool van verlies. Het uitzicht
+        en de geschiedenis maken het een geliefde plek. Nationaal is het een icoon
+        van waterhistorie."
       objectReference: {fileID: 0}
     - target: {fileID: 3818058437922831377, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
@@ -1615,14 +1506,13 @@ PrefabInstance:
     - target: {fileID: 4291903695275419364, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
       propertyPath: information
-      value: "Deze toren is een herkenningspunt voor inwoners en scheepvaart, waarbij
-        de gietijzeren constructie bijzonder is in Nederland. Bewoners hechten veel
-        waarde aan het historische silhouet en nationaal heeft de toren een sterke
-        erfgoedwaarde.\n\nHuidig Gebruik: Baken voor scheepvaart en monument.\n\nGEGEVENS\nNAP-Hoogte:
-        +5M\nMonumentale Status: Rijksmonument\nErfgoed Waarde: 5/5\nLokale Waardering:
-        5/5\nType: Object\nBouwjaar: 1875\nBreedte: 8m\nHoogte: 20m\nMateriaal: Gietijzer
-        en Baksteen \n\nQUOTE\n\"Dit is ons kijkpunt, je vindt altijd het westen
-        terug.\"\n\n\r\n"
+      value: "Waardering (lokaal): 4/5\r\nCulturele waarde : 5/5\r\nQuote \u2013
+        Marlies Kortekaas: \u201CDit is ons ijkpunt \u2014 je vindt altijd het westen
+        terug.\u201D\r\nBouwjaar: 1875\r\nBreedte: 8 m \u2022 Hoogte: 20 m\r\nType:
+        Vuurtoren\r\nMateriaal: Gietijzer / Baksteen\n\nDeze toren is een herkenningspunt
+        voor inwoners en scheepvaart. De gietijzeren constructie is bijzonder in
+        Nederland. Bewoners hechten veel waarde aan het historische silhouet. Nationaal
+        heeft de toren een sterke erfgoedwaarde.\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4619496044909549081, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
@@ -1657,13 +1547,13 @@ PrefabInstance:
     - target: {fileID: 5423767959120489635, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
       propertyPath: information
-      value: "De brug verbindt de eilanden en veranderde de regio\nvoorgoed; door
-        zijn enorme lengte is hij een visueel\nicoon. Bewoners ervaren zowel trots
-        als praktische \nwaarde, terwijl de brug nationaal wordt gezien als een\ntoonbeeld
-        van wederopbouw-infrastructuur.\n\nGEGEVENS\nHuidig gebruik: Verkeersbrug\nNAP-Hoogte:
-        17+ M\nMonumentale Status: Rijksmonument\nErfgoed Waarde: 4/5\nLokale Waardering:
-        2/5\nType: Object\nBouwjaar: 1965\nLengte: 5022m\nBreedte: 10m\nHoogte: 17m\nMateriaal:
-        Beton en Staal"
+      value: "Waardering (lokaal): 2/5\r\nCulturele waarde : 4/5\r\nQuote \u2013
+        Tim van Gerwen: \u201CEen uitzonderlijk stuk infrastructuur uit de wederopbouw.\u201D\r\nBouwjaar:
+        1965\r\nLengte: 5022 m \u2022 Breedte: 10 m \u2022 Hoogte: 17 m\r\nType:
+        Brug\r\nMateriaal: Beton / Staal\n\nDe brug verbindt de eilanden en veranderde
+        de regio voorgoed. Door zijn enorme lengte is hij een visueel icoon. Bewoners
+        ervaren zowel trots als praktische waarde. Nationaal wordt de brug gezien
+        als een toonbeeld van wederopbouw-infrastructuur."
       objectReference: {fileID: 0}
     - target: {fileID: 5423767959120489635, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
@@ -1708,45 +1598,13 @@ PrefabInstance:
     - target: {fileID: 6351723291583122654, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
       propertyPath: information
-      value: 'De kerk verving na de ramp de beschadigde kerk uit 1659 en
-
-        staat
-        symbool voor wederopbouw. Bewoners voelen
-
-        verbondenheid met het
-        sobere gebouw, waarvan het interieur een
-
-        bescheiden dorpsgeschiedenis
-        weerspiegelt.
-
-
-        GEGEVENS:
-
-        Huidig gebruik: Kerkdiensten en
-        gemeenschapsruimte.
-
-        NAP-hoogte: ca. -1 m.
-
-        Monumentale Status:
-        Gemeentelijk monument.
-
-        Erfgoed Waarde: 1/5
-
-        Lokale Waardering:
-        4/5
-
-        Type: Object
-
-        Bouwjaar: 1959
-
-        Lengte: 25m
-
-        Breedte:
-        12m
-
-        Hoogte: 10m
-
-        Materiaal: Baksteen'
+      value: "Waardering (lokaal): 4/5\r\nCulturele waarde : 1/5\r\nQuote \u2013
+        Jolanda de Korte: \u201CHet is een symbool voor alles wat we moesten herbouwen
+        na de ramp.\u201D\r\nBouwjaar: 1959\r\nLengte: 25 m \u2022 Breedte: 12 m
+        \u2022 Hoogte: 10 m\r\nType: Kerk\r\nMateriaal: Baksteen\n\nDe kerk verving
+        na de ramp de beschadigde kerk uit 1659 en staat symbool voor wederopbouw.
+        Bewoners voelen verbondenheid met het sobere gebouw. Het interieur weerspiegelt
+        een bescheiden dorpsgeschiedenis."
       objectReference: {fileID: 0}
     - target: {fileID: 6351723291583122654, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
@@ -1841,40 +1699,13 @@ PrefabInstance:
     - target: {fileID: 9203807050590676881, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
       propertyPath: information
-      value: 'De molen is een markant punt in het landschap waarvan
-
-        bewoners
-        de uitstraling waarderen. De witte kleur is
-
-        typisch Zeeuws en nationaal
-        wordt het vooral lokaal
-
-        molenerfgoed genoemd.
-
-
-        GEGEVENS
-
-        Huidig
-        gebruik: Monument, wachtend op hergebruik.
-
-        NAP-hoogte: ca. +4 m.
-
-        Erfgoed
-        Waarde: 3/5
-
-        Lokale Waardering: 4/5
-
-        Type: Object
-
-        Bouwjaar:
-        1909
-
-        Breedte: 8m
-
-        Hoogte: 8m
-
-        Materiaal: Hout &
-        Baksteen '
+      value: "Waardering (lokaal): 4/5\r\nCulturele waarde : 3/5\r\nQuote \u2013
+        Karin Leijten: \u201CIk hoop dat hij weer gaat draaien zodat we lokaal meel
+        kunnen kopen.\u201D\r\nBouwjaar: 1909\r\nBreedte: 8 m \u2022 Hoogte: 20 m\r\nType:
+        Windmolen\r\nMateriaal: Hout / Baksteen\n\nDe molen is een markant punt in
+        het landschap. Bewoners waarderen de uitstraling en hopen op hergebruik.
+        De witte kleur is typisch Zeeuws. Nationaal wordt het vooral lokaal molenerfgoed
+        genoemd."
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4297781115944070594, guid: e8d359c9c65389c4097266e947c4204c, type: 3}
@@ -2820,7 +2651,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -753, y: -23}
+  m_AnchoredPosition: {x: 228, y: 157}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &308973491
@@ -4507,81 +4338,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620138529}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &624463762
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 624463763}
-  - component: {fileID: 624463765}
-  - component: {fileID: 624463764}
-  m_Layer: 0
-  m_Name: Infopanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &624463763
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624463762}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9, y: 2.5, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1900913152}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 98.44857, y: 73.36139}
-  m_SizeDelta: {x: 38.1697, y: 98.4483}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &624463764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624463762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.7509433, g: 0.7509433, b: 0.7509433, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &624463765
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624463762}
-  m_CullTransparentMesh: 1
 --- !u!1 &655405215
 GameObject:
   m_ObjectHideFlags: 0
@@ -4755,7 +4511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -421, y: -201.99997}
+  m_AnchoredPosition: {x: -421, y: -63}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &685646247
@@ -4793,7 +4549,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Jouw Rol: Burgemeester'
+  m_text: 'Jouw Rol: Burgemeester, jij bepaald wanneer het besluit goed is!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4871,144 +4627,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685646245}
-  m_CullTransparentMesh: 1
---- !u!1 &694330916
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 694330917}
-  - component: {fileID: 694330919}
-  - component: {fileID: 694330918}
-  m_Layer: 0
-  m_Name: MName
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &694330917
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694330916}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.11111112, y: 2.192742, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 69120441}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -46.8, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &694330918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694330916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 'Monumentinformatie
-
-'
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -494.96152, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &694330919
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694330916}
   m_CullTransparentMesh: 1
 --- !u!1 &698729682
 GameObject:
@@ -9414,7 +9032,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 372, y: 173}
+  m_AnchoredPosition: {x: 372, y: 306}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1269439739
@@ -9437,7 +9055,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Jouw Rol: Notaris'
+  m_text: 'Jouw Rol: Journalist, Breng de bevolking op hoogte met het nieuws!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11460,81 +11078,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 0}
   animator: {fileID: 0}
---- !u!1 &1467753250
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1467753251}
-  - component: {fileID: 1467753253}
-  - component: {fileID: 1467753252}
-  m_Layer: 0
-  m_Name: MPic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1467753251
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467753250}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 69120441}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -42.9, y: -420}
-  m_SizeDelta: {x: 30, y: 693.046}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1467753252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467753250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1467753253
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467753250}
-  m_CullTransparentMesh: 1
 --- !u!1001 &1471617578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12066,7 +11609,7 @@ MonoBehaviour:
   importanceText2: {fileID: 0}
   moneyCostText2: {fileID: 0}
   manPowerCostText2: {fileID: 0}
-  infoImageDisplay2: {fileID: 0}
+  infoImageDisplay2: {fileID: 1821547986}
 --- !u!114 &1585108762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12126,7 +11669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
-  _uidString: 
+  _uidString: 982ff892-3d8d-4b98-9c4c-7923dff72698
   Reliability: 1
   LocalMethodBehavior: 1
   money: 20
@@ -12251,7 +11794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -753, y: -123}
+  m_AnchoredPosition: {x: 228, y: 57}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1588460939
@@ -14455,7 +13998,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -359.7, y: 109.00003}
+  m_AnchoredPosition: {x: -796, y: 187}
   m_SizeDelta: {x: 93.133, y: 104.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1821547986
@@ -14785,9 +14328,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 624463763}
-  - {fileID: 69120441}
+  m_Children: []
   m_Father: {fileID: 1495854590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -16000,7 +15541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: 78.335}
+  m_AnchoredPosition: {x: -231, y: 78.335}
   m_SizeDelta: {x: 753, y: 379.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2090535076
@@ -16332,7 +15873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -421, y: -201.99997}
+  m_AnchoredPosition: {x: -421, y: -61}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2114560724
@@ -16370,7 +15911,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Jouw Rol: Bouwvakker'
+  m_text: 'Jouw Rol: Aannemer, hou de materiaal kosten goed in de gaten!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18763,7 +18304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 372, y: 115}
+  m_AnchoredPosition: {x: 372, y: 126}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!33 &6556580941921578396

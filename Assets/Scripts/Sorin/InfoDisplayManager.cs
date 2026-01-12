@@ -60,8 +60,8 @@ public class InfoDisplayManager : MonoBehaviour
         infoText.text = activeInfo.Information;
         peopleScoreText.text = $"People Score: {activeInfo.PeopleScore}";
         importanceText.text = $"Importance: {activeInfo.Importance}";
-        moneyCostText.text = $"Money Cost: {activeInfo.MoneyCost}";
-        manPowerCostText.text = $"ManPower Cost: {activeInfo.ManPowerCost}";
+    //    moneyCostText.text = $"Money Cost: {activeInfo.MoneyCost}";
+        //manPowerCostText.text = $"ManPower Cost: {activeInfo.ManPowerCost}";
 
         if (infoImageDisplay != null)
         {
