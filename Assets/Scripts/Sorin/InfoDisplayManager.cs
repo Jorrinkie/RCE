@@ -100,7 +100,7 @@ public class InfoDisplayManager : MonoBehaviour
                 infoImageDisplay2.gameObject.SetActive(true);
 
                 RectTransform rt2 = infoImageDisplay2.GetComponent<RectTransform>();
-                rt2.sizeDelta = new Vector2(activeInfo.ImageWidth, activeInfo.ImageHeight);
+                rt2.sizeDelta = new Vector2(activeInfo.ImageWidth2, activeInfo.ImageHeight2);
             }
             else
             {

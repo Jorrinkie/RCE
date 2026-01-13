@@ -12,9 +12,13 @@ public class InfoObject : MonoBehaviour
     [Header("Optional Image")]
     [SerializeField] private Sprite infoImage;
 
-    [Header("Optional Image Size")]
-    [SerializeField] private float imageWidth = 100f;  // default width
-    [SerializeField] private float imageHeight = 100f; // default height
+    [Header("Optional Image Size for Canvas 1")]
+    [SerializeField] private float imageWidth = 100f;
+    [SerializeField] private float imageHeight = 100f;
+
+    [Header("Optional Image Size for Canvas 2")]
+    [SerializeField] private float imageWidth2 = 100f;
+    [SerializeField] private float imageHeight2 = 100f;
 
     public string Title => title;
     public string Information => information;
@@ -26,4 +30,7 @@ public class InfoObject : MonoBehaviour
 
     public float ImageWidth => imageWidth;
     public float ImageHeight => imageHeight;
+
+    public float ImageWidth2 => imageWidth2;
+    public float ImageHeight2 => imageHeight2;
 }
