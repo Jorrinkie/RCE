@@ -3881,7 +3881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractorSource: {fileID: 0}
-  InteractionRange: 6
+  InteractionRange: 12
 --- !u!114 &1216847728537363937
 MonoBehaviour:
   m_ObjectHideFlags: 0
