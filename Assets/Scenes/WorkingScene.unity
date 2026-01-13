@@ -487,7 +487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 401, y: -127.3}
+  m_AnchoredPosition: {x: 407, y: -117.2}
   m_SizeDelta: {x: 753, y: 379.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &23739236
@@ -510,8 +510,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Example Example Example Example Example Example Example Example Example 
-    Example Example Example
+  m_text: Klimaatverandering heeft wereldwijd ingrijpende gevolgen, niet alleen voor
+    natuur en economie, maar ook voor cultureel erfgoed, Zonder adequate maatregelen
+    dreigt onherstelbaar verlies van cultureel erfgoed,
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a0e865e5ed836a340b7d0579fc24e215, type: 2}
   m_sharedMaterial: {fileID: 6728263553339473336, guid: a0e865e5ed836a340b7d0579fc24e215,
@@ -539,17 +540,17 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.6
-  m_fontSizeBase: 28.6
+  m_fontSize: 23.1
+  m_fontSizeBase: 23.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -577,7 +578,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -79.0397, y: 464.936, z: 434.81485, w: -252.4968}
+  m_margin: {x: -79.0397, y: 464.936, z: 458.78458, w: -247.89676}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1699,46 +1700,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3818058437922831377, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
+      propertyPath: imageWidth
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818058437922831377, guid: e8d359c9c65389c4097266e947c4204c,
+        type: 3}
       propertyPath: information
-      value: 'De toren is het laatste overblijfsel van een verdronken dorp;
-
-        bewoners
-        voelen een sterke band met dit symbool van
-
-        verlies. Het uitzicht
-        en de geschiedenis maken het een
-
-        geliefde plek die nationaal geldt
-        als een icoon
-
-        van de waterhistorie.
-
-
-        GEGEVENS:
-
-        Huidig
-        gebruik: Informatiepunt en uitzichtpunt.
-
-        NAP-Hoogte: 0
-
-        Monumentale
-        Status: Rijksmonument
-
-        Erfgoed Waarde: 5/5
-
-        Lokale Waardering:
-        5/5
-
-        Type: Object
-
-        Bouwjaar: 15e eeuw
-
-        Breedte: 8m
-
-        Hoogte:
-        23m
-
-        Materiaal: Baksteen'
+      value: "Waardering (lokaal): 5/5\r\nCulturele waarde : 5/5\r\nQuote \u2013
+        Hendrik van Brugghe: \u201COnbegrijpelijk dat men vroeger dorpen liet verdrinken.\u201D\r\nBouwjaar:
+        15e eeuw\r\nBreedte: 8 m \u2022 Hoogte: 23 m\r\nType: Toren\r\nMateriaal:
+        Baksteen\n\nDe toren is het laatste overblijfsel van een verdronken dorp.
+        Bewoners voelen een sterke band met dit symbool van verlies, Het uitzicht
+        en de geschiedenis maken het een geliefde plek, Nationaal is het een icoon
+        van waterhistorie,\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 3818058437922831377, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
@@ -1763,15 +1737,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4291903695275419364, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
+      propertyPath: imageWidth
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4291903695275419364, guid: e8d359c9c65389c4097266e947c4204c,
+        type: 3}
+      propertyPath: importance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4291903695275419364, guid: e8d359c9c65389c4097266e947c4204c,
+        type: 3}
       propertyPath: information
-      value: "Deze toren is een herkenningspunt voor inwoners en scheepvaart, waarbij
-        de gietijzeren constructie bijzonder is in Nederland. Bewoners hechten veel
-        waarde aan het historische silhouet en nationaal heeft de toren een sterke
-        erfgoedwaarde.\n\nHuidig Gebruik: Baken voor scheepvaart en monument.\n\nGEGEVENS\nNAP-Hoogte:
-        +5M\nMonumentale Status: Rijksmonument\nErfgoed Waarde: 5/5\nLokale Waardering:
-        5/5\nType: Object\nBouwjaar: 1875\nBreedte: 8m\nHoogte: 20m\nMateriaal: Gietijzer
-        en Baksteen \n\nQUOTE\n\"Dit is ons kijkpunt, je vindt altijd het westen
-        terug.\"\n\n\r\n"
+      value: "Waardering (lokaal): 4/5\r\nCulturele waarde : 5/5\r\nQuote \u2013
+        Marlies Kortekaas: \u201CDit is ons ijkpunt \u2014 je vindt altijd het westen
+        terug.\u201D\r\nBouwjaar: 1875\r\nBreedte: 8 m \u2022 Hoogte: 20 m\r\nType:
+        Vuurtoren\r\nMateriaal: Gietijzer / Baksteen\n\nDeze toren is een herkenningspunt
+        voor inwoners en scheepvaart,  De gietijzeren constructie is bijzonder in
+        Nederland. Bewoners hechten veel waarde aan het historische silhouet. Nationaal
+        heeft de toren een sterke erfgoedwaarde,"
       objectReference: {fileID: 0}
     - target: {fileID: 5423767959120489635, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
@@ -1785,14 +1768,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5423767959120489635, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
+      propertyPath: imageWidth
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423767959120489635, guid: e8d359c9c65389c4097266e947c4204c,
+        type: 3}
       propertyPath: information
-      value: "De brug verbindt de eilanden en veranderde de regio\nvoorgoed; door
-        zijn enorme lengte is hij een visueel\nicoon. Bewoners ervaren zowel trots
-        als praktische \nwaarde, terwijl de brug nationaal wordt gezien als een\ntoonbeeld
-        van wederopbouw-infrastructuur.\n\nGEGEVENS\nHuidig gebruik: Verkeersbrug\nNAP-Hoogte:
-        17+ M\nMonumentale Status: Rijksmonument\nErfgoed Waarde: 4/5\nLokale Waardering:
-        2/5\nType: Object\nBouwjaar: 1965\nLengte: 5022m\nBreedte: 10m\nHoogte: 17m\nMateriaal:
-        Beton en Staal"
+      value: "Waardering (lokaal): 2/5\r\nCulturele waarde : 4/5\r\nQuote \u2013
+        Tim van Gerwen: \u201CEen uitzonderlijk stuk infrastructuur uit de wederopbouw.\u201D\r\nBouwjaar:
+        1965\r\nLengte: 5022 m \u2022 Breedte: 10 m \u2022 Hoogte: 17 m\r\nType:
+        Brug\r\nMateriaal: Beton / Staal\n\nDe brug verbindt de eilanden en veranderde
+        de regio voorgoed, Door zijn enorme lengte is hij een visueel icoon. Bewoners
+        ervaren zowel trots als praktische waarde, Nationaal wordt de brug gezien
+        als een toonbeeld van wederopbouw-infrastructuur,"
       objectReference: {fileID: 0}
     - target: {fileID: 5423767959120489635, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
@@ -1817,45 +1805,13 @@ PrefabInstance:
     - target: {fileID: 6351723291583122654, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
       propertyPath: information
-      value: 'De kerk verving na de ramp de beschadigde kerk uit 1659 en
-
-        staat
-        symbool voor wederopbouw. Bewoners voelen
-
-        verbondenheid met het
-        sobere gebouw, waarvan het interieur een
-
-        bescheiden dorpsgeschiedenis
-        weerspiegelt.
-
-
-        GEGEVENS:
-
-        Huidig gebruik: Kerkdiensten en
-        gemeenschapsruimte.
-
-        NAP-hoogte: ca. -1 m.
-
-        Monumentale Status:
-        Gemeentelijk monument.
-
-        Erfgoed Waarde: 1/5
-
-        Lokale Waardering:
-        4/5
-
-        Type: Object
-
-        Bouwjaar: 1959
-
-        Lengte: 25m
-
-        Breedte:
-        12m
-
-        Hoogte: 10m
-
-        Materiaal: Baksteen'
+      value: "Waardering (lokaal): 4/5\r\nCulturele waarde : 1/5\r\nQuote \u2013
+        Jolanda de Korte: \u201CHet is een symbool voor alles wat we moesten herbouwen
+        na de ramp.\u201D\r\nBouwjaar: 1959\r\nLengte: 25 m \u2022 Breedte: 12 m
+        \u2022 Hoogte: 10 m\r\nType: Kerk\r\nMateriaal: Baksteen\n\nDe kerk verving
+        na de ramp de beschadigde kerk uit 1659 en staat symbool voor wederopbouw,
+        Bewoners voelen verbondenheid met het sobere gebouw, Het interieur weerspiegelt
+        een bescheiden dorpsgeschiedenis,"
       objectReference: {fileID: 0}
     - target: {fileID: 6351723291583122654, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
@@ -1929,41 +1885,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9203807050590676881, guid: e8d359c9c65389c4097266e947c4204c,
         type: 3}
+      propertyPath: imageWidth
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203807050590676881, guid: e8d359c9c65389c4097266e947c4204c,
+        type: 3}
+      propertyPath: imageHeight
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203807050590676881, guid: e8d359c9c65389c4097266e947c4204c,
+        type: 3}
       propertyPath: information
-      value: 'De molen is een markant punt in het landschap waarvan
-
-        bewoners
-        de uitstraling waarderen. De witte kleur is
-
-        typisch Zeeuws en nationaal
-        wordt het vooral lokaal
-
-        molenerfgoed genoemd.
-
-
-        GEGEVENS
-
-        Huidig
-        gebruik: Monument, wachtend op hergebruik.
-
-        NAP-hoogte: ca. +4 m.
-
-        Erfgoed
-        Waarde: 3/5
-
-        Lokale Waardering: 4/5
-
-        Type: Object
-
-        Bouwjaar:
-        1909
-
-        Breedte: 8m
-
-        Hoogte: 8m
-
-        Materiaal: Hout &
-        Baksteen '
+      value: "Waardering (lokaal): 4/5\r\nCulturele waarde : 3/5\r\nQuote \u2013
+        Karin Leijten: \u201CIk hoop dat hij weer gaat draaien zodat we lokaal meel
+        kunnen kopen.\u201D\r\nBouwjaar: 1909\r\nBreedte: 8 m \u2022 Hoogte: 20 m\r\nType:
+        Windmolen\r\nMateriaal: Hout / Baksteen\n\nDe molen is een markant punt in
+        het landschap, Bewoners waarderen de uitstraling en hopen op hergebruik,
+        De witte kleur is typisch Zeeuws. Nationaal wordt het vooral lokaal molenerfgoed
+        genoemd,"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2117,7 +2056,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219242413}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2457,7 +2396,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 127.099976, y: -196.9}
+  m_AnchoredPosition: {x: 115.6, y: -210.8}
   m_SizeDelta: {x: 753, y: 379.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &231963652
@@ -2480,9 +2419,25 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tekst koos heer Example Example Example Example Example Example Example
-    Example Example Example Example Example Example Example Example Example Example
-    Example
+  m_text: 'Door stijgende temperaturen, veranderende weerpatronen en een toename
+    van extreme omstandigheden raken veel erfgoedlocaties versneld in verval, Materialen
+    verouderen sneller en structuren worden kwetsbaarder, waardoor behoud en restauratie
+    steeds complexer en kostbaarder worden, Deze ontwikkelingen treffen erfgoed in
+    alle delen van de wereld,
+
+
+    Het mogelijke verlies van cultureel erfgoed gaat
+    verder dan fysieke schade alleen, Erfgoed speelt een belangrijke rol in identiteit,
+    collectief geheugen en sociale samenhang, Wanneer dit verdwijnt, kan dat leiden
+    tot een verzwakking van culturele verbondenheid en het verdwijnen van kennis
+    die generaties lang is doorgegeven,
+
+
+    Internationale organisaties en overheden
+    erkennen steeds vaker dat de bescherming van cultureel erfgoed onderdeel moet
+    zijn van een bredere aanpak van klimaatverandering,
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a0e865e5ed836a340b7d0579fc24e215, type: 2}
   m_sharedMaterial: {fileID: 6728263553339473336, guid: a0e865e5ed836a340b7d0579fc24e215,
@@ -2510,13 +2465,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.2
-  m_fontSizeBase: 42.2
+  m_fontSize: 20.8
+  m_fontSizeBase: 20.8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -2548,7 +2503,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -79.0397, y: 137.16815, z: 444.14432, w: -324.5919}
+  m_margin: {x: -86.24246, y: 123.20581, z: 422.90762, w: -344.50284}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3056,7 +3011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &287061336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4871,7 +4826,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488900524}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4885,143 +4840,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &492401337
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 492401338}
-  - component: {fileID: 492401340}
-  - component: {fileID: 492401339}
-  m_Layer: 0
-  m_Name: MoreINFO (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &492401338
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492401337}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4}
-  m_LocalScale: {x: 0.6534666, y: 0.6534666, z: 0.6534666}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1407900971}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 398.8, y: -309.4}
-  m_SizeDelta: {x: 753, y: 379.58}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &492401339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492401337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Example Example Example Example Example Example Example Example Example
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a0e865e5ed836a340b7d0579fc24e215, type: 2}
-  m_sharedMaterial: {fileID: 6728263553339473336, guid: a0e865e5ed836a340b7d0579fc24e215,
-    type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4283256141
-  m_fontColor: {r: 0.3019608, g: 0.3019608, b: 0.3019608, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 18.8
-  m_fontSizeBase: 18.8
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 81.90182, y: 464.936, z: 410.73495, w: -167.83612}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &492401340
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492401337}
-  m_CullTransparentMesh: 1
 --- !u!4 &506957271 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 61f56962c5b5e5e488e4c3fdaaa8b799,
@@ -5302,7 +5120,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543048658}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5488,7 +5306,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 575771698}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6270,7 +6088,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: IMPORTANT INFORMATION
+  m_text: BELANGRIJKE INFORMATIE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ffed7775dfadff44abc14c8518b3fcb, type: 2}
   m_sharedMaterial: {fileID: 8597537619979675750, guid: 5ffed7775dfadff44abc14c8518b3fcb,
@@ -6280,8 +6098,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 3133925614
+  m_fontColor: {r: 0.9339623, g: 0.91094345, b: 0.7973923, a: 0.7294118}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6489,14 +6307,14 @@ RectTransform:
   m_GameObject: {fileID: 671244092}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0157574, y: 1.0157574, z: 1.0157574}
+  m_LocalScale: {x: 1.1055504, y: 1.1055504, z: 1.1055504}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 773225446}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -462.9485, y: 163.6688}
+  m_AnchoredPosition: {x: -527.4, y: 158.6}
   m_SizeDelta: {x: 200, y: 50.7545}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &671244094
@@ -6519,8 +6337,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rising seas and extreme climate are erasing not just landscapes but  cultural
-    treasures.
+  m_text: Door de stijgende zeespiegel en extreme weersomstandigheden verdwijnen
+    niet alleen landschappen, maar ook culturele schatten.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 608a68fb4a50118438fc1dacba86d3fd, type: 2}
   m_sharedMaterial: {fileID: -6473756993011226531, guid: 608a68fb4a50118438fc1dacba86d3fd,
@@ -6548,8 +6366,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.8
-  m_fontSizeBase: 24.8
+  m_fontSize: 17.57
+  m_fontSizeBase: 17.57
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6586,7 +6404,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -199.34102, y: 20.407793, z: -336.3633, w: -1.9071531}
+  m_margin: {x: -165.25758, y: 20.407793, z: -397.85263, w: -1.9071531}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7688,11 +7506,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 671244093}
+  - {fileID: 1467670263}
   - {fileID: 903332344}
   - {fileID: 1312600690}
   - {fileID: 1281758601}
   - {fileID: 1641184019}
-  - {fileID: 1467670263}
   - {fileID: 1932050717}
   m_Father: {fileID: 1748073235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9001,7 +8819,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NEWS! NEWS!
+  m_text: 'NIEWS!
+
+    NIEWS!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 608a68fb4a50118438fc1dacba86d3fd, type: 2}
   m_sharedMaterial: {fileID: -6473756993011226531, guid: 608a68fb4a50118438fc1dacba86d3fd,
@@ -9011,8 +8831,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 3642892834
+  m_fontColor: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 0.8509804}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10178,14 +9998,14 @@ RectTransform:
   m_GameObject: {fileID: 978027167}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9603997, y: 1.9603997, z: 0.6534666}
+  m_LocalScale: {x: 1.9776514, y: 1.9776514, z: 0.6592171}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1407900971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 234.59448, y: -163.36667}
+  m_AnchoredPosition: {x: 224.19998, y: -181.09999}
   m_SizeDelta: {x: 93.133, y: 104.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &978027169
@@ -10208,7 +10028,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5fc4dc99d1f7c5541becc2b98f60f9e8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10884,7 +10704,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: January
+  m_text: Januari
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ffed7775dfadff44abc14c8518b3fcb, type: 2}
   m_sharedMaterial: {fileID: 8597537619979675750, guid: 5ffed7775dfadff44abc14c8518b3fcb,
@@ -10894,8 +10714,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 3805014254
+  m_fontColor: {r: 0.93333334, g: 0.9098039, b: 0.79607844, a: 0.8862745}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11608,7 +11428,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: -3.3, y: 4.3}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085889131
@@ -11631,10 +11451,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: There is nothing here yet!
+  m_text: Erfgoed in Gevaar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a0e865e5ed836a340b7d0579fc24e215, type: 2}
-  m_sharedMaterial: {fileID: 6728263553339473336, guid: a0e865e5ed836a340b7d0579fc24e215,
+  m_fontAsset: {fileID: 11400000, guid: 608a68fb4a50118438fc1dacba86d3fd, type: 2}
+  m_sharedMaterial: {fileID: -6473756993011226531, guid: 608a68fb4a50118438fc1dacba86d3fd,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11659,17 +11479,17 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.75
-  m_fontSizeBase: 40
+  m_fontSize: 45.2
+  m_fontSizeBase: 45.2
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -5.38
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -11697,7 +11517,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -204.22943, w: 0}
+  m_margin: {x: -118.64177, y: 0, z: -346.0826, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -13276,14 +13096,14 @@ RectTransform:
   m_GameObject: {fileID: 1231839992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0191995, y: 1.0191995, z: 1.0191995}
+  m_LocalScale: {x: 1.3885574, y: 1.3885574, z: 1.3885574}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 317768022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -255.4, y: 51.1}
+  m_AnchoredPosition: {x: -255.4, y: 9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1231839994
@@ -13306,7 +13126,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YOUR ROLE
+  m_text: 'JOUW ROL:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a0e865e5ed836a340b7d0579fc24e215, type: 2}
   m_sharedMaterial: {fileID: 6728263553339473336, guid: a0e865e5ed836a340b7d0579fc24e215,
@@ -14132,8 +13952,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 3805014254
+  m_fontColor: {r: 0.93333334, g: 0.9098039, b: 0.79607844, a: 0.8862745}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -15557,13 +15377,14 @@ GameObject:
   - component: {fileID: 1317919126}
   - component: {fileID: 1317919128}
   - component: {fileID: 1317919127}
+  - component: {fileID: 1317919129}
   m_Layer: 5
   m_Name: Notaris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1317919126
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15684,6 +15505,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1317919125}
   m_CullTransparentMesh: 1
+--- !u!114 &1317919129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317919125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e66a4f24dc19f2469c9c7e35f38a853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRoleName: Notaris
+  playerTag: Player
+  invertSelection: 0
 --- !u!1 &1329612601
 GameObject:
   m_ObjectHideFlags: 0
@@ -16403,16 +16239,16 @@ MonoBehaviour:
   relocatevotes: 0
   digitizevotes: 0
   allVotesIn: 0
-  safeText: {fileID: 869442584}
-  sacrificeText: {fileID: 417632535}
-  RelocateBigText: {fileID: 734006198}
-  RelocateText: {fileID: 1888540016}
-  DigitizeText: {fileID: 1404151106}
+  safeText: {fileID: 1053793635}
+  sacrificeText: {fileID: 587908460}
+  RelocateBigText: {fileID: 1976696448}
+  RelocateText: {fileID: 1976696448}
+  DigitizeText: {fileID: 295981429}
   votebuttons:
-  - {fileID: 91074111}
-  - {fileID: 1063537269}
-  - {fileID: 226474717}
-  - {fileID: 974668350}
+  - {fileID: 903332339}
+  - {fileID: 1312600689}
+  - {fileID: 1281758596}
+  - {fileID: 1641184014}
   safeWon: 0
   sacrificeWon: 0
   relocateBigWon: 0
@@ -16588,11 +16424,9 @@ RectTransform:
   m_Children:
   - {fileID: 1085889130}
   - {fileID: 231963651}
-  - {fileID: 1643038386}
-  - {fileID: 492401338}
   - {fileID: 23739235}
+  - {fileID: 1643038386}
   - {fileID: 978027168}
-  - {fileID: 2067006219}
   m_Father: {fileID: 1748073235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -16816,8 +16650,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 3805014254
+  m_fontColor: {r: 0.93333334, g: 0.9098039, b: 0.79607844, a: 0.8862745}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -16953,8 +16787,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 3642892834
+  m_fontColor: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 0.8509804}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17217,9 +17051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'sunday
-
-'
+  m_text: zondag
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ffed7775dfadff44abc14c8518b3fcb, type: 2}
   m_sharedMaterial: {fileID: 8597537619979675750, guid: 5ffed7775dfadff44abc14c8518b3fcb,
@@ -17229,8 +17061,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 3805014254
+  m_fontColor: {r: 0.93333334, g: 0.9098039, b: 0.79607844, a: 0.8862745}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17336,7 +17168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -706.9, y: 30}
+  m_AnchoredPosition: {x: -706.9, y: 11}
   m_SizeDelta: {x: 194.8711, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467670264
@@ -17684,7 +17516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e04a2b5d99a1b49b81cfb12f3a801b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1495854593}
+  canvas: {fileID: 1748073240}
 --- !u!1 &1499833259
 GameObject:
   m_ObjectHideFlags: 0
@@ -18008,13 +17840,13 @@ MonoBehaviour:
   - {fileID: 56756919}
   - {fileID: 950140700}
   - {fileID: 1608946773}
-  titleText: {fileID: 1794042931}
-  infoText: {fileID: 2090535076}
-  peopleScoreText: {fileID: 308973491}
-  importanceText: {fileID: 1588460939}
+  titleText: {fileID: 1085889131}
+  infoText: {fileID: 231963652}
+  peopleScoreText: {fileID: 48229320}
+  importanceText: {fileID: 2005619146}
   moneyCostText: {fileID: 0}
   manPowerCostText: {fileID: 0}
-  infoImageDisplay: {fileID: 1821547986}
+  infoImageDisplay: {fileID: 978027169}
   titleText2: {fileID: 0}
   infoText2: {fileID: 0}
   peopleScoreText2: {fileID: 0}
@@ -19587,8 +19419,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Example Example Example Example Example Example Example Example Example 
-    Example Example Example
+  m_text: Steeds meer deskundigen waarschuwen dat historische gebouwen, tradities
+    en andere tastbare sporen van het verleden onder druk staan door veranderende,
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a0e865e5ed836a340b7d0579fc24e215, type: 2}
   m_sharedMaterial: {fileID: 6728263553339473336, guid: a0e865e5ed836a340b7d0579fc24e215,
@@ -19616,17 +19448,17 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.8
-  m_fontSizeBase: 18.8
+  m_fontSize: 22.9
+  m_fontSizeBase: 22.9
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -2.7
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -19654,7 +19486,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 81.90182, y: 464.936, z: 410.73495, w: -188.80603}
+  m_margin: {x: 81.90182, y: 464.936, z: 423.58182, w: -280.39133}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -21956,7 +21788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1825865582
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23861,14 +23693,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2023493356}
   - component: {fileID: 2023493357}
-  - component: {fileID: 2023493358}
   m_Layer: 0
   m_Name: FeedbackMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2023493356
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23906,21 +23737,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedback1: {fileID: 326501849}
---- !u!114 &2023493358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2023493355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e66a4f24dc19f2469c9c7e35f38a853, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetRoleName: Notaris
-  playerTag: Player
-  invertSelection: 0
 --- !u!1 &2034303385
 GameObject:
   m_ObjectHideFlags: 0
@@ -24370,81 +24186,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2067006218
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2067006219}
-  - component: {fileID: 2067006221}
-  - component: {fileID: 2067006220}
-  m_Layer: 0
-  m_Name: MPic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2067006219
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067006218}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.261601, y: 0.31728923, z: 0.6957334}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1407900971}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 232.725, y: -168.78922}
-  m_SizeDelta: {x: 30, y: 693.046}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2067006220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067006218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &2067006221
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067006218}
-  m_CullTransparentMesh: 1
 --- !u!1 &2069227303
 GameObject:
   m_ObjectHideFlags: 0

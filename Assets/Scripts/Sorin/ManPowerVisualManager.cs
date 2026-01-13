@@ -49,7 +49,7 @@ public class ManPowerVisualManager : MonoBehaviour
 
             if (next > 0 && next <= unitPool.Count)
             {
-                GameObject popped = unitPool[next - 1]; 
+                GameObject popped = unitPool[next - 1];
                 if (popped.activeSelf)
                     StartCoroutine(PopEffect(popped.transform));
             }

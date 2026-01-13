@@ -10,7 +10,11 @@ public class InfoObject : MonoBehaviour
     [SerializeField] private int manPowerCost;
 
     [Header("Optional Image")]
-    [SerializeField] private Sprite infoImage; 
+    [SerializeField] private Sprite infoImage;
+
+    [Header("Optional Image Size")]
+    [SerializeField] private float imageWidth = 100f;  // default width
+    [SerializeField] private float imageHeight = 100f; // default height
 
     public string Title => title;
     public string Information => information;
@@ -18,5 +22,8 @@ public class InfoObject : MonoBehaviour
     public int Importance => importance;
     public int MoneyCost => moneyCost;
     public int ManPowerCost => manPowerCost;
-    public Sprite InfoImage => infoImage; 
+    public Sprite InfoImage => infoImage;
+
+    public float ImageWidth => imageWidth;
+    public float ImageHeight => imageHeight;
 }

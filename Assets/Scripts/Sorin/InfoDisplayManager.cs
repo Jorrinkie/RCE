@@ -9,6 +9,7 @@ public class InfoDisplayManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> infoObjects = new List<GameObject>();
 
+    [Header("Canvas 1")]
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text infoText;
     [SerializeField] private TMP_Text peopleScoreText;
@@ -17,7 +18,7 @@ public class InfoDisplayManager : MonoBehaviour
     [SerializeField] private TMP_Text manPowerCostText;
     [SerializeField] private Image infoImageDisplay;
 
-
+    [Header("Canvas 2")]
     [SerializeField] private TMP_Text titleText2;
     [SerializeField] private TMP_Text infoText2;
     [SerializeField] private TMP_Text peopleScoreText2;
@@ -38,7 +39,7 @@ public class InfoDisplayManager : MonoBehaviour
     {
         foreach (var obj in infoObjects)
         {
-            if (obj.activeSelf)
+            if (obj != null && obj.activeSelf)
             {
                 var info = obj.GetComponent<InfoObject>();
                 if (info != null && info != activeInfo)
@@ -55,20 +56,25 @@ public class InfoDisplayManager : MonoBehaviour
     {
         if (activeInfo == null) return;
 
-        // --- Canvas 1 ---
-        titleText.text = activeInfo.Title;
-        infoText.text = activeInfo.Information;
-        peopleScoreText.text = $"People Score: {activeInfo.PeopleScore}";
-        importanceText.text = $"Importance: {activeInfo.Importance}";
-        moneyCostText.text = $"Money Cost: {activeInfo.MoneyCost}";
-        manPowerCostText.text = $"ManPower Cost: {activeInfo.ManPowerCost}";
+        // -------- Canvas 1 --------
+        if (titleText != null) titleText.text = activeInfo.Title;
+        if (infoText != null) infoText.text = activeInfo.Information;
+        if (peopleScoreText != null) peopleScoreText.text = $"People Score: {activeInfo.PeopleScore}";
+        if (importanceText != null) importanceText.text = $"Importance: {activeInfo.Importance}";
+        if (moneyCostText != null) moneyCostText.text = $"Money Cost: {activeInfo.MoneyCost}";
+        if (manPowerCostText != null) manPowerCostText.text = $"ManPower Cost: {activeInfo.ManPowerCost}";
 
         if (infoImageDisplay != null)
         {
             if (activeInfo.InfoImage != null)
             {
                 infoImageDisplay.sprite = activeInfo.InfoImage;
+                infoImageDisplay.color = Color.white;
+                infoImageDisplay.preserveAspect = false; 
                 infoImageDisplay.gameObject.SetActive(true);
+
+                RectTransform rt = infoImageDisplay.GetComponent<RectTransform>();
+                rt.sizeDelta = new Vector2(activeInfo.ImageWidth, activeInfo.ImageHeight);
             }
             else
             {
@@ -76,7 +82,7 @@ public class InfoDisplayManager : MonoBehaviour
             }
         }
 
-        // --- Canvas 2 ---
+        // -------- Canvas 2 --------
         if (titleText2 != null) titleText2.text = activeInfo.Title;
         if (infoText2 != null) infoText2.text = activeInfo.Information;
         if (peopleScoreText2 != null) peopleScoreText2.text = $"People Score: {activeInfo.PeopleScore}";
@@ -89,12 +95,19 @@ public class InfoDisplayManager : MonoBehaviour
             if (activeInfo.InfoImage != null)
             {
                 infoImageDisplay2.sprite = activeInfo.InfoImage;
+                infoImageDisplay2.color = Color.white;
+                infoImageDisplay2.preserveAspect = false;
                 infoImageDisplay2.gameObject.SetActive(true);
+
+                RectTransform rt2 = infoImageDisplay2.GetComponent<RectTransform>();
+                rt2.sizeDelta = new Vector2(activeInfo.ImageWidth, activeInfo.ImageHeight);
             }
             else
             {
                 infoImageDisplay2.gameObject.SetActive(false);
             }
         }
+
+
     }
 }
