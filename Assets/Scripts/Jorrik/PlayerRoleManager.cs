@@ -51,7 +51,7 @@ public class PlayerRoleManager : AttributesSync
 
     private void DetermineAvailableRole()
     {
-        string[] priorityRoles = { "Notaris", "Bouwvakker", "Burgemeester" };
+        string[] priorityRoles = { "Bouwvakker", "Notaris", "Burgemeester" };
 
         // Find all Role Managers
         PlayerRoleManager[] allManagers = FindObjectsOfType<PlayerRoleManager>();
