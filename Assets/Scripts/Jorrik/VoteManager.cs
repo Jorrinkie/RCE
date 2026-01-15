@@ -13,12 +13,19 @@ public class VoteManager : AttributesSync
     [SynchronizableField] public int digitizevotes = 0;
     [SynchronizableField] public bool allVotesIn = false;
 
-    [Header("UI References")]
-    public TextMeshProUGUI safeText;
-    public TextMeshProUGUI sacrificeText;
-    public TextMeshProUGUI RelocateBigText;
-    public TextMeshProUGUI RelocateText;
-    public TextMeshProUGUI DigitizeText;
+    [Header("UI Text References")]
+    [SerializeField] private TextMeshProUGUI safeText;
+    [SerializeField] private TextMeshProUGUI sacrificeText;
+    [SerializeField] private TextMeshProUGUI RelocateBigText;
+    [SerializeField] private TextMeshProUGUI RelocateText;
+    [SerializeField] private TextMeshProUGUI DigitizeText;
+
+    [Header("Choice Checkmarks")]
+    [SerializeField] private GameObject checkmark_Safe;      // Index 0
+    [SerializeField] private GameObject checkmark_Sacrifice;  // Index 1
+    [SerializeField] private GameObject checkmark_Digitize;   // Index 2
+    [SerializeField] private GameObject checkmark_Relocate;   // Index 3
+    [SerializeField] private GameObject checkmark_Adjust;     // Index 4
 
     [Header("Locations")]
     [SerializeField] private GameObject lighthouse;
@@ -42,6 +49,7 @@ public class VoteManager : AttributesSync
     [SerializeField] private AudioClip highestVoteSound;
 
     private Multiplayer _multiplayer;
+    private GameObject lastActiveLocation;
 
     [System.Serializable]
     private class LocationVotes
@@ -52,13 +60,11 @@ public class VoteManager : AttributesSync
         public int relocate;
         public int digitize;
         public bool resolved;
-
-        // Each location now remembers who voted for what locally
+        // Specific votes for players AT THIS location
         public Dictionary<int, int> playerVotes = new Dictionary<int, int>();
     }
 
     private Dictionary<GameObject, LocationVotes> locationVotes = new Dictionary<GameObject, LocationVotes>();
-    private Dictionary<int, int> playerVotes = new Dictionary<int, int>();
 
     private void Start()
     {
@@ -73,6 +79,15 @@ public class VoteManager : AttributesSync
 
     private void Update()
     {
+        GameObject currentLoc = GetActiveLocation();
+
+        // If we switched from Lighthouse to Windmill, refresh the UI
+        if (currentLoc != lastActiveLocation)
+        {
+            lastActiveLocation = currentLoc;
+            UpdateCheckmarks();
+        }
+
         SyncFromLocation();
         UpdateUIStrings();
     }
@@ -94,6 +109,31 @@ public class VoteManager : AttributesSync
             GameObject loc = GetActiveLocation();
             if (loc == null) return null;
             return locationVotes[loc];
+        }
+    }
+
+    private void UpdateCheckmarks()
+    {
+        // Hide all checkmarks first
+        if (checkmark_Safe) checkmark_Safe.SetActive(false);
+        if (checkmark_Sacrifice) checkmark_Sacrifice.SetActive(false);
+        if (checkmark_Digitize) checkmark_Digitize.SetActive(false);
+        if (checkmark_Relocate) checkmark_Relocate.SetActive(false);
+        if (checkmark_Adjust) checkmark_Adjust.SetActive(false);
+
+        var v = CurrentVotes;
+        if (v == null || _multiplayer == null) return;
+
+        int myId = _multiplayer.Me.Index;
+
+        // Check if I have a vote recorded for the CURRENT active object
+        if (v.playerVotes.TryGetValue(myId, out int myVote))
+        {
+            if (myVote == 0 && checkmark_Safe) checkmark_Safe.SetActive(true);
+            else if (myVote == 1 && checkmark_Sacrifice) checkmark_Sacrifice.SetActive(true);
+            else if (myVote == 2 && checkmark_Digitize) checkmark_Digitize.SetActive(true);
+            else if (myVote == 3 && checkmark_Relocate) checkmark_Relocate.SetActive(true);
+            else if (myVote == 4 && checkmark_Adjust) checkmark_Adjust.SetActive(true);
         }
     }
 
@@ -135,17 +175,14 @@ public class VoteManager : AttributesSync
         var v = CurrentVotes;
         if (v == null || v.resolved) return;
 
-        // Look for the player's vote ONLY within this specific location's data
         if (v.playerVotes.TryGetValue(playerId, out int oldVote))
-        {
-            // Only subtract if they actually voted here before
             ModifyVote(oldVote, -1);
-        }
 
         ModifyVote(vote, 1);
-        v.playerVotes[playerId] = vote; // Save the vote to this location's history
+        v.playerVotes[playerId] = vote;
 
         SyncToLocation();
+        UpdateCheckmarks(); // Refresh UI as soon as we vote
         Commit();
     }
 
@@ -170,9 +207,10 @@ public class VoteManager : AttributesSync
         relocatedbigvotes = 0;
 
         v.resolved = false;
-        v.playerVotes.Clear(); // Clear the specific location's history
+        v.playerVotes.Clear();
 
         SyncToLocation();
+        UpdateCheckmarks();
         Commit();
 
         if (audioSource && resetVotesSound)
