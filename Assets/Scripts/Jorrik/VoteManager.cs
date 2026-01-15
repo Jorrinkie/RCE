@@ -21,11 +21,11 @@ public class VoteManager : AttributesSync
     [SerializeField] private TextMeshProUGUI DigitizeText;
 
     [Header("Choice Checkmarks")]
-    [SerializeField] private GameObject checkmark_Safe;      // Index 0
-    [SerializeField] private GameObject checkmark_Sacrifice;  // Index 1
-    [SerializeField] private GameObject checkmark_Digitize;   // Index 2
-    [SerializeField] private GameObject checkmark_Relocate;   // Index 3
-    [SerializeField] private GameObject checkmark_Adjust;     // Index 4
+    [SerializeField] private GameObject checkmark_Safe;
+    [SerializeField] private GameObject checkmark_Sacrifice;
+    [SerializeField] private GameObject checkmark_Digitize;
+    [SerializeField] private GameObject checkmark_Relocate;
+    [SerializeField] private GameObject checkmark_Adjust;
 
     [Header("Locations")]
     [SerializeField] private GameObject lighthouse;
@@ -60,7 +60,7 @@ public class VoteManager : AttributesSync
         public int relocate;
         public int digitize;
         public bool resolved;
-        // Specific votes for players AT THIS location
+        // This remains LOCAL to each player to track their own checkmark
         public Dictionary<int, int> playerVotes = new Dictionary<int, int>();
     }
 
@@ -81,15 +81,43 @@ public class VoteManager : AttributesSync
     {
         GameObject currentLoc = GetActiveLocation();
 
-        // If we switched from Lighthouse to Windmill, refresh the UI
+        // ONLY Sync/Refresh when the location changes
         if (currentLoc != lastActiveLocation)
         {
+            // 1. Save current totals to the old location before leaving
+            if (lastActiveLocation != null) SyncToLocation(lastActiveLocation);
+
             lastActiveLocation = currentLoc;
+
+            // 2. Load the totals for the new location
+            SyncFromLocation(currentLoc);
+
+            // 3. Update the local checkmarks
             UpdateCheckmarks();
         }
 
-        SyncFromLocation();
+        // Host checks the vote count (Logic from your old script)
+        if (_multiplayer != null && _multiplayer.IsConnected && _multiplayer.Me.Index == 0)
+        {
+            CheckVoteCount();
+        }
+
         UpdateUIStrings();
+    }
+
+    private void CheckVoteCount()
+    {
+        int playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
+        int currentTotalVotes = safeVotes + sacrificeVotes + relocatedbigvotes + relocatevotes + digitizevotes;
+
+        if (playerCount > 0 && currentTotalVotes >= playerCount)
+        {
+            if (!allVotesIn) { allVotesIn = true; Commit(); }
+        }
+        else if (allVotesIn)
+        {
+            allVotesIn = false; Commit();
+        }
     }
 
     private GameObject GetActiveLocation()
@@ -102,45 +130,34 @@ public class VoteManager : AttributesSync
         return null;
     }
 
-    private LocationVotes CurrentVotes
-    {
-        get
-        {
-            GameObject loc = GetActiveLocation();
-            if (loc == null) return null;
-            return locationVotes[loc];
-        }
-    }
-
     private void UpdateCheckmarks()
     {
-        // Hide all checkmarks first
         if (checkmark_Safe) checkmark_Safe.SetActive(false);
         if (checkmark_Sacrifice) checkmark_Sacrifice.SetActive(false);
         if (checkmark_Digitize) checkmark_Digitize.SetActive(false);
         if (checkmark_Relocate) checkmark_Relocate.SetActive(false);
         if (checkmark_Adjust) checkmark_Adjust.SetActive(false);
 
-        var v = CurrentVotes;
-        if (v == null || _multiplayer == null) return;
+        GameObject loc = GetActiveLocation();
+        if (loc == null || !locationVotes.ContainsKey(loc)) return;
 
+        var v = locationVotes[loc];
         int myId = _multiplayer.Me.Index;
 
-        // Check if I have a vote recorded for the CURRENT active object
         if (v.playerVotes.TryGetValue(myId, out int myVote))
         {
-            if (myVote == 0 && checkmark_Safe) checkmark_Safe.SetActive(true);
-            else if (myVote == 1 && checkmark_Sacrifice) checkmark_Sacrifice.SetActive(true);
-            else if (myVote == 2 && checkmark_Digitize) checkmark_Digitize.SetActive(true);
-            else if (myVote == 3 && checkmark_Relocate) checkmark_Relocate.SetActive(true);
-            else if (myVote == 4 && checkmark_Adjust) checkmark_Adjust.SetActive(true);
+            if (myVote == 0) checkmark_Safe.SetActive(true);
+            else if (myVote == 1) checkmark_Sacrifice.SetActive(true);
+            else if (myVote == 2) checkmark_Digitize.SetActive(true);
+            else if (myVote == 3) checkmark_Relocate.SetActive(true);
+            else if (myVote == 4) checkmark_Adjust.SetActive(true);
         }
     }
 
-    private void SyncFromLocation()
+    private void SyncFromLocation(GameObject loc)
     {
-        var v = CurrentVotes;
-        if (v == null) return;
+        if (loc == null || !locationVotes.ContainsKey(loc)) return;
+        var v = locationVotes[loc];
 
         safeVotes = v.safe;
         sacrificeVotes = v.sacrifice;
@@ -149,10 +166,10 @@ public class VoteManager : AttributesSync
         digitizevotes = v.digitize;
     }
 
-    private void SyncToLocation()
+    private void SyncToLocation(GameObject loc)
     {
-        var v = CurrentVotes;
-        if (v == null) return;
+        if (loc == null || !locationVotes.ContainsKey(loc)) return;
+        var v = locationVotes[loc];
 
         v.safe = safeVotes;
         v.sacrifice = sacrificeVotes;
@@ -172,17 +189,20 @@ public class VoteManager : AttributesSync
 
     public void RegisterVote(int playerId, int vote)
     {
-        var v = CurrentVotes;
-        if (v == null || v.resolved) return;
+        GameObject loc = GetActiveLocation();
+        if (loc == null) return;
+        var v = locationVotes[loc];
+        if (v.resolved) return;
 
+        // LOCAL: Update history for checkmarks
         if (v.playerVotes.TryGetValue(playerId, out int oldVote))
             ModifyVote(oldVote, -1);
 
+        // SYNC: Update the actual networked integers
         ModifyVote(vote, 1);
         v.playerVotes[playerId] = vote;
 
-        SyncToLocation();
-        UpdateCheckmarks(); // Refresh UI as soon as we vote
+        UpdateCheckmarks();
         Commit();
     }
 
@@ -197,45 +217,31 @@ public class VoteManager : AttributesSync
 
     public void ResetVotes()
     {
-        var v = CurrentVotes;
-        if (v == null) return;
+        GameObject loc = GetActiveLocation();
+        if (loc == null) return;
 
         safeVotes = 0;
         sacrificeVotes = 0;
         digitizevotes = 0;
         relocatevotes = 0;
         relocatedbigvotes = 0;
+        allVotesIn = false;
 
-        v.resolved = false;
-        v.playerVotes.Clear();
+        locationVotes[loc].resolved = false;
+        locationVotes[loc].playerVotes.Clear();
 
-        SyncToLocation();
         UpdateCheckmarks();
         Commit();
 
-        if (audioSource && resetVotesSound)
-            audioSource.PlayOneShot(resetVotesSound);
+        if (audioSource && resetVotesSound) audioSource.PlayOneShot(resetVotesSound);
     }
 
     public void FindHighest()
     {
-        var v = CurrentVotes;
-        if (v == null || v.resolved) return;
-
         int highest = Mathf.Max(safeVotes, sacrificeVotes, relocatedbigvotes, relocatevotes, digitizevotes);
+        int tieCount = (safeVotes == highest ? 1 : 0) + (sacrificeVotes == highest ? 1 : 0) + (relocatedbigvotes == highest ? 1 : 0) + (relocatevotes == highest ? 1 : 0) + (digitizevotes == highest ? 1 : 0);
 
-        int tie =
-            (safeVotes == highest ? 1 : 0) +
-            (sacrificeVotes == highest ? 1 : 0) +
-            (relocatedbigvotes == highest ? 1 : 0) +
-            (relocatevotes == highest ? 1 : 0) +
-            (digitizevotes == highest ? 1 : 0);
-
-        if (tie > 1)
-        {
-            ResetVotes();
-            return;
-        }
+        if (tieCount > 1 || highest <= 0) { ResetVotes(); return; }
 
         safeWon = safeVotes == highest;
         sacrificeWon = sacrificeVotes == highest;
@@ -243,17 +249,16 @@ public class VoteManager : AttributesSync
         relocateWon = relocatevotes == highest;
         digitizeWon = digitizevotes == highest;
 
-        v.resolved = true;
-        SyncToLocation();
+        GameObject loc = GetActiveLocation();
+        if (loc != null) locationVotes[loc].resolved = true;
+
         Commit();
 
-        if (audioSource && highestVoteSound)
-            audioSource.PlayOneShot(highestVoteSound);
+        if (audioSource && highestVoteSound) audioSource.PlayOneShot(highestVoteSound);
 
         if (safeWon) MoneyManager.InvestRepair();
-        if (sacrificeWon) MoneyManager.LeaveBehind();
-        if (relocateBigWon) MoneyManager.RelocateSmall();
-        if (relocateWon) MoneyManager.RelocateSmall();
-        if (digitizeWon) MoneyManager.Digitalize();
+        else if (sacrificeWon) MoneyManager.LeaveBehind();
+        else if (relocateBigWon || relocateWon) MoneyManager.RelocateSmall();
+        else if (digitizeWon) MoneyManager.Digitalize();
     }
 }
