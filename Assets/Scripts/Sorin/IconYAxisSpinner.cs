@@ -43,6 +43,9 @@ public class IconYAxisSpinner : MonoBehaviour
     private Vector3 originalPosition;
     private Vector3 targetPosition;
 
+
+    [SerializeField] private bool turnOff = false;
+
     void Awake()
     {
         isURP = GraphicsSettings.currentRenderPipeline?.GetType().Name.Contains("Universal") ?? false;
@@ -52,6 +55,17 @@ public class IconYAxisSpinner : MonoBehaviour
         // Capture the true spawn position ONLY once here
         originalPosition = transform.localPosition;
         targetPosition = originalPosition;
+
+        if(turnOff)
+        {
+            StartCoroutine(DelayedDeactivate(2f));
+        }
+    }
+
+    private System.Collections.IEnumerator DelayedDeactivate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        gameObject.SetActive(false);
     }
 
     void OnEnable()

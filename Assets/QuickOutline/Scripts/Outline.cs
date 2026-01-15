@@ -36,11 +36,14 @@ public class Outline : MonoBehaviour
         set { outlineWidth = value; needsUpdate = true; }
     }
 
-    [Header("Controlled Objects (active when outline is enabled)")]
+    [Header("Objects ACTIVE when Outline is ENABLED")]
     [SerializeField] private GameObject controlledObject1;
     [SerializeField] private GameObject controlledObject2;
     [SerializeField] private GameObject controlledObject3;
     [SerializeField] private GameObject controlledObject4;
+
+    [Header("Objects ACTIVE when Outline is DISABLED (opposite behavior)")]
+    [SerializeField] private GameObject disabledObject1;
 
     [Serializable]
     private class ListVector3
@@ -48,28 +51,24 @@ public class Outline : MonoBehaviour
         public List<Vector3> data;
     }
 
-    [SerializeField]
-    private Mode outlineMode;
-    [SerializeField]
-    private Color outlineColor = Color.white;
-    [SerializeField, Range(0f, 10f)]
-    private float outlineWidth = 2f;
+    [SerializeField] private Mode outlineMode;
+    [SerializeField] private Color outlineColor = Color.white;
+    [SerializeField, Range(0f, 10f)] private float outlineWidth = 2f;
 
     [Header("Optional")]
-    [SerializeField, Tooltip("Precompute enabled: ...")]
+    [SerializeField, Tooltip("Precompute enabled: Per-vertex calculations are performed in the editor...")]
     private bool precomputeOutline;
 
-    [SerializeField, HideInInspector]
-    private List<Mesh> bakeKeys = new List<Mesh>();
-    [SerializeField, HideInInspector]
-    private List<ListVector3> bakeValues = new List<ListVector3>();
+    [SerializeField, HideInInspector] private List<Mesh> bakeKeys = new List<Mesh>();
+    [SerializeField, HideInInspector] private List<ListVector3> bakeValues = new List<ListVector3>();
 
     private Renderer[] renderers;
     private Material outlineMaskMaterial;
     private Material outlineFillMaterial;
     private bool needsUpdate;
 
-    private GameObject[] controlledObjects;
+    private GameObject[] enabledObjects;
+    private GameObject[] disabledObjects;
 
     void Awake()
     {
@@ -83,13 +82,15 @@ public class Outline : MonoBehaviour
         LoadSmoothNormals();
         needsUpdate = true;
 
-        // Cache controlled objects
-        controlledObjects = new GameObject[]
+        // Cache both groups
+        enabledObjects = new GameObject[]
         {
-            controlledObject1,
-            controlledObject2,
-            controlledObject3,
-            controlledObject4
+            controlledObject1, controlledObject2, controlledObject3, controlledObject4
+        };
+
+        disabledObjects = new GameObject[]
+        {
+            disabledObject1
         };
     }
 
@@ -103,8 +104,9 @@ public class Outline : MonoBehaviour
             renderer.materials = materials.ToArray();
         }
 
-        // Turn on controlled objects when outline is enabled
-        SetControlledObjectsActive(true);
+        // When Outline is enabled:
+        SetObjectsActive(enabledObjects, true);
+        SetObjectsActive(disabledObjects, false);
     }
 
     void OnDisable()
@@ -117,13 +119,14 @@ public class Outline : MonoBehaviour
             renderer.materials = materials.ToArray();
         }
 
-        // Turn off controlled objects when outline is disabled
-        SetControlledObjectsActive(false);
+        // When Outline is disabled:
+        SetObjectsActive(enabledObjects, false);
+        SetObjectsActive(disabledObjects, true);
     }
 
-    private void SetControlledObjectsActive(bool active)
+    private void SetObjectsActive(GameObject[] objects, bool active)
     {
-        foreach (var obj in controlledObjects)
+        foreach (var obj in objects)
         {
             if (obj != null)
             {
@@ -133,8 +136,7 @@ public class Outline : MonoBehaviour
     }
 
     // ────────────────────────────────────────────────────────────────────────────
-    // The rest of your original code stays exactly the same (OnValidate, Update, Bake, LoadSmoothNormals, etc.)
-    // Just paste the original methods below this point
+    // Rest of your original code (unchanged)
     // ────────────────────────────────────────────────────────────────────────────
 
     void OnValidate()
@@ -186,7 +188,6 @@ public class Outline : MonoBehaviour
             var index = bakeKeys.IndexOf(meshFilter.sharedMesh);
             var smoothNormals = (index >= 0) ? bakeValues[index].data : SmoothNormals(meshFilter.sharedMesh);
             meshFilter.sharedMesh.SetUVs(3, smoothNormals);
-
             var renderer = meshFilter.GetComponent<Renderer>();
             if (renderer != null)
             {
@@ -207,7 +208,6 @@ public class Outline : MonoBehaviour
         var groups = mesh.vertices.Select((vertex, index) => new KeyValuePair<Vector3, int>(vertex, index))
                                  .GroupBy(pair => pair.Key);
         var smoothNormals = new List<Vector3>(mesh.normals);
-
         foreach (var group in groups)
         {
             if (group.Count() == 1) continue;
