@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Sorin\EnableMouse.cs" />
     <Compile Include="Assets\Scripts\Sorin\EnableOutline.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\TextChat\TextChatCommands\CommandMove.cs" />
+    <Compile Include="Assets\Scripts\Sorin\IconManager.cs" />
     <Compile Include="Assets\Scripts\MenuParralax.cs" />
     <Compile Include="Assets\Frank\PerObjectFloatManager.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\RoomBrowser\Scripts\RoomBrowser.cs" />

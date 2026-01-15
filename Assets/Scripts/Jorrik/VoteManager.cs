@@ -236,6 +236,16 @@ public class VoteManager : AttributesSync
         if (audioSource && resetVotesSound) audioSource.PlayOneShot(resetVotesSound);
     }
 
+    public bool IsLocationResolved(GameObject loc)
+    {
+        if (loc != null && locationVotes.ContainsKey(loc))
+        {
+            return locationVotes[loc].resolved;
+        }
+        return false;
+    }
+
+
     public void FindHighest()
     {
         int highest = Mathf.Max(safeVotes, sacrificeVotes, relocatedbigvotes, relocatevotes, digitizevotes);
