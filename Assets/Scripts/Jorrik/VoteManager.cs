@@ -1,6 +1,7 @@
 using UnityEngine;
 using Alteruna;
 using TMPro;
+using System.Collections.Generic;
 
 public class VoteManager : AttributesSync
 {
@@ -19,8 +20,12 @@ public class VoteManager : AttributesSync
     public TextMeshProUGUI RelocateText;
     public TextMeshProUGUI DigitizeText;
 
-    [Header("Settings")]
-    [SerializeField] private GameObject[] votebuttons;
+    [Header("Locations")]
+    [SerializeField] private GameObject lighthouse;
+    [SerializeField] private GameObject windmill;
+    [SerializeField] private GameObject tower;
+    [SerializeField] private GameObject church;
+    [SerializeField] private GameObject bridge;
 
     [Header("Results")]
     [SynchronizableField] public bool safeWon = false;
@@ -37,40 +42,80 @@ public class VoteManager : AttributesSync
     [SerializeField] private AudioClip highestVoteSound;
 
     private Multiplayer _multiplayer;
-    private bool _wasReset = false;
+
+    [System.Serializable]
+    private class LocationVotes
+    {
+        public int safe;
+        public int sacrifice;
+        public int relocateBig;
+        public int relocate;
+        public int digitize;
+        public bool resolved;
+    }
+
+    private Dictionary<GameObject, LocationVotes> locationVotes = new Dictionary<GameObject, LocationVotes>();
+    private Dictionary<int, int> playerVotes = new Dictionary<int, int>();
 
     private void Start()
     {
         _multiplayer = FindObjectOfType<Multiplayer>();
-        if (_multiplayer == null)
-            Debug.LogError("Geen Multiplayer component gevonden in de scene!");
+
+        locationVotes[lighthouse] = new LocationVotes();
+        locationVotes[windmill] = new LocationVotes();
+        locationVotes[tower] = new LocationVotes();
+        locationVotes[church] = new LocationVotes();
+        locationVotes[bridge] = new LocationVotes();
     }
 
     private void Update()
     {
+        SyncFromLocation();
         UpdateUIStrings();
-
-        if (_multiplayer != null && _multiplayer.IsConnected)
-        {
-            if (_multiplayer.Me.Index == 0)
-                CheckVoteCount();
-        }
-
-        if (GetTotalVotes() == 0)
-        {
-            if (!_wasReset)
-            {
-                EnableButtonsLocally();
-                _wasReset = true;
-            }
-        }
-        else
-            _wasReset = false;
     }
 
-    public int GetTotalVotes()
+    private GameObject GetActiveLocation()
     {
-        return safeVotes + sacrificeVotes + relocatedbigvotes + relocatevotes + digitizevotes;
+        if (lighthouse.activeSelf) return lighthouse;
+        if (windmill.activeSelf) return windmill;
+        if (tower.activeSelf) return tower;
+        if (church.activeSelf) return church;
+        if (bridge.activeSelf) return bridge;
+        return null;
+    }
+
+    private LocationVotes CurrentVotes
+    {
+        get
+        {
+            GameObject loc = GetActiveLocation();
+            if (loc == null) return null;
+            return locationVotes[loc];
+        }
+    }
+
+    private void SyncFromLocation()
+    {
+        var v = CurrentVotes;
+        if (v == null) return;
+
+        safeVotes = v.safe;
+        sacrificeVotes = v.sacrifice;
+        relocatedbigvotes = v.relocateBig;
+        relocatevotes = v.relocate;
+        digitizevotes = v.digitize;
+    }
+
+    private void SyncToLocation()
+    {
+        var v = CurrentVotes;
+        if (v == null) return;
+
+        v.safe = safeVotes;
+        v.sacrifice = sacrificeVotes;
+        v.relocateBig = relocatedbigvotes;
+        v.relocate = relocatevotes;
+        v.digitize = digitizevotes;
     }
 
     private void UpdateUIStrings()
@@ -82,97 +127,82 @@ public class VoteManager : AttributesSync
         if (RelocateBigText) RelocateBigText.text = relocatedbigvotes.ToString();
     }
 
-    private void CheckVoteCount()
+    public void RegisterVote(int playerId, int vote)
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        int playerCount = players.Length;
-        int currentTotalVotes = GetTotalVotes();
+        var v = CurrentVotes;
+        if (v == null || v.resolved) return;
 
-        if (playerCount > 0 && currentTotalVotes >= playerCount)
-        {
-            if (!allVotesIn)
-            {
-                allVotesIn = true;
-                Commit();
-            }
-        }
-        else if (allVotesIn)
-        {
-            allVotesIn = false;
-            Commit();
-        }
+        if (playerVotes.TryGetValue(playerId, out int oldVote))
+            ModifyVote(oldVote, -1);
+
+        ModifyVote(vote, 1);
+        playerVotes[playerId] = vote;
+
+        SyncToLocation();
+        Commit();
     }
 
-    public void addsafe() { safeVotes++; Commit(); }
-    public void addsacrifice() { sacrificeVotes++; Commit(); }
-    public void addRelocateBigVote() { relocatedbigvotes++; Commit(); }
-    public void addRelocate() { relocatevotes++; Commit(); }
-    public void adddigitize() { digitizevotes++; Commit(); }
+    private void ModifyVote(int vote, int amount)
+    {
+        if (vote == 0) safeVotes += amount;
+        else if (vote == 1) sacrificeVotes += amount;
+        else if (vote == 2) digitizevotes += amount;
+        else if (vote == 3) relocatevotes += amount;
+        else if (vote == 4) relocatedbigvotes += amount;
+    }
 
     public void ResetVotes()
     {
+        var v = CurrentVotes;
+        if (v == null) return;
+
+        safeVotes = 0;
+        sacrificeVotes = 0;
         digitizevotes = 0;
         relocatevotes = 0;
         relocatedbigvotes = 0;
-        sacrificeVotes = 0;
-        safeVotes = 0;
-        allVotesIn = false;
+
+        v.resolved = false;
+        playerVotes.Clear();
+
+        SyncToLocation();
         Commit();
 
-        if (audioSource != null && resetVotesSound != null)
+        if (audioSource && resetVotesSound)
             audioSource.PlayOneShot(resetVotesSound);
-    }
-
-    private void EnableButtonsLocally()
-    {
-        foreach (GameObject button in votebuttons)
-        {
-            if (button != null)
-            {
-                Interactme other = button.GetComponent<Interactme>();
-                if (other != null) other.SetInteracted(false);
-            }
-        }
     }
 
     public void FindHighest()
     {
-        safeWon = false;
-        sacrificeWon = false;
-        relocateBigWon = false;
-        relocateWon = false;
-        digitizeWon = false;
+        var v = CurrentVotes;
+        if (v == null || v.resolved) return;
 
         int highest = Mathf.Max(safeVotes, sacrificeVotes, relocatedbigvotes, relocatevotes, digitizevotes);
-        if (highest <= 0)
-        {
-            Commit();
-            return;
-        }
 
-        int tieCount = 0;
-        if (safeVotes == highest) tieCount++;
-        if (sacrificeVotes == highest) tieCount++;
-        if (relocatedbigvotes == highest) tieCount++;
-        if (relocatevotes == highest) tieCount++;
-        if (digitizevotes == highest) tieCount++;
+        int tie =
+            (safeVotes == highest ? 1 : 0) +
+            (sacrificeVotes == highest ? 1 : 0) +
+            (relocatedbigvotes == highest ? 1 : 0) +
+            (relocatevotes == highest ? 1 : 0) +
+            (digitizevotes == highest ? 1 : 0);
 
-        if (tieCount > 1)
+        if (tie > 1)
         {
             ResetVotes();
             return;
         }
 
-        string winnaarNaam = "";
-        if (safeVotes == highest) { safeWon = true; winnaarNaam = "Safe"; }
-        else if (sacrificeVotes == highest) { sacrificeWon = true; winnaarNaam = "Sacrifice"; }
-        else if (relocatedbigvotes == highest) { relocateBigWon = true; winnaarNaam = "Relocate Big"; }
-        else if (relocatevotes == highest) { relocateWon = true; winnaarNaam = "Relocate"; }
-        else if (digitizevotes == highest) { digitizeWon = true; winnaarNaam = "Digitize"; }
+        safeWon = safeVotes == highest;
+        sacrificeWon = sacrificeVotes == highest;
+        relocateBigWon = relocatedbigvotes == highest;
+        relocateWon = relocatevotes == highest;
+        digitizeWon = digitizevotes == highest;
 
+        v.resolved = true;
+        SyncToLocation();
         Commit();
 
-        if (audioSource != null && highestVoteSound != null)
+        if (audioSource && highestVoteSound)
             audioSource.PlayOneShot(highestVoteSound);
 
         if (safeWon) MoneyManager.InvestRepair();

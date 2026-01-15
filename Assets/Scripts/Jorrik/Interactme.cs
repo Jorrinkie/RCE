@@ -1,14 +1,14 @@
+using Alteruna;
 using UnityEngine;
 
 public class Interactme : MonoBehaviour, IInteractable
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private string boolParameter = "press"; 
+    [SerializeField] private string boolParameter = "press";
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip interactSound;
-
 
     public int buttonNumber = 0;
     private bool interacted = false;
@@ -16,50 +16,34 @@ public class Interactme : MonoBehaviour, IInteractable
     [SerializeField] private GameObject[] OtherButtons;
 
     private VoteManager voteManager;
+    private Multiplayer multiplayer;
 
     private void Start()
     {
         voteManager = FindAnyObjectByType<VoteManager>();
+        multiplayer = FindAnyObjectByType<Multiplayer>();
     }
 
     public void Interact()
     {
-        
-        if (audioSource != null && interactSound != null)
-        {
+        if (audioSource && interactSound)
             audioSource.PlayOneShot(interactSound);
-        }
 
-       
-        if (interacted) return;
+        int playerId = multiplayer.Me.Index;
+        voteManager.RegisterVote(playerId, buttonNumber);
 
         interacted = true;
-        Debug.Log($"{gameObject.name} was interacted with!");
 
-       
-        if (animator != null)
+        if (animator)
             animator.SetBool(boolParameter, true);
 
-       
-        if (buttonNumber == 0)
-            voteManager.addsafe();
-        else if (buttonNumber == 1)
-            voteManager.addsacrifice();
-        else if (buttonNumber == 2)
-            voteManager.adddigitize();
-        else if (buttonNumber == 3)
-            voteManager.addRelocate();
-        else if (buttonNumber == 4)
-            voteManager.addRelocateBigVote();
-
-       
         if (OtherButtons != null)
         {
             foreach (GameObject button in OtherButtons)
             {
                 Interactme other = button.GetComponent<Interactme>();
                 if (other != null)
-                    other.SetInteracted(true);
+                    other.SetInteracted(false);
             }
         }
 
@@ -70,7 +54,7 @@ public class Interactme : MonoBehaviour, IInteractable
     {
         yield return new WaitForSeconds(0.5f);
 
-        if (animator != null)
+        if (animator)
             animator.SetBool(boolParameter, false);
     }
 

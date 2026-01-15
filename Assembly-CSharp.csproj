@@ -151,6 +151,7 @@
     <Compile Include="Assets\Alteruna\Scripts\Examples\ExampleRpcProcedureParameters.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\RoomBrowser\Scripts\StatusPopup.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\TextChat\TextChatCommands\CommandRotate.cs" />
+    <Compile Include="Assets\Scripts\Sorin\IconYAxisSpinner.cs" />
     <Compile Include="Assets\Jorrik\setnametag.cs" />
     <Compile Include="Assets\Alteruna\Prefabs\RoomBrowser\Scripts\BaseRoomBrowser.cs" />
   </ItemGroup>
