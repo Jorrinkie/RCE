@@ -52,6 +52,9 @@ public class VoteManager : AttributesSync
         public int relocate;
         public int digitize;
         public bool resolved;
+
+        // Each location now remembers who voted for what locally
+        public Dictionary<int, int> playerVotes = new Dictionary<int, int>();
     }
 
     private Dictionary<GameObject, LocationVotes> locationVotes = new Dictionary<GameObject, LocationVotes>();
@@ -132,11 +135,15 @@ public class VoteManager : AttributesSync
         var v = CurrentVotes;
         if (v == null || v.resolved) return;
 
-        if (playerVotes.TryGetValue(playerId, out int oldVote))
+        // Look for the player's vote ONLY within this specific location's data
+        if (v.playerVotes.TryGetValue(playerId, out int oldVote))
+        {
+            // Only subtract if they actually voted here before
             ModifyVote(oldVote, -1);
+        }
 
         ModifyVote(vote, 1);
-        playerVotes[playerId] = vote;
+        v.playerVotes[playerId] = vote; // Save the vote to this location's history
 
         SyncToLocation();
         Commit();
@@ -163,7 +170,7 @@ public class VoteManager : AttributesSync
         relocatedbigvotes = 0;
 
         v.resolved = false;
-        playerVotes.Clear();
+        v.playerVotes.Clear(); // Clear the specific location's history
 
         SyncToLocation();
         Commit();
