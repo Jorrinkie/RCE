@@ -54,7 +54,7 @@ public class CountdownTimer : MonoBehaviour
             if (timerText != null)
                 timerText.text = $"{minutes:00}:{seconds:00}";
 
-            // Warning sound
+           
             if (!warningPlayed && currentTime <= warningTime)
             {
                 warningPlayed = true;
@@ -67,7 +67,7 @@ public class CountdownTimer : MonoBehaviour
             timerRunning = false;
 
             Debug.Log("GAME OVER");
-            // Add your game over logic here
+            // add game end!
         }
     }
 

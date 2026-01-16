@@ -18,18 +18,15 @@ public class ResaurceManager : AttributesSync
 
     private void Update()
     {
-        // We updaten de display elke frame voor alle spelers zodat ze 
-        // de gesynchroniseerde waarden direct zien.
         UpdateMoneyDisplay();
         UpdateManPowerDisplay();
     }
 
-    // --- Logica die alleen door de Host wordt aangeroepen ---
 
     public void AddMoney(int amount)
     {
         money += amount;
-        Commit(); // Stuurt nieuwe waarde naar iedereen
+        Commit(); 
     }
 
     public void LoseMoney(int amount)
@@ -50,7 +47,6 @@ public class ResaurceManager : AttributesSync
         Commit();
     }
 
-    // --- Display logica voor iedereen ---
 
     public void UpdateMoneyDisplay()
     {

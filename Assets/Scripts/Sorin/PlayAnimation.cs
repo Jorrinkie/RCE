@@ -60,15 +60,13 @@ public class PlayAnimation : MonoBehaviour
 
             if (audioSource != null && protestSounds.Length > 0)
             {
-                // Only play if fewer than maxSimultaneousProtesters are currently playing
+                
                 if (currentProtesters < maxSimultaneousProtesters)
                 {
                     currentProtesters++;
-
                     AudioClip clip = protestSounds[Random.Range(0, protestSounds.Length)];
                     audioSource.PlayOneShot(clip);
 
-                    // Wait for clip length before freeing up the slot
                     yield return new WaitForSeconds(clip.length);
 
                     currentProtesters--;

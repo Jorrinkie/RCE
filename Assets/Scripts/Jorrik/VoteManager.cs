@@ -96,7 +96,7 @@ public class VoteManager : AttributesSync
             UpdateCheckmarks();
         }
 
-        // Host checks the vote count (Logic from your old script)
+        // Host checks the vote count
         if (_multiplayer != null && _multiplayer.IsConnected && _multiplayer.Me.Index == 0)
         {
             CheckVoteCount();

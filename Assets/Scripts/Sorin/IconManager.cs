@@ -6,9 +6,9 @@ public class IconManager : MonoBehaviour
     public class LocationUI
     {
         public string name;
-        public GameObject locationObject; // The Lighthouse/Windmill etc.
-        public GameObject xIcon;          // Decision NOT made
-        public GameObject checkIcon;      // Decision MADE
+        public GameObject locationObject; 
+        public GameObject xIcon;          
+        public GameObject checkIcon;      
     }
 
     [Header("References")]

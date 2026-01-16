@@ -32,7 +32,7 @@ public class LowerBlinds : MonoBehaviour
 
         float elapsed = 0f;
 
-        // Lower blinds (NO fade here for tutorial mode)
+        // Lower blinds 
         while (elapsed < duration)
         {
             transform.position = Vector3.Lerp(startPos, loweredPos, elapsed / duration);
@@ -41,7 +41,7 @@ public class LowerBlinds : MonoBehaviour
         }
         transform.position = loweredPos;
 
-        // Swap environment
+        // Change environment
         if (objectsToDeactivate != null)
             foreach (var obj in objectsToDeactivate)
                 if (obj != null)
@@ -66,10 +66,10 @@ public class LowerBlinds : MonoBehaviour
     // Used for NON-Tutorial mode — fade only, no blinds
     public IEnumerator FadeSwap(List<GameObject> objectsToDeactivate, GameObject objectToActivate)
     {
-        // Fade In (cover the view)
+        // Fade In 
         yield return StartCoroutine(FadeCubes(true));
 
-        // Swap objects while view is fully covered
+        // Change background
         if (objectsToDeactivate != null)
             foreach (var obj in objectsToDeactivate)
                 if (obj != null)
@@ -78,7 +78,7 @@ public class LowerBlinds : MonoBehaviour
         if (objectToActivate != null)
             objectToActivate.SetActive(true);
 
-        // Fade Out (reveal the new background)
+        // Fade Out 
         yield return StartCoroutine(FadeCubes(false));
     }
 

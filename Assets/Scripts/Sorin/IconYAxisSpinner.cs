@@ -4,17 +4,16 @@ using UnityEngine.Rendering;
 public class IconYAxisSpinner : MonoBehaviour
 {
     [Header("Rotation Settings")]
-    [SerializeField, Tooltip("Speed in degrees per second (positive = one direction, negative = reverse)")]
+    [SerializeField, Tooltip("Speed in degrees per second")]
     private float rotationSpeed = 120f;
 
-    [Header("Axis (only one active at a time)")]
+    [Header("Axis")]
     [SerializeField] private bool spinOnXAxis = false;
     [SerializeField] private bool spinOnYAxis = true;
     [SerializeField] private bool spinOnZAxis = false;
 
     [Header("Ghost Effects")]
     [SerializeField, Range(0.1f, 1f)]
-    [Tooltip("Lower = more see-through / ghostly")]
     private float transparency = 0.65f;
 
     [SerializeField, Tooltip("Make the whole icon grayscale / desaturated")]
@@ -24,16 +23,15 @@ public class IconYAxisSpinner : MonoBehaviour
     private bool applyGhostEffect = true;
 
     [Header("Ghost Position Offset (when ghost mode is active)")]
-    [SerializeField, Tooltip("Offset on X axis (red)")]
+    [SerializeField, Tooltip("Offset on X axis")]
     private float ghostXOffset = 0f;
 
-    [SerializeField, Tooltip("Offset on Y axis (green) - usually the one you want")]
+    [SerializeField, Tooltip("Offset on Y axis")]
     private float ghostYOffset = 0.2f;
 
-    [SerializeField, Tooltip("Offset on Z axis (blue)")]
+    [SerializeField, Tooltip("Offset on Z axis")]
     private float ghostZOffset = 0f;
 
-    [SerializeField, Tooltip("How fast to move to the target position")]
     [Range(1f, 20f)]
     private float moveSpeed = 8f;
 
@@ -52,7 +50,6 @@ public class IconYAxisSpinner : MonoBehaviour
         renderers = GetComponentsInChildren<Renderer>(true);
         propBlock = new MaterialPropertyBlock();
 
-        // Capture the true spawn position ONLY once here
         originalPosition = transform.localPosition;
         targetPosition = originalPosition;
 
@@ -69,13 +66,11 @@ public class IconYAxisSpinner : MonoBehaviour
     }
 
     void OnEnable()
-    {
-        // On reactivation, immediately set to the correct target (prevents partial lerp states)
-        // This "locks" it to either spawn point or spawn + offset, without cumulative shifts
+    {    
         bool wantsGhost = applyGhostEffect;
         Vector3 offset = wantsGhost ? new Vector3(ghostXOffset, ghostYOffset, ghostZOffset) : Vector3.zero;
         targetPosition = originalPosition + offset;
-        transform.localPosition = targetPosition;  // Snap to avoid mid-lerp glitches
+        transform.localPosition = targetPosition; 
     }
 
     void Update()
@@ -92,7 +87,6 @@ public class IconYAxisSpinner : MonoBehaviour
         Vector3 offset = wantsGhost ? new Vector3(ghostXOffset, ghostYOffset, ghostZOffset) : Vector3.zero;
         targetPosition = originalPosition + offset;
 
-        // Smooth lerp (but since we snap in OnEnable, this handles in-game toggles smoothly)
         transform.localPosition = Vector3.Lerp(
             transform.localPosition,
             targetPosition,

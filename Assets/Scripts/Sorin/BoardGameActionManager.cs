@@ -27,14 +27,14 @@ public class BoardGameActionManager : MonoBehaviour
         _multiplayer = FindObjectOfType<Multiplayer>();
     }
 
-    // Hulpmethode om te checken of we de actie mogen uitvoeren
+    
     private bool IsHost()
     {
         if (_multiplayer != null && _multiplayer.IsConnected)
         {
-            return _multiplayer.Me.Index == 0; // In de meeste versies is 0 de host
+            return _multiplayer.Me.Index == 0; 
         }
-        return true; // Voor testen in offline mode
+        return true; 
     }
 
     public void LeaveBehind()
