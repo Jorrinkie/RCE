@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Terneuzen City Hall - Texture Preview</title>
+<style>
+body { background: #1a1a1a; color: #eee; font-family: sans-serif; padding: 20px; }
+h1 { text-align: center; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 1200px; margin: 0 auto; }
+.card { background: #2a2a2a; border-radius: 8px; padding: 10px; }
+.card img { width: 100%; border-radius: 4px; }
+.card h3 { margin: 8px 0 4px; font-size: 14px; }
+.card p { margin: 0; font-size: 12px; color: #aaa; }
+</style></head>
+<body>
+<h1>Terneuzen City Hall - Projected Textures</h1>
+<p style="text-align:center;color:#888;">Image projection from reference photos onto 3D model UV space</p>
+<div class="grid">
+<div class="card"><img src="main_diffuse.png"><h3>Diffuse / Albedo</h3><p>Base color texture projected from 6 directions</p></div>
+<div class="card"><img src="normal_map.png"><h3>Normal Map</h3><p>Surface detail normals with procedural bump</p></div>
+<div class="card"><img src="roughness_map.png"><h3>Roughness Map</h3><p>Concrete surface roughness (0.65 - 0.95)</p></div>
+<div class="card"><img src="ao_map.png"><h3>Ambient Occlusion</h3><p>Contact shadows and cavity darkening</p></div>
+<div class="card"><img src="height_map.png"><h3>Height / Displacement</h3><p>Surface height information</p></div>
+<div class="card"><img src="metalness_map.png"><h3>Metalness Map</h3><p>Non-metallic concrete (near zero)</p></div>
+</div>
+</body></html>

@@ -33,6 +33,7 @@ public class VoteManager : AttributesSync
     [SerializeField] private GameObject tower;
     [SerializeField] private GameObject church;
     [SerializeField] private GameObject bridge;
+    [SerializeField] private GameObject tarneuzenStadhuis;
 
     [Header("Results")]
     [SynchronizableField] public bool safeWon = false;
@@ -70,11 +71,12 @@ public class VoteManager : AttributesSync
     {
         _multiplayer = FindObjectOfType<Multiplayer>();
 
-        locationVotes[lighthouse] = new LocationVotes();
-        locationVotes[windmill] = new LocationVotes();
-        locationVotes[tower] = new LocationVotes();
-        locationVotes[church] = new LocationVotes();
-        locationVotes[bridge] = new LocationVotes();
+        if (lighthouse != null) locationVotes[lighthouse] = new LocationVotes();
+        if (windmill != null) locationVotes[windmill] = new LocationVotes();
+        if (tower != null) locationVotes[tower] = new LocationVotes();
+        if (church != null) locationVotes[church] = new LocationVotes();
+        if (bridge != null) locationVotes[bridge] = new LocationVotes();
+        if (tarneuzenStadhuis != null) locationVotes[tarneuzenStadhuis] = new LocationVotes();
     }
 
     private void Update()
@@ -122,11 +124,12 @@ public class VoteManager : AttributesSync
 
     private GameObject GetActiveLocation()
     {
-        if (lighthouse.activeSelf) return lighthouse;
-        if (windmill.activeSelf) return windmill;
-        if (tower.activeSelf) return tower;
-        if (church.activeSelf) return church;
-        if (bridge.activeSelf) return bridge;
+        if (lighthouse != null && lighthouse.activeSelf) return lighthouse;
+        if (windmill != null && windmill.activeSelf) return windmill;
+        if (tower != null && tower.activeSelf) return tower;
+        if (church != null && church.activeSelf) return church;
+        if (bridge != null && bridge.activeSelf) return bridge;
+        if (tarneuzenStadhuis != null && tarneuzenStadhuis.activeSelf) return tarneuzenStadhuis;
         return null;
     }
 
